@@ -1,4 +1,9 @@
 package Model.Bugs;
 
-public abstract class Bug {
+abstract class Bug {
+
+
+    protected Bug() {
+
+    }
 }

@@ -11,9 +11,9 @@ class Attack {
     /**
      * Instantiates a new Attack.
      *
-     * @param theName    the the name
-     * @param theMessage the the message
-     * @param thePower   the the power
+     * @param theName    the name of the attack
+     * @param theMessage the attack message
+     * @param thePower   the attack power
      */
     protected Attack(final String theName, final String theMessage, final int thePower) {
         NAME = theName;

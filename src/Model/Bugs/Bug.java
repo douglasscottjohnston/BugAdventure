@@ -1,13 +1,13 @@
 package Model.Bugs;
 
-import org.jetbrains.annotations.NotNull;
+
 
 /**
  * The type Bug.
  */
 abstract class Bug {
-    private Attack myAttack;
-    private Attack mySpecialAttack;
+    private final Attack myAttack;
+    private final Attack mySpecialAttack;
 
     private int myHealth;
     private int myDefense;
@@ -36,13 +36,13 @@ abstract class Bug {
      *
      * @param theEnemy the enemy
      */
-    protected void attack(@NotNull final Bug theEnemy) {
+    protected void attack(final Bug theEnemy) {
         //might not be the best way to calculate the damage taken
         int lostHealth = theEnemy.getDefense() - myAttack.getPower();
         theEnemy.setHealth(theEnemy.getHealth() - lostHealth);
     }
 
-    protected void specialAttack(@NotNull final Bug theEnemy) {
+    protected void specialAttack(final Bug theEnemy) {
         int damageTaken = theEnemy.getDefense() - mySpecialAttack.getPower();
         theEnemy.setHealth(theEnemy.getHealth() - damageTaken);
     }

@@ -1,11 +1,14 @@
 package Model.Rooms;
 
+import Model.Directions;
+
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 /**
  * The abstract type Room.
  */
-public abstract class Room {
+public abstract class Room implements Directions {
 
     enum Door {
         NORTH("*-*"),
@@ -33,26 +36,31 @@ public abstract class Room {
         }
     }
 
+    Hashtable<Direction, Object> directionTable = new Hashtable<>();
+
 
     private static final int MAX_DOORS = 4;
     private static final int MAX_WALLS = 3;
 
-
-    private Door[] myDoors;
-    private Wall[] myWalls;
-
     private ArrayList<Object> myContents;
 
-    public Room(Door[] theDoors, Wall[] theWalls, ArrayList<Object> theContents) {
-        if(theDoors.length > MAX_DOORS) {
-            throw new IllegalArgumentException("A room cannot have more than " + MAX_DOORS + " doors, the passed array contains " + theDoors.length + " doors");
-        }
-        if(theWalls.length > MAX_WALLS) {
-            throw new IllegalArgumentException("A room cannot have more than " + MAX_WALLS + " walls, the passed array contains " + theWalls.length + " walls");
-        }
-        myDoors = theDoors;
-        myWalls = theWalls;
+    public Room(final Object theNorth, final Object theSouth, final Object theEast, final Object theWest, ArrayList<Object> theContents) {
+        directionTable.put(Direction.NORTH, theNorth);
+        directionTable.put(Direction.SOUTH, theSouth);
+        directionTable.put(Direction.EAST, theEast);
+        directionTable.put(Direction.WEST, theWest);
         myContents = theContents;
+    }
+
+    public boolean isDoor(final Direction theDirection) {
+        return directionTable.get(theDirection) instanceof Door;
+    }
+
+    public Direction getDoor() {
+        for (Direction key : directionTable.keySet()) {
+            if(directionTable.get(key) instanceof Door) return key;
+        }
+        return null;
     }
 
     /**
@@ -63,5 +71,26 @@ public abstract class Room {
      */
     public boolean contains(final Object theObject) {
         return myContents.contains(theObject);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (Direction key : directionTable.keySet()) {
+            Object val = directionTable.get(key);
+            if(val instanceof Wall) {
+                Wall wall = (Wall)directionTable.get(key);
+                sb.append(wall.values());
+            } else {
+                Door door = (Door)directionTable.get(key);
+                sb.append(door.name());
+            }
+            sb.append("\n");
+        }
+
+        sb.delete(sb.lastIndexOf("\n"), sb.length());
+
+        return sb.toString();
     }
 }

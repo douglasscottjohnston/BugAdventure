@@ -3,7 +3,7 @@ package Model.Bugs;
 /**
  * The type Attack.
  */
-class Attack {
+public class Attack {
     private final String NAME;
     private final String MESSAGE;
     private final int POWER;
@@ -15,7 +15,7 @@ class Attack {
      * @param theMessage the attack message
      * @param thePower   the attack power
      */
-    protected Attack(final String theName, final String theMessage, final int thePower) {
+    public Attack(final String theName, final String theMessage, final int thePower) {
         NAME = theName;
         MESSAGE = theMessage;
         POWER = thePower;

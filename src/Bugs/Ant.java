@@ -12,14 +12,4 @@ public class Ant extends HeroBug {
         super(MY_ATTACK, MY_SPECIAL_ATTACK, MY_HEALTH, MY_DEFENCE, MY_SPEED, MY_CHANCE_TO_DODGE, MY_RUN_AWAY, theName);
     }
 
-
-    //public static void main(String[] args) {
-//        Ant test = new Ant("bob");
-//
-//        Ant test2 = new Ant("bobert");
-//        System.out.println(test.getHealth());
-//        System.out.println(test2.getHealth());
-//        test2.attack(test);
-
-    //}
 }

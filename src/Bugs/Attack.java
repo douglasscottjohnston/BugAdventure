@@ -7,6 +7,7 @@ public class Attack {
     private final String NAME;
     private final String MESSAGE;
     private final int POWER;
+    private final int ATTACK_CHANCE;
 
     /**
      * Instantiates a new Attack.
@@ -15,10 +16,11 @@ public class Attack {
      * @param theMessage the attack message
      * @param thePower   the attack power
      */
-    public Attack(final String theName, final String theMessage, final int thePower) {
+    public Attack(final String theName, final String theMessage, final int thePower, final int theAttackChance) {
         NAME = theName;
         MESSAGE = theMessage;
         POWER = thePower;
+        ATTACK_CHANCE = theAttackChance;
     }
 
     /**
@@ -46,5 +48,9 @@ public class Attack {
      */
     public int getPower() {
         return POWER;
+    }
+
+    public int getAttackChance() {
+        return ATTACK_CHANCE;
     }
 }

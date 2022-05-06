@@ -6,7 +6,7 @@ import java.util.Scanner;
 /**
  * The type Bug.
  */
-abstract class Bug {
+public abstract class Bug {
 
     protected final static Random MY_RANDOM = new Random();
     public final static Scanner input = new Scanner(System.in);
@@ -26,7 +26,7 @@ abstract class Bug {
      * @param theDefense       the defense
      * @param theSpeed         the speed
      */
-    protected Bug(final Attack theAttack, final Attack theSpecialAttack, final int theHealth, final int theDefense, final int theSpeed) {
+    public Bug(final Attack theAttack, final Attack theSpecialAttack, final int theHealth, final int theDefense, final int theSpeed) {
         myAttack = theAttack;
         mySpecialAttack = theSpecialAttack;
         myHealth = theHealth;
@@ -41,13 +41,17 @@ abstract class Bug {
      */
     protected void attack(final Bug theEnemy) {
         //might not be the best way to calculate the damage taken
-        int lostHealth = theEnemy.getDefense() - myAttack.getPower();
+        int lostHealth = myAttack.getPower();
         theEnemy.subtractHitPoints(lostHealth);
     }
 
     protected void specialAttack(final Bug theEnemy) {
-        int damageTaken = theEnemy.getDefense() - mySpecialAttack.getPower();
-        theEnemy.subtractHitPoints(damageTaken);
+        int damageTaken = mySpecialAttack.getPower();
+        if(mySpecialAttack.getAttackChance() > MY_RANDOM.nextInt(101)) {
+            theEnemy.subtractHitPoints(damageTaken);
+        } else {
+            System.out.println("missed lol");
+        }
     }
 
 
@@ -96,10 +100,12 @@ abstract class Bug {
         return mySpeed;
     }
 
+
+
     /**
      * Sets health.
      *
-     * @param theHealth the the health
+     * @param theHealth  the health
      */
     public void setHealth(final int theHealth) {
         this.myHealth = theHealth;

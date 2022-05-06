@@ -21,7 +21,7 @@ public class Dungeon {
 
 
         ArrayList<Object> contents = new ArrayList<Object>();
-        contents.add(new Spider(new Attack("hi", "hi", 10), new Attack("hi", "hi", 10), 10, 10, 10));
+        //contents.add(new Spider(new Attack("hi", "hi", 10), new Attack("hi", "hi", 10), 10, 10, 10));
         //generate the borders
         //generate the top border
         for (int i = 0; i < DUNGEON_WIDTH; i++) {

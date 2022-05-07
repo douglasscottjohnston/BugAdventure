@@ -6,7 +6,7 @@ import java.util.Scanner;
 /**
  * The type Bug.
  */
-abstract class Bug {
+public abstract class Bug {
 
     protected final static Random MY_RANDOM = new Random();
     public final static Scanner input = new Scanner(System.in);
@@ -15,6 +15,8 @@ abstract class Bug {
     private int myHealth;
     private int myDefense;
     private int mySpeed;
+
+    private String myName;
 
 
     /**
@@ -26,12 +28,13 @@ abstract class Bug {
      * @param theDefense       the defense
      * @param theSpeed         the speed
      */
-    protected Bug(final Attack theAttack, final Attack theSpecialAttack, final int theHealth, final int theDefense, final int theSpeed) {
+    public Bug(final Attack theAttack, final Attack theSpecialAttack, final int theHealth, final int theDefense, final int theSpeed, final String theName) {
         myAttack = theAttack;
         mySpecialAttack = theSpecialAttack;
         myHealth = theHealth;
         myDefense = theDefense;
         mySpeed = theSpeed;
+        myName = theName;
     }
 
     /**
@@ -41,13 +44,27 @@ abstract class Bug {
      */
     protected void attack(final Bug theEnemy) {
         //might not be the best way to calculate the damage taken
-        int lostHealth = theEnemy.getDefense() - myAttack.getPower();
-        theEnemy.subtractHitPoints(lostHealth);
+        int damageTaken = myAttack.getPower() - (myAttack.getPower() * theEnemy.getDefense() / 100);
+        theEnemy.takeDamage(damageTaken);
+        System.out.println(theEnemy.getName() + " Hp left: " + theEnemy.getHealth());
+
+        if(myAttack.getLifeSteal()) {
+            heal(damageTaken);
+        }
     }
 
     protected void specialAttack(final Bug theEnemy) {
-        int damageTaken = theEnemy.getDefense() - mySpecialAttack.getPower();
-        theEnemy.subtractHitPoints(damageTaken);
+        int damageTaken = mySpecialAttack.getPower() - (mySpecialAttack.getPower() * theEnemy.getDefense() / 100);
+        if(mySpecialAttack.getAttackChance() > MY_RANDOM.nextInt(101)) {
+            theEnemy.takeDamage(damageTaken);
+            System.out.println(theEnemy.getName() + " Hp left: " + theEnemy.getHealth());
+
+            if(myAttack.getLifeSteal()) {
+                heal(damageTaken);
+            }
+        } else {
+            System.out.println(getName() + " missed their Attack");
+        }
     }
 
 
@@ -96,10 +113,18 @@ abstract class Bug {
         return mySpeed;
     }
 
+    public final String getName() { return myName; }
+
+    public void setName(final String theName) {
+        myName = theName;
+    }
+
+
+
     /**
      * Sets health.
      *
-     * @param theHealth the the health
+     * @param theHealth  the health
      */
     public void setHealth(final int theHealth) {
         this.myHealth = theHealth;
@@ -109,7 +134,7 @@ abstract class Bug {
         return myHealth > 0;
     }
 
-    protected void addHitPoints(final int theAmount) {
+    public void heal(final int theAmount) {
         if (theAmount < 0) {
             throw new IllegalArgumentException("cannot add negative hitpoints" + theAmount);
         }
@@ -117,7 +142,7 @@ abstract class Bug {
         myHealth += theAmount;
     }
 
-    protected void subtractHitPoints(final int theAmount) {
+    public void takeDamage(final int theAmount) {
         if (theAmount < 0) {
             throw new IllegalArgumentException("cannot subtract negative hitpoints" + theAmount);
         }

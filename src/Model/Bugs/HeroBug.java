@@ -1,21 +1,21 @@
 package Model.Bugs;
 
-abstract class HeroBug extends Bug {
+public abstract class HeroBug extends Bug {
 
     private int myChanceToDodge;
     private boolean myRunAway;
     private int mySpecialSkillChance;
-    private String myName;
-    protected HeroBug(final Attack theAttack, final Attack theSpecialAttack, final int theHealth, final int theDefense,
-                      final int theSpeed, final int theChanceToDodge, final boolean theRunAway, final int theSpecialSkillChance, final String theName) {
-        super(theAttack, theSpecialAttack, theHealth, theDefense, theSpeed);
+
+    public HeroBug(final Attack theAttack, final Attack theSpecialAttack, final int theHealth, final int theDefense,
+                      final int theSpeed, final int theChanceToDodge, final boolean theRunAway, final String theName) {
+        super(theAttack, theSpecialAttack, theHealth, theDefense, theSpeed, theName);
 
         setChanceToDodge(theChanceToDodge);
         setRunAway(theRunAway);
-        setSpecialSkillChance(theSpecialSkillChance);
         setName(theName);
     }
 
+    @Override
     public void attack(final Bug theEnemy) {
         int attackChoice;
         int numberOfAttacks = getSpeed() / theEnemy.getSpeed();
@@ -30,10 +30,11 @@ abstract class HeroBug extends Bug {
                 super.attack(theEnemy);
             }
             else if (attackChoice == 2) {
-                if (MY_RANDOM.nextInt(101) <= mySpecialSkillChance) {
-                    super.specialAttack(theEnemy);
-                }
+                super.specialAttack(theEnemy);
+
             }
+
+            numberOfAttacks--;
         }
     }
 
@@ -44,24 +45,23 @@ abstract class HeroBug extends Bug {
         myChanceToDodge = theChanceToDodge;
     }
 
-    protected void setSpecialSkillChance(final int theSpecialSkillChance) {
-        if (theSpecialSkillChance <= 0 || theSpecialSkillChance > 100) {
-            throw new IllegalArgumentException("Chance hit special attack must be greater than 0 and less than 100. It was" + theSpecialSkillChance);
-        }
-        mySpecialSkillChance = theSpecialSkillChance;
-    }
-
     protected void setRunAway(final boolean theRunAway) {
         myRunAway = theRunAway;
     }
 
-    protected void setName(final String theName) {
-        myName = theName;
-    }
+
 
     private final int getChoice() {
         System.out.println("Choose (1) for normal attack, choose (2) for special attack, choose (3) to run away.");
         return input.nextInt();
     }
+
+    protected int getChanceToDodge() {
+        return myChanceToDodge;
+    }
+
+
+
+
 
 }

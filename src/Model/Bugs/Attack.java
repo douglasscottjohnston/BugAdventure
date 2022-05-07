@@ -7,6 +7,8 @@ public class Attack {
     private final String NAME;
     private final String MESSAGE;
     private final int POWER;
+    private final int ATTACK_CHANCE;
+    private final boolean LIFESTEAL;
 
     /**
      * Instantiates a new Attack.
@@ -14,11 +16,16 @@ public class Attack {
      * @param theName    the name of the attack
      * @param theMessage the attack message
      * @param thePower   the attack power
+     * @param theAttackChance the chance to hit attack
+     * @param theLifesteal true if attack has lifesteal
      */
-    public Attack(final String theName, final String theMessage, final int thePower) {
+    public Attack(final String theName, final String theMessage, final int thePower, final int theAttackChance, final boolean theLifesteal) {
         NAME = theName;
         MESSAGE = theMessage;
         POWER = thePower;
+        ATTACK_CHANCE = theAttackChance;
+        LIFESTEAL = theLifesteal;
+
     }
 
     /**
@@ -47,4 +54,10 @@ public class Attack {
     public int getPower() {
         return POWER;
     }
+
+    public int getAttackChance() {
+        return ATTACK_CHANCE;
+    }
+
+    public boolean getLifeSteal() { return LIFESTEAL; }
 }

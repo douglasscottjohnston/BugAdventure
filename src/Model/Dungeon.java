@@ -1,7 +1,7 @@
 package Model;
 
-import Bugs.Attack;
-import Bugs.Spider;
+import Model.Bugs.Attack;
+import Model.Bugs.Spider;
 import Model.Rooms.*;
 
 import java.util.ArrayList;

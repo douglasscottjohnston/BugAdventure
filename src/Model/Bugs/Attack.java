@@ -1,4 +1,4 @@
-package Bugs;
+package Model.Bugs;
 
 /**
  * The type Attack.

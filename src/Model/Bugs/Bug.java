@@ -1,4 +1,4 @@
-package Bugs;
+package Model.Bugs;
 import java.util.Random;
 import java.util.Scanner;
 

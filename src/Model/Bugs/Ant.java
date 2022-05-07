@@ -1,4 +1,4 @@
-package Bugs;
+package Model.Bugs;
 
 public class Ant extends HeroBug {
     private static final int MY_HEALTH = 100;

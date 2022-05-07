@@ -1,4 +1,4 @@
-package Bugs;
+package Model.Bugs;
 
 abstract class MonsterBug extends Bug {
 

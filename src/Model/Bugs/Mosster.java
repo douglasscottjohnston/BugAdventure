@@ -1,4 +1,4 @@
-package Bugs;
+package Model.Bugs;
 
 public class Mosster extends MonsterBug {
     protected Mosster(Attack theAttack, Attack theSpecialAttack, int theHealth, int theDefense, int theSpeed) {

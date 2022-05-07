@@ -1,4 +1,4 @@
-package Bugs;
+package Model.Bugs;
 
 public class Spider extends MonsterBug {
     public Spider(Attack theAttack, Attack theSpecialAttack, int theHealth, int theDefense, int theSpeed) {

@@ -5,10 +5,10 @@ public abstract class HeroBug extends Bug {
     private int myChanceToDodge;
     private boolean myRunAway;
     private int mySpecialSkillChance;
-    private String myName;
+
     public HeroBug(final Attack theAttack, final Attack theSpecialAttack, final int theHealth, final int theDefense,
                       final int theSpeed, final int theChanceToDodge, final boolean theRunAway, final String theName) {
-        super(theAttack, theSpecialAttack, theHealth, theDefense, theSpeed);
+        super(theAttack, theSpecialAttack, theHealth, theDefense, theSpeed, theName);
 
         setChanceToDodge(theChanceToDodge);
         setRunAway(theRunAway);
@@ -34,8 +34,7 @@ public abstract class HeroBug extends Bug {
 
             }
 
-            System.out.println("Enemy Hp left: " + theEnemy.getHealth());
-            //numberOfAttacks--;
+            numberOfAttacks--;
         }
     }
 
@@ -50,18 +49,18 @@ public abstract class HeroBug extends Bug {
         myRunAway = theRunAway;
     }
 
-    protected void setName(final String theName) {
-        myName = theName;
-    }
+
 
     private final int getChoice() {
         System.out.println("Choose (1) for normal attack, choose (2) for special attack, choose (3) to run away.");
         return input.nextInt();
     }
 
-    public String getName() {
-        return myName;
+    protected int getChanceToDodge() {
+        return myChanceToDodge;
     }
+
+
 
 
 

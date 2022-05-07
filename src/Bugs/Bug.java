@@ -16,6 +16,8 @@ public abstract class Bug {
     private int myDefense;
     private int mySpeed;
 
+    private String myName;
+
 
     /**
      * Instantiates a new Bug.
@@ -26,12 +28,13 @@ public abstract class Bug {
      * @param theDefense       the defense
      * @param theSpeed         the speed
      */
-    public Bug(final Attack theAttack, final Attack theSpecialAttack, final int theHealth, final int theDefense, final int theSpeed) {
+    public Bug(final Attack theAttack, final Attack theSpecialAttack, final int theHealth, final int theDefense, final int theSpeed, final String theName) {
         myAttack = theAttack;
         mySpecialAttack = theSpecialAttack;
         myHealth = theHealth;
         myDefense = theDefense;
         mySpeed = theSpeed;
+        myName = theName;
     }
 
     /**
@@ -41,16 +44,26 @@ public abstract class Bug {
      */
     protected void attack(final Bug theEnemy) {
         //might not be the best way to calculate the damage taken
-        int lostHealth = myAttack.getPower();
-        theEnemy.subtractHitPoints(lostHealth);
+        int damageTaken = myAttack.getPower() - (myAttack.getPower() * theEnemy.getDefense() / 100);
+        theEnemy.subtractHitPoints(damageTaken);
+        System.out.println(theEnemy.getName() + " Hp left: " + theEnemy.getHealth());
+
+        if(myAttack.getLifeSteal()) {
+            addHitPoints(damageTaken);
+        }
     }
 
     protected void specialAttack(final Bug theEnemy) {
-        int damageTaken = mySpecialAttack.getPower();
+        int damageTaken = mySpecialAttack.getPower() - (mySpecialAttack.getPower() * theEnemy.getDefense() / 100);
         if(mySpecialAttack.getAttackChance() > MY_RANDOM.nextInt(101)) {
             theEnemy.subtractHitPoints(damageTaken);
+            System.out.println(theEnemy.getName() + " Hp left: " + theEnemy.getHealth());
+
+            if(myAttack.getLifeSteal()) {
+                addHitPoints(damageTaken);
+            }
         } else {
-            System.out.println("missed lol");
+            System.out.println(getName() + " missed their Attack");
         }
     }
 
@@ -98,6 +111,12 @@ public abstract class Bug {
      */
     public int getSpeed() {
         return mySpeed;
+    }
+
+    public final String getName() { return myName; }
+
+    public void setName(final String theName) {
+        myName = theName;
     }
 
 

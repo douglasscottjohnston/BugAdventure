@@ -1,21 +1,25 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * The abstract type Room.
  */
-public class Room {
-    Room myNorth;
-    Room mySouth;
-    Room myEast;
-    Room myWest;
-    boolean[] myDoors;
+public class Room implements Serializable {
+    private Room myNorth;
+    private Room mySouth;
+    private Room myEast;
+    private Room myWest;
+    private Room[] myDirections;
+    private int myLabel;
+    private boolean[] myDoors;
 
-    ArrayList<Object> myContents;
+    private ArrayList<Object> myContents;
 
     public Room(ArrayList<Object> theContents) {
         myContents = theContents;
+        myDirections = new Room[4];
         myDoors = generateMyDoors();
     }
 
@@ -62,6 +66,10 @@ public class Room {
         return myContents.isEmpty();
     }
 
+    public boolean hasMaxDoors() {
+        return hasNorth() && hasSouth() && hasEast() && hasWest();
+    }
+
     public boolean hasNorth() {
         return myNorth != null;
     }
@@ -94,27 +102,43 @@ public class Room {
         return myWest;
     }
 
+    public Room[] getDirections() {
+        return myDirections;
+    }
+
     public boolean[] getDoors() {
         return myDoors;
     }
 
+    public int getLabel() {
+        return myLabel;
+    }
+
     public void setNorth(final Room theNorth) {
         myNorth = theNorth;
+        myDirections[0] = myNorth;
         myDoors[0] = true;
     }
 
     public void setSouth(final Room theSouth) {
         mySouth = theSouth;
+        myDirections[1] = mySouth;
         myDoors[1] = true;
     }
 
     public void setEast(final Room theEast) {
         myEast = theEast;
+        myDirections[2] = myEast;
         myDoors[2] = true;
     }
 
     public void setWest(final Room theWest) {
         myWest = theWest;
+        myDirections[3] = myWest;
         myDoors[3] = true;
+    }
+
+    public void setLabel(final int theLabel) {
+        myLabel = theLabel;
     }
 }

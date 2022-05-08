@@ -1,4 +1,6 @@
 package Model.Bugs;
+
+import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -6,7 +8,7 @@ import java.util.Scanner;
 /**
  * The type Bug.
  */
-public abstract class Bug {
+public abstract class Bug implements Serializable {
 
     protected final static Random MY_RANDOM = new Random();
     public final static Scanner input = new Scanner(System.in);

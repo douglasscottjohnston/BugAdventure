@@ -2,7 +2,9 @@ package Model;
 
 import Model.Bugs.HeroBug;
 
-public class Pit {
+import java.io.Serializable;
+
+public class Pit implements Serializable {
     private static final int DAMAGE = 10;
 
 

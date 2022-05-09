@@ -1,3 +1,5 @@
+package Controller;
+
 import Model.Bugs.*;
 import Model.Dungeon;
 

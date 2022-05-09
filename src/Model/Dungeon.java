@@ -6,7 +6,7 @@ import Model.Items.Item;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.LinkedList;
 
 
 /**
@@ -23,12 +23,12 @@ public class Dungeon implements Serializable {
     private static final int CONTAIN_HIGH = 4;
     private static final int BRANCH_CHANCE_LOW = 0;
     private static final int BRANCH_CHANCE_HIGH = 4;
+    private static final int BRANCH_LEN_LOW = 3;
+    private static final int BRANCH_LEN_HIGH = 10;
     private static final int MONSTER_LOW = 0;
     private static final int MONSTER_HIGH = 3;
     private static final int ITEM_LOW = 0;
     private static final int ITEM_HIGH = 0;
-    private static final boolean EDGE = true;
-    private static final boolean NO_EDGE = false;
     private enum Directions {
         NORTH("0"),
         SOUTH("1"),
@@ -42,7 +42,23 @@ public class Dungeon implements Serializable {
         }
 
         static Directions getDirection(final int theDirection) {
-            return Directions.valueOf(Integer.toString(theDirection));
+            switch (theDirection) {
+                case 0 -> {
+                    return NORTH;
+                }
+                case 1 -> {
+                    return SOUTH;
+                }
+                case 2 -> {
+                    return EAST;
+                }
+                case 3 -> {
+                    return WEST;
+                }
+                default -> {
+                    throw new IllegalArgumentException(theDirection + " is not a possible direction");
+                }
+            }
         }
     }
 
@@ -53,13 +69,9 @@ public class Dungeon implements Serializable {
 
     //msc.
     private HeroBug myHero;
-    private Utility myUtility;
-    private Hashtable<Room, Room[]> myListRep;
-    private boolean[][] myMatrixRep;
+    private final Utility myUtility;
+    private LinkedList<Room> myExitPath;
     private int myNumRooms;
-    private int myExitPathLen;
-    private int myNumBranchRooms;
-    private int myNumCycleRooms;
 
     public Dungeon(final HeroBug theHero) {
         myHero = theHero;
@@ -82,7 +94,6 @@ public class Dungeon implements Serializable {
     private void createRandomDungeon() {
         createPathToExit();
         createRandomBranches();
-        generateRandomCycles();
     }
 
     /**
@@ -92,19 +103,14 @@ public class Dungeon implements Serializable {
      */
     private void createPathToExit() {
         myNumRooms = myUtility.getRandomInRange(NUM_ROOMS_LOW, NUM_ROOMS_HIGH);
-        myExitPathLen = myNumRooms/3;
-        myNumBranchRooms = myNumRooms/3;
-        myNumCycleRooms = myNumRooms/3;
-        myMatrixRep = new boolean[myNumRooms][myNumRooms];
-        myListRep = new Hashtable<>();
-        Room prev; //keeps track of the previous room
-
+        myExitPath = new LinkedList<>();
         for (int i = 0; i < myNumRooms/3; i++) {
-            myExit.setLabel(i);
-            prev = myExit;
-            myExit = generateRoomInRandomDirection(myExit);
-            myListRep.put(prev, prev.getDirections());
-            myMatrixRep[i][myExit.getLabel()] = EDGE;
+            myExitPath.add(myExit);
+            if(!myExit.hasMaxDoors()) {
+                myExit = generateRoomInRandomDirection(myExit);
+            } else {
+                myExit = myExit.getNorth();
+            }
         }
     }
 
@@ -112,32 +118,40 @@ public class Dungeon implements Serializable {
      * Creates random branches along the path to the exit
      */
     private void createRandomBranches() {
-        Room curr = myEntrance;
         int branchChance;
 
-        for (int i = 0; i < myNumRooms; i++) {
-            for (int j = 0; j < myNumBranchRooms; j++) {
-                branchChance = myUtility.getRandomInRange(BRANCH_CHANCE_LOW, BRANCH_CHANCE_HIGH);
+        for (Room room : myExitPath) {
+            branchChance = myUtility.getRandomInRange(BRANCH_CHANCE_LOW, BRANCH_CHANCE_HIGH);
+
+            if(branchChance >= (BRANCH_CHANCE_HIGH + BRANCH_CHANCE_LOW) / 2) {
+                createRandomBranchInRandomDirections(room, myUtility.getRandomInRange(BRANCH_LEN_LOW, BRANCH_LEN_HIGH));
             }
         }
     }
 
-    private void createBranch(final Room theStart, final int theLen, final Directions theDirection) {
-
+    private void createRandomBranchInRandomDirections(final Room theStart, final int theLen) {
+        Room curr = theStart;
+        for (int i = 0; i < theLen; i++) {
+            curr = generateRoomInRandomDirection(curr);
+        }
     }
 
-    /**
-     * Creates random cycles between each of the branches
-     */
-    private void generateRandomCycles() {
-
-    }
+    // commented out for potential future use
+//    private Room createBranchInDirection(final Room theStart, final int theLen, final Directions theDirection) {
+//        Room curr = theStart;
+//
+//        for (int i = 0; i < theLen; i++) {
+//            curr = generateRoomInDirection(curr, theDirection);
+//        }
+//
+//        return curr;
+//    }
 
     /**
      * Creates a room in a random direction of the target room
      *
-     * @param theTargetRoom
-     * @return
+     * @param theTargetRoom The room to generate a random room on
+     * @return The newly generated room
      */
     private Room generateRoomInRandomDirection(final Room theTargetRoom) {
         int directionNum = myUtility.getRandomInRange(0, 3);
@@ -161,18 +175,22 @@ public class Dungeon implements Serializable {
         Room newRoom = generateRandomRoom();
 
         switch(theDirection){
-        case NORTH:
-            theTargetRoom.setNorth(newRoom);
-            newRoom.setSouth(theTargetRoom);
-        case SOUTH:
-            theTargetRoom.setSouth(newRoom);
-            newRoom.setNorth(theTargetRoom);
-        case EAST:
-            theTargetRoom.setEast(newRoom);
-            newRoom.setWest(theTargetRoom);
-        case WEST:
-            theTargetRoom.setWest(newRoom);
-            newRoom.setEast(theTargetRoom);
+            case NORTH:
+                theTargetRoom.setNorth(newRoom);
+                newRoom.setSouth(theTargetRoom);
+                break;
+            case SOUTH:
+                theTargetRoom.setSouth(newRoom);
+                newRoom.setNorth(theTargetRoom);
+                break;
+            case EAST:
+                theTargetRoom.setEast(newRoom);
+                newRoom.setWest(theTargetRoom);
+                break;
+            case WEST:
+                theTargetRoom.setWest(newRoom);
+                newRoom.setEast(theTargetRoom);
+                break;
         }
         return newRoom;
     }
@@ -180,7 +198,7 @@ public class Dungeon implements Serializable {
     private Room generateRandomRoom() {
         // 1 in 5 chance of having a random monster, a random item, a pit, nothing,
         // or a random monster and a random item
-        ArrayList<Object> contents = new ArrayList<Object>();
+        ArrayList<Object> contents = new ArrayList<>();
         
         switch(myUtility.getRandomInRange(CONTAIN_LOW, CONTAIN_HIGH)) {
             default:
@@ -216,40 +234,38 @@ public class Dungeon implements Serializable {
         System.out.println(myCurrent.toString() + "W");
     }
 
-    private void addNorthRoom(final Room theTarget, final Room theNorth) {
-        theTarget.setNorth(theNorth);
-        theNorth.setSouth(theTarget);
-    }
-
-    private void addSouthRoom(final Room theTarget, final Room theSouth) {
-        theTarget.setSouth(theSouth);
-        theSouth.setNorth(theTarget);
-    }
-
-    private void addEastRoom(final Room theTarget, final Room theEast) {
-        theTarget.setEast(theEast);
-        theEast.setWest(theTarget);
-    }
-
-    private void addWestRoom(final Room theTarget, final Room theWest) {
-        theTarget.setWest(theWest);
-        theWest.setEast(theTarget);
-    }
+    // commented out for potential future use
+//    private void addNorthRoom(final Room theTarget, final Room theNorth) {
+//        theTarget.setNorth(theNorth);
+//        theNorth.setSouth(theTarget);
+//    }
+//
+//    private void addSouthRoom(final Room theTarget, final Room theSouth) {
+//        theTarget.setSouth(theSouth);
+//        theSouth.setNorth(theTarget);
+//    }
+//
+//    private void addEastRoom(final Room theTarget, final Room theEast) {
+//        theTarget.setEast(theEast);
+//        theEast.setWest(theTarget);
+//    }
+//
+//    private void addWestRoom(final Room theTarget, final Room theWest) {
+//        theTarget.setWest(theWest);
+//        theWest.setEast(theTarget);
+//    }
     
     private MonsterBug generateRandomMonster() {
-        switch(myUtility.getRandomInRange(MONSTER_LOW, MONSTER_HIGH)) {
-            default:
-                return new Spider();
-            case 1:
-                return new Centipede();
-            case 2:
-                return new Maggot();
-            case 3:
-                return new Mosster();
-        }
+        return switch (myUtility.getRandomInRange(MONSTER_LOW, MONSTER_HIGH)) {
+            default -> new Spider();
+            case 1 -> new Centipede();
+            case 2 -> new Maggot();
+            case 3 -> new Mosster();
+        };
     }
 
     private Item generateRandomItem() {
+        //Add items as more are created
         switch(myUtility.getRandomInRange(ITEM_LOW, ITEM_HIGH)) {
             default:
                 return new Apple();

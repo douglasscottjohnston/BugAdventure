@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.Directions;
 import Model.Bugs.*;
 import Model.Items.Apple;
 import Model.Items.Item;
@@ -15,7 +16,7 @@ import java.util.LinkedList;
  * @author Douglas Johnston
  * @version 1.0  The dungeon class is a graph which organises rooms in the dungeon. The graph is represented by an adjacency list where the list (myListRep) holds all the nodes in the graph and each node (Room) holds a reference to the four other nodes that it has edges connecting to. A new dungeon is randomly generated every time the dungeon class is instantiated.
  */
-public class Dungeon implements Serializable {
+public class Dungeon implements Serializable, Directions {
     //constants
     private static final int NUM_ROOMS_LOW = 10;
     private static final int NUM_ROOMS_HIGH = 30;
@@ -29,38 +30,38 @@ public class Dungeon implements Serializable {
     private static final int MONSTER_HIGH = 3;
     private static final int ITEM_LOW = 0;
     private static final int ITEM_HIGH = 0;
-    private enum Directions {
-        NORTH("0"),
-        SOUTH("1"),
-        EAST("2"),
-        WEST("3");
-
-        String myDirection;
-
-        Directions(final String theDirection) {
-            myDirection = theDirection;
-        }
-
-        static Directions getDirection(final int theDirection) {
-            switch (theDirection) {
-                case 0 -> {
-                    return NORTH;
-                }
-                case 1 -> {
-                    return SOUTH;
-                }
-                case 2 -> {
-                    return EAST;
-                }
-                case 3 -> {
-                    return WEST;
-                }
-                default -> {
-                    throw new IllegalArgumentException(theDirection + " is not a possible direction");
-                }
-            }
-        }
-    }
+//    private enum Directions {
+//        NORTH("0"),
+//        SOUTH("1"),
+//        EAST("2"),
+//        WEST("3");
+//
+//        String myDirection;
+//
+//        Directions(final String theDirection) {
+//            myDirection = theDirection;
+//        }
+//
+//        static Directions getDirection(final int theDirection) {
+//            switch (theDirection) {
+//                case 0 -> {
+//                    return NORTH;
+//                }
+//                case 1 -> {
+//                    return SOUTH;
+//                }
+//                case 2 -> {
+//                    return EAST;
+//                }
+//                case 3 -> {
+//                    return WEST;
+//                }
+//                default -> {
+//                    throw new IllegalArgumentException(theDirection + " is not a possible direction");
+//                }
+//            }
+//        }
+//    }
 
     //rooms
     private final Room myEntrance;
@@ -169,7 +170,7 @@ public class Dungeon implements Serializable {
         }
     }
 
-    private Room generateRoomInDirection(final Room theTargetRoom, final Directions theDirection) {
+    private Room generateRoomInDirection(final Room theTargetRoom, final Direction theDirection) {
         // 0 = North, 1 = South, 2 = East, 3 = West
 
         Room newRoom = generateRandomRoom();
@@ -214,23 +215,40 @@ public class Dungeon implements Serializable {
         return new Room(contents);
     }
 
-    public void moveNorth() {
+    private void moveInDirection(final Direction theDirection) {
+        switch (theDirection) {
+            case NORTH -> moveNorth();
+            case SOUTH -> moveSouth();
+            case EAST -> moveEast();
+            case WEST -> moveWest();
+        }
+    }
+
+    private void moveNorth() {
+        myCurrent.remove(myHero);
         myCurrent = myCurrent.getNorth();
+        myCurrent.add(myHero);
         System.out.println(myCurrent.toString() + "N");
     }
 
-    public void moveSouth() {
+    private void moveSouth() {
+        myCurrent.remove(myHero);
         myCurrent = myCurrent.getSouth();
+        myCurrent.add(myHero);
         System.out.println(myCurrent.toString() + "S");
     }
 
-    public void moveEast() {
+    private void moveEast() {
+        myCurrent.remove(myHero);
         myCurrent = myCurrent.getEast();
+        myCurrent.add(myHero);
         System.out.println(myCurrent.toString() + "E");
     }
 
-    public void moveWest() {
+    private void moveWest() {
+        myCurrent.remove(myHero);
         myCurrent = myCurrent.getWest();
+        myCurrent.add(myHero);
         System.out.println(myCurrent.toString() + "W");
     }
 

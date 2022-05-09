@@ -1,4 +1,6 @@
 package Controller;
 
-public class MoveMessage extends Message {
+public class MoveMessage extends Message implements Directions {
+
+
 }

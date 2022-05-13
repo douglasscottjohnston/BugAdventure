@@ -91,6 +91,10 @@ public class Dungeon implements Serializable, Directions {
         return myExit.contains(myHero);
     }
 
+    public void printExitPath() {
+
+    }
+
     /**
      * Creates the randomly generated dungeon
      */

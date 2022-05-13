@@ -7,8 +7,4 @@ public class Apple extends Item {
     public Apple() {
         super(MY_NAME);
     }
-
-    @Override
-    public void useItem() {
-    }
 }

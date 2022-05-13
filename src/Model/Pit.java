@@ -11,4 +11,9 @@ public class Pit implements Serializable {
     public void dealDamage(HeroBug theHero) {
         theHero.takeDamage(DAMAGE);
     }
+
+    @Override
+    public String toString() {
+        return "pit";
+    }
 }

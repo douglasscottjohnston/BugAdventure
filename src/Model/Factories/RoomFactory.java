@@ -29,14 +29,14 @@ public class RoomFactory {
      * @return The newly generated room
      */
     public Room makeRoomInRandomDirection(final Room theTargetRoom) {
-        int directionNum = myUtility.getRandomInRange(0, 3);
+        int directionNum = myUtility.getRandom(3);
 
         if(!theTargetRoom.hasNorth() && !theTargetRoom.hasSouth() && !theTargetRoom.hasEast() && !theTargetRoom.hasWest()) {
             return makeRoomInDirection(theTargetRoom, Directions.getDirection(directionNum));
         } else if(!theTargetRoom.hasMaxDoors()){
             //generate a new random number until we find a direction without a door, this is really dumb
             while(theTargetRoom.getDoors()[directionNum]) {
-                directionNum = myUtility.getRandomInRange(0, 3);
+                directionNum = myUtility.getRandom(3);
             }
             return makeRoomInDirection(theTargetRoom, Directions.getDirection(directionNum));
         } else { //the room has the max amount of doors, so we can't generate a new room
@@ -45,8 +45,6 @@ public class RoomFactory {
     }
 
     public Room makeRoomInDirection(final Room theTargetRoom, final Directions.Direction theDirection) {
-        // 0 = North, 1 = South, 2 = East, 3 = West
-
         Room newRoom = makeRandomRoom();
 
         switch (theDirection) {
@@ -65,15 +63,13 @@ public class RoomFactory {
         ArrayList<Object> contents = new ArrayList<>();
 
         switch(myUtility.getRandomInRange(CONTAIN_LOW, CONTAIN_HIGH)) {
-        default:
-            contents.add(myMonsterFactory.makeRandomMonsterBug());
-        case 1:
-            contents.add(myItemFactory.makeRandomItem());
-        case 2:
-            contents.add(new Pit());
-        case 4:
+        default -> contents.add(myMonsterFactory.makeRandomMonsterBug());
+        case 1 -> contents.add(myItemFactory.makeRandomItem());
+        case 2 -> contents.add(new Pit());
+        case 4 -> {
             contents.add(myMonsterFactory.makeRandomMonsterBug());
             contents.add(myItemFactory.makeRandomItem());
+        }
         }
         return new Room(contents);
     }

@@ -34,10 +34,10 @@ public abstract class HeroBug extends Bug {
 
             if (attackChoice == 1) {
                 super.attack(theEnemy);
-            }
-            else if (attackChoice == 2) {
+            } else if (attackChoice == 2) {
                 super.specialAttack(theEnemy);
-
+            } else { //cheat
+                theEnemy.setHealth(0);
             }
 
             numberOfAttacks--;

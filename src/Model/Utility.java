@@ -1,12 +1,14 @@
 package Model;
 
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * The type Utility.
  */
 public class Utility {
     private StringBuilder mySB;
+    private Scanner myScan;
     private Random myRandom;
     private IllegalArgumentException myIllegal;
 
@@ -15,6 +17,7 @@ public class Utility {
      */
     public Utility() {
         mySB = new StringBuilder();
+        myScan = new Scanner(System.in);
         myRandom = new Random();
         myIllegal = new IllegalArgumentException();
     }
@@ -26,6 +29,26 @@ public class Utility {
      */
     public StringBuilder getStringBuilder() {
         return mySB;
+    }
+
+    public Scanner getScanner() {
+        return myScan;
+    }
+
+    public String scanNext() {
+        return myScan.next();
+    }
+
+    public String scanNextLine() {
+        return myScan.nextLine();
+    }
+
+    public int scanNextInt() {
+        return myScan.nextInt();
+    }
+
+    public void closeScanner() {
+        myScan.close();
     }
 
     /**

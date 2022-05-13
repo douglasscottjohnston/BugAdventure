@@ -7,12 +7,12 @@ public abstract class Item {
         myName = theName;
     }
 
-
-    public void useItem() {
-
+    public String getName() {
+        return myName;
     }
 
-    public String getName() {
+    @Override
+    public String toString() {
         return myName;
     }
 }

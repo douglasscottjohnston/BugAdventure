@@ -55,7 +55,7 @@ public abstract class Bug implements Serializable {
         }
     }
 
-    protected void specialAttack(final Bug theEnemy) {
+    public void specialAttack(final Bug theEnemy) {
         int damageTaken = mySpecialAttack.getPower() - (mySpecialAttack.getPower() * theEnemy.getDefense() / 100);
         if(mySpecialAttack.getAttackChance() > MY_RANDOM.nextInt(101)) {
             theEnemy.takeDamage(damageTaken);
@@ -150,10 +150,16 @@ public abstract class Bug implements Serializable {
         }
 
         myHealth -= theAmount;
+        System.out.println(myName + " took " + theAmount + " points of damage!");
 
         if(myHealth <= 0) {
             myHealth = 0;
         }
+    }
+
+    @Override
+    public String toString() {
+        return myName;
     }
 }
 

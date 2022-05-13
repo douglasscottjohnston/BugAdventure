@@ -1,7 +1,8 @@
 package Model;
 
+import Controller.Directions;
 import Model.Bugs.MonsterBug;
-import Model.Bugs.Spider;
+import Model.Items.Item;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -83,9 +84,47 @@ public class Room implements Serializable {
         return myWest != null;
     }
 
+    public boolean hasDirection(Directions.Direction direction) {
+
+        switch(direction) {
+        case NORTH -> {
+            return hasNorth();
+        }
+        case SOUTH -> {
+            return hasSouth();
+        }
+        case EAST -> {
+            return hasEast();
+        }
+        case WEST -> {
+            return hasWest();
+        }
+        default -> throw myUtility.getNewIllegal(direction + " is not a valid direction");
+
+        }
+    }
+
     public boolean containsMonster() {
         for (Object o : myContents) {
             if (o instanceof MonsterBug) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean containsItem() {
+        for (Object o : myContents) {
+            if (o instanceof Item) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean containsPit() {
+        for (Object o : myContents) {
+            if(o instanceof Pit) {
                 return true;
             }
         }
@@ -117,6 +156,53 @@ public class Room implements Serializable {
         return myDoors;
     }
 
+    public MonsterBug getMonster() {
+        if(!containsMonster()) {
+            throw myUtility.getNewIllegal("The room does not contain a monster " + myContents.toString());
+        }
+        MonsterBug out = null; //this is bad, we should think of a better way to return the monster in the list
+
+        for (Object o : myContents) {
+            if(o instanceof MonsterBug) {
+                out = (MonsterBug)o;
+            }
+        }
+        return out;
+    }
+
+    public Item getItem() {
+
+        if(!containsItem()) {
+            throw myUtility.getNewIllegal("The room does not contain an item " + myContents.toString());
+        }
+
+        Item out = null;
+
+        for(Object o : myContents) {
+            if(o instanceof Item) {
+                out = (Item)o;
+            }
+        }
+
+        return out;
+    }
+
+    public Pit getPit() {
+
+        if(!containsPit()) {
+            throw myUtility.getNewIllegal("The room does not contain a pit " + myContents.toString());
+        }
+
+        Pit out = null;
+
+        for(Object o : myContents) {
+            if(o instanceof Pit) {
+                out = (Pit)o;
+            }
+        }
+        return out;
+    }
+
     public void setNorth(final Room theNorth) {
         myNorth = theNorth;
         myDoors[0] = true;
@@ -135,19 +221,5 @@ public class Room implements Serializable {
     public void setWest(final Room theWest) {
         myWest = theWest;
         myDoors[3] = true;
-    }
-
-    public MonsterBug getMonster() {
-        if(!containsMonster()) {
-            throw myUtility.getNewIllegal("The room does not contain a monster " + myContents.toString());
-        }
-        MonsterBug out = new Spider(); //this is bad, we should think of a better way to return the monster in the list
-
-        for (Object o : myContents) {
-            if(o instanceof MonsterBug) {
-                out = (MonsterBug)o;
-            }
-        }
-        return out;
     }
 }

@@ -1,5 +1,8 @@
 package Model;
 
+import Model.Bugs.MonsterBug;
+import Model.Bugs.Spider;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -11,16 +14,15 @@ public class Room implements Serializable {
     private Room mySouth;
     private Room myEast;
     private Room myWest;
-    private Room[] myDirections;
-    private int myLabel;
-    private boolean[] myDoors;
+    private final boolean[] myDoors;
 
-    private ArrayList<Object> myContents;
+    private final ArrayList<Object> myContents;
+    private final Utility myUtility;
 
     public Room(ArrayList<Object> theContents) {
         myContents = theContents;
-        myDirections = new Room[4];
         myDoors = generateMyDoors();
+        myUtility = new Utility();
     }
 
     private boolean[] generateMyDoors() {
@@ -43,11 +45,6 @@ public class Room implements Serializable {
         }
 
         return doors;
-    }
-
-    @Override
-    public String toString() {
-        return "+";
     }
 
     public boolean contains(final Object theObject) {
@@ -86,6 +83,19 @@ public class Room implements Serializable {
         return myWest != null;
     }
 
+    public boolean containsMonster() {
+        for (Object o : myContents) {
+            if (o instanceof MonsterBug) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public ArrayList<Object> getContents() {
+        return myContents;
+    }
+
     public Room getNorth() {
         return myNorth;
     }
@@ -102,43 +112,42 @@ public class Room implements Serializable {
         return myWest;
     }
 
-    public Room[] getDirections() {
-        return myDirections;
-    }
 
     public boolean[] getDoors() {
         return myDoors;
     }
 
-    public int getLabel() {
-        return myLabel;
-    }
-
     public void setNorth(final Room theNorth) {
         myNorth = theNorth;
-        myDirections[0] = myNorth;
         myDoors[0] = true;
     }
 
     public void setSouth(final Room theSouth) {
         mySouth = theSouth;
-        myDirections[1] = mySouth;
         myDoors[1] = true;
     }
 
     public void setEast(final Room theEast) {
         myEast = theEast;
-        myDirections[2] = myEast;
         myDoors[2] = true;
     }
 
     public void setWest(final Room theWest) {
         myWest = theWest;
-        myDirections[3] = myWest;
         myDoors[3] = true;
     }
 
-    public void setLabel(final int theLabel) {
-        myLabel = theLabel;
+    public MonsterBug getMonster() {
+        if(!containsMonster()) {
+            throw myUtility.getNewIllegal("The room does not contain a monster " + myContents.toString());
+        }
+        MonsterBug out = new Spider(); //this is bad, we should think of a better way to return the monster in the list
+
+        for (Object o : myContents) {
+            if(o instanceof MonsterBug) {
+                out = (MonsterBug)o;
+            }
+        }
+        return out;
     }
 }

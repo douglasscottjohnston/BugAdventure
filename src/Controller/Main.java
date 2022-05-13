@@ -1,34 +1,44 @@
+package Controller;
+
 import Model.Bugs.*;
 import Model.Dungeon;
+import Model.Room;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
+
     public static Scanner input = new Scanner(System.in);
     public static void main(String[] args) {
         //just a test run
         System.out.print("Pick your heroes name:");
         String name = input.next();
         HeroBug myHero = heroSelect(name);
-        MonsterBug myEnemy = new Mosster();
+        MonsterBug myMonster;
+        Room myRoom;
 
-        System.out.println("You are fighting a " + myEnemy.getName());
+        //CLI version of the game
 
-        while(myEnemy.isAlive() && myHero.isAlive()) {
-            myHero.attack(myEnemy);
-            myEnemy.attack(myHero);
-        }
-        //can delete if needed
-
-
-        //testing dungeon
         Dungeon dungeon = new Dungeon(myHero);
 
-        System.out.println(Arrays.toString(dungeon.getCurrent().getDoors()));
-        dungeon.moveNorth();
-        System.out.println(Arrays.toString(dungeon.getCurrent().getDoors()));
+        while(!dungeon.inExit()) {
+            myRoom = dungeon.getCurrent();
+            System.out.println(myHero.getName() + " enters a room");
+            if(myRoom.isEmpty()) {
+                System.out.println("The room is empty");
+            } else {
+                System.out.println("The room contains" + myRoom.getContents());
+
+                if(myRoom.containsMonster()) {
+                    myMonster = myRoom.getMonster();
+                    attackPhase(myHero, myMonster);
+                }
+            }
+        }
+
+
     }
+
     private static HeroBug heroSelect(final String theName) {
 
         HeroBug yourHero;
@@ -50,5 +60,9 @@ public class Main {
         }
 
         return yourHero;
+    }
+
+    private static void attackPhase(HeroBug theHero, MonsterBug theMonster) {
+
     }
 }

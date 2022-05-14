@@ -3,9 +3,9 @@ package Model.Bugs;
 public abstract class MonsterBug extends Bug {
 
 
-    protected MonsterBug(final Attack theAttack, final Attack theSpecialAttack, final int theHealth, final int theDefense,
+    protected MonsterBug(final Attack theAttack, final Attack theSpecialAttack, final int theHealth, final int theOriginalHealth, final int theDefense,
                          final int theSpeed, final String theName) {
-        super(theAttack, theSpecialAttack, theHealth, theDefense, theSpeed, theName);
+        super(theAttack, theSpecialAttack, theHealth, theOriginalHealth, theDefense, theSpeed, theName);
 
 
     }

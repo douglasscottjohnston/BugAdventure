@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Bugs.*;
 import Model.Dungeon;
+import Model.Items.Item;
 import Model.Pit;
 import Model.Room;
 import Model.Utility;
@@ -105,7 +106,7 @@ public class Main {
     private static void attackPhase() {
         System.out.println("A " + myMonster.getName() + " has appeared!");
         while(myMonster.getHealth() > 0) {
-            myHero.attack(myMonster);
+            myHero.attack(myMonster, myHero);
 
             if(myMonster.getHealth() > 0) {
                 myMonster.attack(myHero);
@@ -124,9 +125,20 @@ public class Main {
 
     private static void movementPhase() {
         printDirectionOptions();
+        int dir = UTILITY.scanNextInt();
 
-        Directions.Direction direction = Directions.getDirection(UTILITY.scanNextInt());
+        while (dir == 4) {
+            Item item = myHero.selectItem();
+            if(item.getMyFriendly()) {
+                myHero.useItem(item, myHero);
+            } else {
+                System.out.println("Cannot use that right now");
+            }
+            printDirectionOptions();
+            dir = UTILITY.scanNextInt();
+        }
 
+        Directions.Direction direction = Directions.getDirection(dir);
         if(myRoom.hasDirection(direction)) {
             myDungeon.moveInDirection(direction);
         } else {
@@ -151,6 +163,10 @@ public class Main {
 
         if(myRoom.hasWest()) {
             System.out.println("(3) West");
+        }
+
+        if(myHero.hasItem()) {
+            System.out.println("(4) use item");
         }
     }
 

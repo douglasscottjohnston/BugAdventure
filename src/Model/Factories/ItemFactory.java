@@ -1,11 +1,10 @@
 package Model.Factories;
 
-import Model.Items.Apple;
-import Model.Items.Item;
+import Model.Items.*;
 import Model.Utility;
 
 public class ItemFactory {
-    private static final int ITEM_HIGH = 0; // The high bound to generate an item
+    private static final int ITEM_HIGH = 3; // The high bound to generate an item
     private final Utility myUtility;
 
     public ItemFactory() {
@@ -16,10 +15,21 @@ public class ItemFactory {
         return new Apple();
     }
 
+    public Bomb makeBomb() {
+        return new Bomb();
+    }
+
+    public Sugar makeSugar() { return new Sugar(); }
+
+    public Acorn makeAcorn() { return new Acorn(); }
+
     public Item makeRandomItem() {
-        switch(myUtility.getRandom(ITEM_HIGH)) {
-        default:
-            return new Apple();
-        }
+        return switch(myUtility.getRandom(ITEM_HIGH)) {
+            default -> makeApple();
+            case 1 -> makeBomb();
+            case 2 -> makeSugar();
+            case 3 -> makeAcorn();
+
+        };
     }
 }

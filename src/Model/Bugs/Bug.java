@@ -15,6 +15,7 @@ public abstract class Bug implements Serializable {
     private final Attack myAttack;
     private final Attack mySpecialAttack;
     private int myHealth;
+    private int myOriginalHealth;
     private int myDefense;
     private int mySpeed;
 
@@ -30,10 +31,11 @@ public abstract class Bug implements Serializable {
      * @param theDefense       the defense
      * @param theSpeed         the speed
      */
-    public Bug(final Attack theAttack, final Attack theSpecialAttack, final int theHealth, final int theDefense, final int theSpeed, final String theName) {
+    public Bug(final Attack theAttack, final Attack theSpecialAttack, final int theHealth, final int theOriginalHealth, final int theDefense, final int theSpeed, final String theName) {
         myAttack = theAttack;
         mySpecialAttack = theSpecialAttack;
         myHealth = theHealth;
+        myOriginalHealth = theOriginalHealth;
         myDefense = theDefense;
         mySpeed = theSpeed;
         myName = theName;
@@ -121,7 +123,12 @@ public abstract class Bug implements Serializable {
         myName = theName;
     }
 
-
+    public void setSpeed(final int theSpeed) {
+        mySpeed = theSpeed;
+    }
+    public void setDefense(final int theDefense) {
+        myDefense = theDefense;
+    }
 
     /**
      * Sets health.
@@ -140,8 +147,13 @@ public abstract class Bug implements Serializable {
         if (theAmount < 0) {
             throw new IllegalArgumentException("cannot add negative hitpoints" + theAmount);
         }
-
-        myHealth += theAmount;
+        if((myHealth + theAmount) > myOriginalHealth) {
+            System.out.println(myName + " healed for " + (myOriginalHealth - myHealth) + " health");
+            myHealth = myOriginalHealth;
+        } else {
+            System.out.println(myName + " healed for " + theAmount + " health");
+            myHealth += theAmount;
+        }
     }
 
     public void takeDamage(final int theAmount) {
@@ -161,6 +173,8 @@ public abstract class Bug implements Serializable {
     public String toString() {
         return myName;
     }
+
+
 }
 
 

@@ -1,5 +1,6 @@
 package Model.Bugs;
 
+import Model.Items.Apple;
 import Model.Items.Item;
 
 import java.util.ArrayList;
@@ -11,9 +12,9 @@ public abstract class HeroBug extends Bug {
     private int mySpecialSkillChance;
     private final ArrayList<Item> myInvintory;
 
-    public HeroBug(final Attack theAttack, final Attack theSpecialAttack, final int theHealth, final int theDefense,
+    public HeroBug(final Attack theAttack, final Attack theSpecialAttack, final int theHealth, final int theOriginalHealth, final int theDefense,
                       final int theSpeed, final int theChanceToDodge, final boolean theRunAway, final String theName) {
-        super(theAttack, theSpecialAttack, theHealth, theDefense, theSpeed, theName);
+        super(theAttack, theSpecialAttack, theHealth, theOriginalHealth, theDefense, theSpeed, theName);
 
         setChanceToDodge(theChanceToDodge);
         setRunAway(theRunAway);
@@ -21,8 +22,8 @@ public abstract class HeroBug extends Bug {
         myInvintory = new ArrayList<>();
     }
 
-    @Override
-    public void attack(final Bug theEnemy) {
+
+    public void attack(final Bug theEnemy, final Bug theHero) {
         int attackChoice;
         int numberOfAttacks = getSpeed() / theEnemy.getSpeed();
 
@@ -34,19 +35,48 @@ public abstract class HeroBug extends Bug {
 
             if (attackChoice == 1) {
                 super.attack(theEnemy);
+                numberOfAttacks--;
             } else if (attackChoice == 2) {
                 super.specialAttack(theEnemy);
+                numberOfAttacks--;
+            }else if (attackChoice == 3) {
+                if(myInvintory.isEmpty()) {
+                    System.out.println("You have no items.");
+                }else {
+                    Item item = selectItem();
+                    if (item.getMyFriendly()) {
+                        useItem(item, theHero);
+                    } else {
+                        useItem(item, theEnemy);
+                    }
+                }
+
             } else { //cheat
                 theEnemy.setHealth(0);
             }
-
-            numberOfAttacks--;
         }
     }
 
     public void pickUpItem(Item theItem) {
         myInvintory.add(theItem);
         System.out.println(getName() + " picked up a " + theItem.getName());
+    }
+    public Item selectItem() {
+
+        System.out.println("Which Item would you like to use?");
+        for (int i = 0; i < myInvintory.size(); i++) {
+            System.out.println("(" + (i + 1) + ") " + myInvintory.get(i));
+        }
+        int choice = input.nextInt();
+        Item item = myInvintory.get(choice - 1);
+
+        return item;
+    }
+    public void useItem(final Item theItem, final Bug theBug) {
+
+            theItem.effect(theBug);
+            myInvintory.remove(theItem);
+
     }
 
     protected void setChanceToDodge(final int theChanceToDodge) {
@@ -65,8 +95,12 @@ public abstract class HeroBug extends Bug {
     }
 
     private final int getChoice() {
-        System.out.println("Choose (1) for normal attack, choose (2) for special attack, choose (3) to run away.");
+        System.out.println("Choose (1) for normal attack, choose (2) for special attack, choose (3) to use an item.");
         return input.nextInt();
     }
+    public boolean hasItem() {
+        return !myInvintory.isEmpty();
+    }
+
 
 }

@@ -1,10 +1,17 @@
 package Model.Items;
 
+import Model.Bugs.Bug;
+import Model.Bugs.HeroBug;
+
 public abstract class Item {
     private String myName;
 
-    protected Item(final String theName) {
+    private boolean myFriendly;
+
+    protected Item(final String theName, final boolean theFriendly) {
+
         myName = theName;
+        myFriendly = theFriendly;
     }
 
     public String getName() {
@@ -15,4 +22,10 @@ public abstract class Item {
     public String toString() {
         return myName;
     }
+
+    public boolean getMyFriendly() {
+        return myFriendly;
+    }
+
+    public abstract void effect(Bug theHero);
 }

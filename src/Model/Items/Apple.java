@@ -1,11 +1,10 @@
 package Model.Items;
 
-import Model.Bugs.Attack;
 import Model.Bugs.Bug;
 
 public class Apple extends Item {
 
-    private final int HEAL_AMOUNT = 50;
+    private static final int HEAL_AMOUNT = 50;
     private static final String MY_NAME = "Apple";
 
     private static final boolean MY_FRIENDLY = true;

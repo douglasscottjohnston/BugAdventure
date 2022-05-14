@@ -5,7 +5,6 @@ import Model.Bugs.HeroBug;
 import Model.Factories.RoomFactory;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 
@@ -49,8 +48,8 @@ public class Dungeon implements Serializable, Directions {
      */
     public Dungeon(final HeroBug theHero) {
         myHero = theHero;
-        ArrayList<Object> entContents = new ArrayList<>();
-        entContents.add(theHero);
+        RoomContentsList entContents = new RoomContentsList();
+        entContents.addHero(theHero);
         myEntrance = new Room(entContents);
         myCurrent = myEntrance;
         myExit = myEntrance;
@@ -88,7 +87,7 @@ public class Dungeon implements Serializable, Directions {
      * @return true if the hero is in the exit room, false otherwise
      */
     public boolean inExit() {
-        return myExit.contains(myHero);
+        return myExit.getContents().containsHero();
     }
 
     public void printExitPath() {
@@ -113,7 +112,7 @@ public class Dungeon implements Serializable, Directions {
         myExitPath = new LinkedList<>();
         for (int i = 0; i < myNumRooms/3; i++) {
             myExitPath.add(myExit);
-            if(!myExit.hasMaxDoors()) {
+            if(myExit.hasMaxDoors()) {
                 myExit = myRoomFactory.makeRoomInRandomDirection(myExit);
             } else {
                 myExit = myExit.getNorth();
@@ -155,30 +154,30 @@ public class Dungeon implements Serializable, Directions {
 //    }
 
     private void moveNorth() {
-        myCurrent.remove(myHero);
+        myCurrent.getContents().removeHero();
         myCurrent = myCurrent.getNorth();
-        myCurrent.add(myHero);
+        myCurrent.getContents().addHero(myHero);
         System.out.println(myCurrent.toString() + "N");
     }
 
     private void moveSouth() {
-        myCurrent.remove(myHero);
+        myCurrent.getContents().removeHero();
         myCurrent = myCurrent.getSouth();
-        myCurrent.add(myHero);
+        myCurrent.getContents().addHero(myHero);
         System.out.println(myCurrent.toString() + "S");
     }
 
     private void moveEast() {
-        myCurrent.remove(myHero);
+        myCurrent.getContents().removeHero();
         myCurrent = myCurrent.getEast();
-        myCurrent.add(myHero);
+        myCurrent.getContents().addHero(myHero);
         System.out.println(myCurrent.toString() + "E");
     }
 
     private void moveWest() {
-        myCurrent.remove(myHero);
+        myCurrent.getContents().removeHero();
         myCurrent = myCurrent.getWest();
-        myCurrent.add(myHero);
+        myCurrent.getContents().addHero(myHero);
         System.out.println(myCurrent.toString() + "W");
     }
 }

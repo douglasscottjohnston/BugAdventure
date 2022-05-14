@@ -8,8 +8,7 @@ public class LadyBug extends HeroBug {
     private static final Attack MY_SPECIAL_ATTACK = new Attack("Super bite","",80, 70, false);
     private static final int MY_SPEED = 5;
     private static final int MY_CHANCE_TO_DODGE= 20;
-    private static final boolean MY_RUN_AWAY = false;
     public LadyBug(final String theName) {
-        super(MY_ATTACK, MY_SPECIAL_ATTACK, MY_HEALTH, MY_ORIGINAL_HEALTH, MY_DEFENCE, MY_SPEED, MY_CHANCE_TO_DODGE, MY_RUN_AWAY, theName);
+        super(MY_ATTACK, MY_SPECIAL_ATTACK, MY_HEALTH, MY_ORIGINAL_HEALTH, MY_DEFENCE, MY_SPEED, MY_CHANCE_TO_DODGE,  theName);
     }
 }

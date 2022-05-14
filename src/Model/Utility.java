@@ -7,10 +7,9 @@ import java.util.Scanner;
  * The type Utility.
  */
 public class Utility {
-    private StringBuilder mySB;
-    private Scanner myScan;
-    private Random myRandom;
-    private IllegalArgumentException myIllegal;
+    private final StringBuilder mySB;
+    private final Scanner myScan;
+    private final Random myRandom;
 
     /**
      * Instantiates a new Utility.
@@ -19,7 +18,6 @@ public class Utility {
         mySB = new StringBuilder();
         myScan = new Scanner(System.in);
         myRandom = new Random();
-        myIllegal = new IllegalArgumentException();
     }
 
     /**
@@ -31,22 +29,81 @@ public class Utility {
         return mySB;
     }
 
+    /**
+     * Append to the string builder.
+     *
+     * @param s the s
+     */
+    public void appendToBuilder(String s) {
+        mySB.append(s);
+    }
+
+    /**
+     * Converts the string builder to a string.
+     *
+     * @return the string
+     */
+    public String builderToString() {
+        return mySB.toString();
+    }
+
+    /**
+     * Converts the string builder to a string and clears the string builder.
+     *
+     * @return the string
+     */
+    public String builderToStringClear() {
+        String out = builderToString();
+        clearBuilder();
+        return out;
+    }
+
+    /**
+     * Clears the string builder.
+     */
+    public void clearBuilder() {
+        mySB.setLength(0);
+    }
+
+    /**
+     * Gets the scanner.
+     *
+     * @return the scanner
+     */
     public Scanner getScanner() {
         return myScan;
     }
 
+    /**
+     * Scan the next string in input.
+     *
+     * @return the string
+     */
     public String scanNext() {
         return myScan.next();
     }
 
+    /**
+     * Scan the next line of input.
+     *
+     * @return the string
+     */
     public String scanNextLine() {
         return myScan.nextLine();
     }
 
+    /**
+     * Scan the next in the input.
+     *
+     * @return the int
+     */
     public int scanNextInt() {
         return myScan.nextInt();
     }
 
+    /**
+     * Close scanner.
+     */
     public void closeScanner() {
         myScan.close();
     }

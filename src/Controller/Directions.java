@@ -1,7 +1,5 @@
 package Controller;
 
-import Model.Dungeon;
-
 public interface Directions {
     static Direction getDirection(final int theDirectionNum) {
         return Direction.getDirection(theDirectionNum);
@@ -33,9 +31,7 @@ public interface Directions {
                 case 3 -> {
                     return WEST;
                 }
-                default -> {
-                    throw new IllegalArgumentException(theDirection + " is not a possible direction");
-                }
+                default -> throw new IllegalArgumentException(theDirection + " is not a possible direction");
             }
         }
     }

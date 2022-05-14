@@ -1,11 +1,8 @@
 package Model;
 
 import Controller.Directions;
-import Model.Bugs.MonsterBug;
-import Model.Items.Item;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * The abstract type Room.
@@ -17,10 +14,10 @@ public class Room implements Serializable {
     private Room myWest;
     private final boolean[] myDoors;
 
-    private final ArrayList<Object> myContents;
+    private final RoomContentsList myContents;
     private final Utility myUtility;
 
-    public Room(ArrayList<Object> theContents) {
+    public Room(RoomContentsList theContents) {
         myContents = theContents;
         myDoors = generateMyDoors();
         myUtility = new Utility();
@@ -48,24 +45,8 @@ public class Room implements Serializable {
         return doors;
     }
 
-    public boolean contains(final Object theObject) {
-        return myContents.contains(theObject);
-    }
-
-    public void add(final Object theObject) {
-        myContents.add(theObject);
-    }
-
-    public void remove(final Object theObject) {
-        myContents.remove(theObject);
-    }
-
-    public boolean isEmpty() {
-        return myContents.isEmpty();
-    }
-
     public boolean hasMaxDoors() {
-        return hasNorth() && hasSouth() && hasEast() && hasWest();
+        return !hasNorth() || !hasSouth() || !hasEast() || !hasWest();
     }
 
     public boolean hasNorth() {
@@ -104,34 +85,7 @@ public class Room implements Serializable {
         }
     }
 
-    public boolean containsMonster() {
-        for (Object o : myContents) {
-            if (o instanceof MonsterBug) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean containsItem() {
-        for (Object o : myContents) {
-            if (o instanceof Item) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean containsPit() {
-        for (Object o : myContents) {
-            if(o instanceof Pit) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public ArrayList<Object> getContents() {
+    public RoomContentsList getContents() {
         return myContents;
     }
 
@@ -154,53 +108,6 @@ public class Room implements Serializable {
 
     public boolean[] getDoors() {
         return myDoors;
-    }
-
-    public MonsterBug getMonster() {
-        if(!containsMonster()) {
-            throw myUtility.getNewIllegal("The room does not contain a monster " + myContents.toString());
-        }
-        MonsterBug out = null; //this is bad, we should think of a better way to return the monster in the list
-
-        for (Object o : myContents) {
-            if(o instanceof MonsterBug) {
-                out = (MonsterBug)o;
-            }
-        }
-        return out;
-    }
-
-    public Item getItem() {
-
-        if(!containsItem()) {
-            throw myUtility.getNewIllegal("The room does not contain an item " + myContents.toString());
-        }
-
-        Item out = null;
-
-        for(Object o : myContents) {
-            if(o instanceof Item) {
-                out = (Item)o;
-            }
-        }
-
-        return out;
-    }
-
-    public Pit getPit() {
-
-        if(!containsPit()) {
-            throw myUtility.getNewIllegal("The room does not contain a pit " + myContents.toString());
-        }
-
-        Pit out = null;
-
-        for(Object o : myContents) {
-            if(o instanceof Pit) {
-                out = (Pit)o;
-            }
-        }
-        return out;
     }
 
     public void setNorth(final Room theNorth) {

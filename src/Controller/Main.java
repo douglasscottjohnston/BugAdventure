@@ -2,7 +2,7 @@ package Controller;
 
 import Model.Bugs.*;
 import Model.Dungeon;
-import Model.Items.Item;
+import Model.Items.Sugar;
 import Model.Pit;
 import Model.Room;
 import Model.Utility;
@@ -33,26 +33,24 @@ public class Main {
         while(myRunning) {
             myRoom = myDungeon.getCurrent();
             System.out.println(myHero.getName() + " enters a room");
-            if(myRoom.isEmpty()) {
+            if(myRoom.getContents().isEmpty()) {
                 System.out.println("The room is empty");
             } else {
                 System.out.println("The room contains" + myRoom.getContents());
 
-                if(myRoom.containsPit()) {
-                    Pit myPit = myRoom.getPit();
+                if(myRoom.getContents().containsPit()) {
+                    Pit myPit = myRoom.getContents().getAndRemovePit();
                     System.out.println(myHero.getName() + " fell down a pit!");
                     myPit.dealDamage(myHero);
-                    myRoom.remove(myPit);
                 }
 
-                if(myRoom.containsMonster()) {
-                    myMonster = myRoom.getMonster();
+                if(myRoom.getContents().containsMonster()) {
+                    myMonster = myRoom.getContents().getAndRemoveMonster();
                     attackPhase();
                 }
 
-                if(myRoom.containsItem()) {
-                    myHero.pickUpItem(myRoom.getItem());
-                    myRoom.remove(myRoom.getItem());
+                if(myRoom.getContents().containsItem()) {
+                    myHero.pickUpItem(myRoom.getContents().getAndRemoveItem());
                 }
 
                 movementPhase();
@@ -84,9 +82,7 @@ public class Main {
 
     private static HeroBug heroSelect(final String theName) {
 
-        HeroBug yourHero;
-
-        System.out.println("Select your hero bug: \n(1) Ladybug\n(2) Ant\n(3) Pillbug");
+        System.out.println("Select your hero bug: \n(1) Ladybug\n(2) Ant\n(3) PillBug");
 
         switch(UTILITY.scanNextInt()) {
         case 1 -> {
@@ -98,7 +94,10 @@ public class Main {
         case 3 -> {
             return new PillBug(theName);
         }
-        default -> throw UTILITY.getNewIllegal("Must pick 1, 2, or 3");
+        default -> { //loop forever until a correct option is picked
+            System.out.println("Must pick 1, 2, or 3");
+            return heroSelect(theName);
+        }
         }
 
     }
@@ -106,11 +105,16 @@ public class Main {
     private static void attackPhase() {
         System.out.println("A " + myMonster.getName() + " has appeared!");
         while(myMonster.getHealth() > 0) {
-            myHero.attack(myMonster, myHero);
-
             if(myMonster.getHealth() > 0) {
-                myMonster.attack(myHero);
+                if (myHero.getSpeed() > myMonster.getSpeed()) {
+                    printHeroAttacksFirstMessage();
+                    myHero.attack(myMonster);
+                } else {
+                    printMonsterAttacksFirstMessage();
+                    myMonster.attack(myHero);
+                }
             }
+
 
             if(myHero.getHealth() <= 0) {
                 System.out.println(myHero.getName() + " was defeated");
@@ -118,31 +122,38 @@ public class Main {
             }
         }
 
-        myRoom.remove(myMonster);
-
         System.out.println(myHero.getName() + " defeated the " + myMonster.getName());
     }
 
     private static void movementPhase() {
-        printDirectionOptions();
-        int dir = UTILITY.scanNextInt();
+        Sugar compareSugar = new Sugar();
+        int movements = 1;
 
-        while (dir == 4) {
-            Item item = myHero.selectItem();
-            if(item.isFriendly()) {
-                myHero.useItem(item, myHero);
-            } else {
-                System.out.println("Cannot use that right now");
+        if(myHero.getInventory().containsItem(compareSugar)) {
+            System.out.println("Use a Sugar?: \n(Y) Yes\n(N) No");
+            String selection = UTILITY.scanNext().toUpperCase();
+            if(selection.equals("Y") || selection.equals("YES")) {
+                myHero.getInventory().useItem(compareSugar, myHero);
+                movements = Sugar.getNumMovements();
+                UTILITY.appendToBuilder(myHero.getName());
+                UTILITY.appendToBuilder(" can now move ");
+                UTILITY.appendToBuilder(Integer.toString(Sugar.getNumMovements()));
+                UTILITY.appendToBuilder(" times in a row!");
+                System.out.println(UTILITY.builderToStringClear());
             }
-            printDirectionOptions();
-            dir = UTILITY.scanNextInt();
         }
 
-        Directions.Direction direction = Directions.getDirection(dir);
-        if(myRoom.hasDirection(direction)) {
-            myDungeon.moveInDirection(direction);
-        } else {
-            throw UTILITY.getNewIllegal("The room does not have a door to the " + direction);
+        for (int i = movements; i > 0; i--) {
+            System.out.print(i);
+            System.out.println(" movements left");
+            printDirectionOptions();
+            Directions.Direction direction = Directions.getDirection(UTILITY.scanNextInt());
+            if (myRoom.hasDirection(direction)) {
+                myDungeon.moveInDirection(direction);
+            } else { //loop forever until a correct direction is picked
+                System.out.println("The room does not have a door in that direction, please pick a viable direction");
+                i++;
+            }
         }
     }
 
@@ -164,10 +175,24 @@ public class Main {
         if(myRoom.hasWest()) {
             System.out.println("(3) West");
         }
+    }
 
-        if(myHero.hasItem()) {
-            System.out.println("(4) use item");
-        }
+    private static void printHeroAttacksFirstMessage() {
+        UTILITY.appendToBuilder(myHero.getName());
+        UTILITY.appendToBuilder(" was faster than the ");
+        UTILITY.appendToBuilder(myMonster.getName());
+        UTILITY.appendToBuilder(" so ");
+        UTILITY.appendToBuilder(myHero.getName());
+        UTILITY.appendToBuilder(" attacks first!");
+        System.out.println(UTILITY.builderToStringClear());
+    }
+
+    private static void printMonsterAttacksFirstMessage() {
+        UTILITY.appendToBuilder(myMonster.getName());
+        UTILITY.appendToBuilder(" was faster than ");
+        UTILITY.appendToBuilder(myHero.getName());
+        UTILITY.appendToBuilder(" so it attacks first!");
+        System.out.println(UTILITY.builderToStringClear());
     }
 
 }

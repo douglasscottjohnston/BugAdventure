@@ -2,7 +2,6 @@ package Model.Bugs;
 
 import java.io.Serializable;
 import java.util.Random;
-import java.util.Scanner;
 
 
 /**
@@ -11,11 +10,10 @@ import java.util.Scanner;
 public abstract class Bug implements Serializable {
 
     protected final static Random MY_RANDOM = new Random();
-    public final static Scanner input = new Scanner(System.in);
     private final Attack myAttack;
     private final Attack mySpecialAttack;
     private int myHealth;
-    private int myOriginalHealth;
+    private final int myOriginalHealth;
     private int myDefense;
     private int mySpeed;
 
@@ -46,7 +44,7 @@ public abstract class Bug implements Serializable {
      *
      * @param theEnemy the enemy
      */
-    protected void attack(final Bug theEnemy) {
+    public void attack(final Bug theEnemy) {
         //might not be the best way to calculate the damage taken
         int damageTaken = myAttack.getPower() - (myAttack.getPower() * theEnemy.getDefense() / 100);
         theEnemy.takeDamage(damageTaken);
@@ -173,8 +171,6 @@ public abstract class Bug implements Serializable {
     public String toString() {
         return myName;
     }
-
-
 }
 
 

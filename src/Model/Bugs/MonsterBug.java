@@ -32,4 +32,9 @@ public abstract class MonsterBug extends Bug {
             numberOfAttacks--;
         }
     }
+
+    @Override
+    public boolean equals(final Object theObject) {
+        return theObject instanceof MonsterBug;
+    }
 }

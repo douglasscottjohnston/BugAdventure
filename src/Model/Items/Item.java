@@ -1,15 +1,15 @@
 package Model.Items;
 
 import Model.Bugs.Bug;
-import Model.Bugs.HeroBug;
 
-public abstract class Item {
-    private String myName;
+import java.io.Serializable;
 
-    private boolean myFriendly;
+public abstract class Item implements Serializable {
+    private final String myName;
+
+    private final boolean myFriendly;
 
     protected Item(final String theName, final boolean theFriendly) {
-
         myName = theName;
         myFriendly = theFriendly;
     }
@@ -18,14 +18,20 @@ public abstract class Item {
         return myName;
     }
 
-    @Override
-    public String toString() {
-        return myName;
-    }
 
     public boolean isFriendly() {
         return myFriendly;
     }
 
     public abstract void effect(Bug theHero);
+
+    @Override
+    public String toString() {
+        return myName;
+    }
+
+    @Override
+    public boolean equals(final Object theObject) {
+        return theObject instanceof Item && myName.equals(((Item)theObject).getName());
+    }
 }

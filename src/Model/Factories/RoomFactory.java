@@ -1,11 +1,9 @@
 package Model.Factories;
 
 import Controller.Directions;
-import Model.Pit;
 import Model.Room;
+import Model.RoomContentsList;
 import Model.Utility;
-
-import java.util.ArrayList;
 
 public class RoomFactory {
     private static final int CONTAIN_LOW = 0;
@@ -33,7 +31,7 @@ public class RoomFactory {
 
         if(!theTargetRoom.hasNorth() && !theTargetRoom.hasSouth() && !theTargetRoom.hasEast() && !theTargetRoom.hasWest()) {
             return makeRoomInDirection(theTargetRoom, Directions.getDirection(directionNum));
-        } else if(!theTargetRoom.hasMaxDoors()){
+        } else if(theTargetRoom.hasMaxDoors()){
             //generate a new random number until we find a direction without a door, this is really dumb
             while(theTargetRoom.getDoors()[directionNum]) {
                 directionNum = myUtility.getRandom(3);
@@ -60,15 +58,15 @@ public class RoomFactory {
     public Room makeRandomRoom() {
         // 1 in 5 chance of having a random monster, a random item, a pit, nothing,
         // or a random monster and a random item
-        ArrayList<Object> contents = new ArrayList<>();
+        RoomContentsList contents = new RoomContentsList();
 
         switch(myUtility.getRandomInRange(CONTAIN_LOW, CONTAIN_HIGH)) {
-        default -> contents.add(myMonsterFactory.makeRandomMonsterBug());
-        case 1 -> contents.add(myItemFactory.makeRandomItem());
-        case 2 -> contents.add(new Pit());
+        default -> contents.addMonster(myMonsterFactory.makeRandomMonsterBug());
+        case 1 -> contents.addItem(myItemFactory.makeRandomItem());
+        case 2 -> contents.addPit();
         case 4 -> {
-            contents.add(myMonsterFactory.makeRandomMonsterBug());
-            contents.add(myItemFactory.makeRandomItem());
+            contents.addMonster(myMonsterFactory.makeRandomMonsterBug());
+            contents.addItem(myItemFactory.makeRandomItem());
         }
         }
         return new Room(contents);

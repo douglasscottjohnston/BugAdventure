@@ -14,6 +14,11 @@ public class Pit implements Serializable {
 
     @Override
     public String toString() {
-        return "pit";
+        return "Pit";
+    }
+
+    @Override
+    public boolean equals(final Object theObject) {
+        return theObject instanceof Pit;
     }
 }

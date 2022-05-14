@@ -129,7 +129,7 @@ public class Main {
 
         while (dir == 4) {
             Item item = myHero.selectItem();
-            if(item.getMyFriendly()) {
+            if(item.isFriendly()) {
                 myHero.useItem(item, myHero);
             } else {
                 System.out.println("Cannot use that right now");

@@ -44,7 +44,7 @@ public abstract class HeroBug extends Bug {
                     System.out.println("You have no items.");
                 }else {
                     Item item = selectItem();
-                    if (item.getMyFriendly()) {
+                    if (item.isFriendly()) {
                         useItem(item, theHero);
                     } else {
                         useItem(item, theEnemy);

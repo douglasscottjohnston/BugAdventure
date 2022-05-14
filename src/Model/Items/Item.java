@@ -23,7 +23,7 @@ public abstract class Item {
         return myName;
     }
 
-    public boolean getMyFriendly() {
+    public boolean isFriendly() {
         return myFriendly;
     }
 

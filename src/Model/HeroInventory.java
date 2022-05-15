@@ -25,6 +25,9 @@ public class HeroInventory {
         if(myItems.getOrDefault(theItem, 0) > 0){
             theItem.effect(theBug);
             myItems.put(theItem, myItems.get(theItem) - 1);
+            if(myItems.get(theItem) == 0) {
+                myItems.remove(theItem);
+            }
         } else {
             System.out.println("There is no " + theItem.getName() + " in the inventory");
         }

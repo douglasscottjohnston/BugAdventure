@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Bugs.*;
 import Model.Dungeon;
+import Model.Items.Item;
 import Model.Items.Sugar;
 import Model.Pit;
 import Model.Room;
@@ -9,26 +10,27 @@ import Model.Utility;
 
 public class Main {
     private static final Utility UTILITY = new Utility();
-    private static boolean myRunning = true;
+    private static boolean myRunning;
     private static HeroBug myHero;
     private static MonsterBug myMonster;
     private static Room myRoom;
     private static Dungeon myDungeon;
+    private static int myMovements = 1;
 
 
     public static void main(String[] args) {
         startGame();
     }
     private static void startGame() {
-        //just a test run
-        System.out.print("Pick your heroes name:");
-        String name = UTILITY.scanNextLine();
-        myHero = heroSelect(name);
+        myRunning = true;
+
+        myHero = heroSelect(nameSelect());
 
         //CLI version of the game
 
         myDungeon = new Dungeon(myHero);
 
+        myDungeon.printExitPath();
 
         while(myRunning) {
             myRoom = myDungeon.getCurrent();
@@ -36,7 +38,7 @@ public class Main {
             if(myRoom.getContents().isEmpty()) {
                 System.out.println("The room is empty");
             } else {
-                System.out.println("The room contains" + myRoom.getContents());
+                System.out.println("The room contains " + myRoom.getContents());
 
                 if(myRoom.getContents().containsPit()) {
                     Pit myPit = myRoom.getContents().getAndRemovePit();
@@ -46,38 +48,81 @@ public class Main {
 
                 if(myRoom.getContents().containsMonster()) {
                     myMonster = myRoom.getContents().getAndRemoveMonster();
-                    attackPhase();
+                    System.out.print("A ");
+                    System.out.print(myMonster.getName());
+                    System.out.println(" has appeared!");
+                    System.out.println("Would you like to fight or run away?\n(1) fight\n(2) run away");
+
+                    switch(UTILITY.scanNextInt()) {
+                        case 1 -> attackPhase();
+                        case 2 -> runPhase();
+                        case 3 -> System.out.println("you cheater"); //chat skips fight
+                        default -> attackPhase();
+                    }
                 }
 
                 if(myRoom.getContents().containsItem()) {
                     myHero.pickUpItem(myRoom.getContents().getAndRemoveItem());
                 }
+            }
 
-                movementPhase();
-                if(myDungeon.inExit()) {
-                    System.out.println(myHero.getName() + " found the exit!");
-                    endGame();
+            if(!myHero.getInventory().isEmpty()) {
+                System.out.println("Would you like to use an item?\n(Y) yes\n(N) no");
+
+                String response = UTILITY.scanNext().toUpperCase();
+
+                if(response.equals("Y") || response.equals("YES")) {
+                    itemPhase();
                 }
+            }
+
+            movementPhase();
+            if(myDungeon.inExit()) {
+                System.out.println(myHero.getName() + " found the exit!");
+                endGame();
             }
         }
 
-        System.out.println("Play again?: \n(Y) yes\n(N) no");
-
-        switch(UTILITY.scanNext().toUpperCase()) {
-            case "Y", "YES" -> startGame();
-            case "N", "NO" -> endProgram();
-            default -> throw UTILITY.getNewIllegal("Not a valid response");
-        }
+        playAgain();
     }
 
     private static void endGame() {
         System.out.println("GAME OVER");
         myRunning = false;
+        playAgain();
     }
 
     private static void endProgram() {
         UTILITY.closeScanner();
         System.exit(0);
+    }
+
+    private static void playAgain() {
+        System.out.println("Play again?: \n(Y) yes\n(N) no");
+
+        switch(UTILITY.scanNext().toUpperCase()) {
+        case "Y", "YES" -> {
+            System.out.println();
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+            startGame();
+        }
+        case "N", "NO" -> endProgram();
+        default -> { // loop until a valid response is given
+            System.out.println("Not a valid response, please enter either y, yes or n, no");
+            playAgain();
+        }
+        }
+    }
+
+    private static String nameSelect() {
+        System.out.print("Pick your hero's name: ");
+        String name = UTILITY.scanNextLine();
+        if(name.isEmpty()) {
+            name = UTILITY.scanNextLine();
+        }
+        System.out.println();
+        return name;
     }
 
     private static HeroBug heroSelect(final String theName) {
@@ -103,9 +148,8 @@ public class Main {
     }
 
     private static void attackPhase() {
-        System.out.println("A " + myMonster.getName() + " has appeared!");
-        while(myMonster.getHealth() > 0) {
-            if(myMonster.getHealth() > 0) {
+        while(myMonster.isAlive()) {
+            if(myMonster.isAlive()) {
                 if (myHero.getSpeed() > myMonster.getSpeed()) {
                     printHeroAttacksFirstMessage();
                     myHero.attack(myMonster);
@@ -115,39 +159,80 @@ public class Main {
                 }
             }
 
-
             if(myHero.getHealth() <= 0) {
-                System.out.println(myHero.getName() + " was defeated");
+                System.out.print(myHero.getName());
+                System.out.println(" was defeated");
                 endGame();
+                return;
             }
         }
 
-        System.out.println(myHero.getName() + " defeated the " + myMonster.getName());
+        System.out.print(myHero.getName());
+        System.out.print(" defeated the ");
+        System.out.println(myMonster.getName());
+    }
+
+    private static void runPhase() {
+        if(myHero.getSpeed() < myMonster.getSpeed()) {
+            System.out.print(myHero.getName());
+            System.out.print(" is slower than the ");
+            System.out.println(myMonster.getName());
+            System.out.print(myHero.getName());
+            System.out.println(" failed to run away!");
+            attackPhase();
+        } else {
+            System.out.print(myHero.getName());
+            System.out.print(" is faster than the ");
+            System.out.println(myMonster.getName());
+            System.out.print(myHero.getName());
+            System.out.print(" succeeded in running away from the ");
+            System.out.println(myMonster.getName());
+        }
+    }
+
+    private static void itemPhase() {
+        Sugar compareSugar = new Sugar();
+
+        Item selection = myHero.getInventory().selectItem();
+
+        if(selection.equals(compareSugar)) {
+            myHero.getInventory().useItem(compareSugar, myHero);
+            myMovements = Sugar.getNumMovements();
+            UTILITY.appendToBuilder(myHero.getName());
+            UTILITY.appendToBuilder(" can now move ");
+            UTILITY.appendToBuilder(Integer.toString(Sugar.getNumMovements()));
+            UTILITY.appendToBuilder(" times in a row!");
+            System.out.println(UTILITY.builderToStringClear());
+        } else if(selection.isFriendly()) {
+            myHero.getInventory().useItem(selection, myHero);
+        } else { // loop until an item that can be used is selected
+            System.out.println(selection.getName() + " cannot be used at the moment, please select another item");
+            itemPhase();
+        }
     }
 
     private static void movementPhase() {
-        Sugar compareSugar = new Sugar();
-        int movements = 1;
 
-        if(myHero.getInventory().containsItem(compareSugar)) {
-            System.out.println("Use a Sugar?: \n(Y) Yes\n(N) No");
-            String selection = UTILITY.scanNext().toUpperCase();
-            if(selection.equals("Y") || selection.equals("YES")) {
-                myHero.getInventory().useItem(compareSugar, myHero);
-                movements = Sugar.getNumMovements();
-                UTILITY.appendToBuilder(myHero.getName());
-                UTILITY.appendToBuilder(" can now move ");
-                UTILITY.appendToBuilder(Integer.toString(Sugar.getNumMovements()));
-                UTILITY.appendToBuilder(" times in a row!");
-                System.out.println(UTILITY.builderToStringClear());
-            }
+        boolean printMovements = false;
+
+        if(myMovements > 1) {
+            printMovements = true;
         }
 
-        for (int i = movements; i > 0; i--) {
-            System.out.print(i);
-            System.out.println(" movements left");
+        for (int i = myMovements; i > 0; i--) {
+            if(printMovements) {
+                System.out.print(i);
+                System.out.println(" movements left");
+            }
             printDirectionOptions();
-            Directions.Direction direction = Directions.getDirection(UTILITY.scanNextInt());
+            int choice = UTILITY.scanNextInt();
+
+            if(choice < 0 || choice > 3) {
+                System.out.println(choice + " is not a valid direction, please pick a valid direction");
+                movementPhase();
+                return;
+            }
+            Directions.Direction direction = Directions.getDirection(choice);
             if (myRoom.hasDirection(direction)) {
                 myDungeon.moveInDirection(direction);
             } else { //loop forever until a correct direction is picked
@@ -155,6 +240,7 @@ public class Main {
                 i++;
             }
         }
+        myMovements = 1;
     }
 
     private static void printDirectionOptions() {

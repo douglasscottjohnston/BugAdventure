@@ -160,19 +160,26 @@ public class RoomContentsList {
         if(containsMonster()){
             String monstersStr = myMonsters.toString();
             util.appendToBuilder(monstersStr.substring(1, monstersStr.length() - 1));
+            util.appendToBuilder(",");
         }
 
         if(containsHero()){
             util.appendToBuilder(myHero.toString());
+            util.appendToBuilder(",");
         }
 
         if(containsItem()) {
             String itemsStr = myItems.toString();
             util.appendToBuilder(itemsStr.substring(1, itemsStr.length() - 1));
+            util.appendToBuilder(",");
         }
 
         if(containsPit()) {
             util.appendToBuilder(myPit.toString());
+        }
+
+        if(util.getStringBuilder().lastIndexOf(",") == util.getStringBuilder().length() - 1) {
+            util.getStringBuilder().deleteCharAt(util.getStringBuilder().lastIndexOf(","));
         }
 
         util.appendToBuilder("]");

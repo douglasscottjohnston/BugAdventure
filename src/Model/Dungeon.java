@@ -39,6 +39,7 @@ public class Dungeon implements Serializable, Directions {
     private final Utility myUtility;
     private final RoomFactory myRoomFactory;
     private LinkedList<Room> myExitPath;
+    private String myExitString;
     private int myNumRooms;
 
     /**
@@ -91,7 +92,8 @@ public class Dungeon implements Serializable, Directions {
     }
 
     public void printExitPath() {
-
+        System.out.println("The path to the exit is: ");
+        System.out.println(myExitString);
     }
 
     /**
@@ -117,7 +119,37 @@ public class Dungeon implements Serializable, Directions {
             } else {
                 myExit = myExit.getNorth();
             }
+            myUtility.appendToBuilder(directionMovedToString(myExit));
+            myUtility.appendToBuilder(",");
         }
+
+        myUtility.getStringBuilder().deleteCharAt(myUtility.getStringBuilder().lastIndexOf(","));
+        myExitString = myUtility.builderToStringClear();
+    }
+
+    /**
+     * Helper method that returns a string of the direction the exit was moved in
+     * @param theExit the exit room
+     * @return A string of the direction the exit was moved in
+     */
+    private String directionMovedToString(final Room theExit) {
+        if (theExit.hasNorth()) {
+            return "South";
+        }
+
+        if(theExit.hasSouth()) {
+            return "North";
+        }
+
+        if(theExit.hasEast()) {
+            return "West";
+        }
+
+        if(theExit.hasWest()) {
+            return "East";
+        }
+
+        return "";
     }
 
     /**

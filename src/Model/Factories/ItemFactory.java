@@ -4,7 +4,7 @@ import Model.Items.*;
 import Model.Utility;
 
 public class ItemFactory {
-    private static final int ITEM_HIGH = 3; // The high bound to generate an item
+    private static final int ITEM_HIGH = 4; // The high bound to generate an item
     private final Utility myUtility;
 
     public ItemFactory() {
@@ -23,12 +23,15 @@ public class ItemFactory {
 
     public Acorn makeAcorn() { return new Acorn(); }
 
+    public ChocolateMilk makeChocolateMilk() { return new ChocolateMilk(); }
+
     public Item makeRandomItem() {
         return switch(myUtility.getRandom(ITEM_HIGH)) {
             default -> makeApple();
             case 1 -> makeBomb();
             case 2 -> makeSugar();
             case 3 -> makeAcorn();
+            case 4 -> makeChocolateMilk();
 
         };
     }

@@ -152,10 +152,12 @@ public class Main {
             if(myMonster.isAlive()) {
                 if (myHero.getSpeed() > myMonster.getSpeed()) {
                     printHeroAttacksFirstMessage();
-                    myHero.attack(myMonster);
+                    myHero.attack(myMonster, myHero);
+                    myMonster.attack(myHero);
                 } else {
                     printMonsterAttacksFirstMessage();
                     myMonster.attack(myHero);
+                    myHero.attack(myMonster, myHero);
                 }
             }
 

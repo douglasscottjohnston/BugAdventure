@@ -30,11 +30,12 @@ public class Main {
 
         myDungeon = new Dungeon(myHero);
 
-        myDungeon.printExitPath();
+
 
         while(myRunning) {
             myRoom = myDungeon.getCurrent();
             System.out.println(myHero.getName() + " enters a room");
+            myDungeon.printExitPath();
             if(myRoom.getContents().isEmpty()) {
                 System.out.println("The room is empty");
             } else {

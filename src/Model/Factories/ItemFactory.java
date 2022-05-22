@@ -1,14 +1,16 @@
 package Model.Factories;
 
 import Model.Items.*;
-import Model.Utility;
+import Model.ModelUtility;
 
-public class ItemFactory {
+import java.io.Serializable;
+
+public class ItemFactory implements Serializable {
     private static final int ITEM_HIGH = 4; // The high bound to generate an item
-    private final Utility myUtility;
+    private final ModelUtility myUtility;
 
     public ItemFactory() {
-        myUtility = new Utility();
+        myUtility = new ModelUtility();
     }
 
     public Apple makeApple() {

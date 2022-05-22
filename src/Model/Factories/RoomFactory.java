@@ -1,21 +1,23 @@
 package Model.Factories;
 
 import Controller.Directions;
+import Model.ModelUtility;
 import Model.Room;
 import Model.RoomContentsList;
-import Model.Utility;
 
-public class RoomFactory {
+import java.io.Serializable;
+
+public class RoomFactory implements Serializable {
     private static final int CONTAIN_LOW = 0;
     private static final int CONTAIN_HIGH = 4;
 
-    private final Utility myUtility;
+    private final ModelUtility myUtility;
     private final MonsterFactory myMonsterFactory;
     private final ItemFactory myItemFactory;
 
 
     public RoomFactory() {
-        myUtility = new Utility();
+        myUtility = new ModelUtility();
         myMonsterFactory = new MonsterFactory();
         myItemFactory = new ItemFactory();
     }

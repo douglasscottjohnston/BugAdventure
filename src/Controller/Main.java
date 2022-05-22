@@ -6,7 +6,6 @@ import Model.Items.Item;
 import Model.Items.Sugar;
 import Model.Pit;
 import Model.Room;
-import Model.Utility;
 
 public class Main {
     private static final Utility UTILITY = new Utility();

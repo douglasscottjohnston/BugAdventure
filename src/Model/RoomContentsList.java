@@ -1,10 +1,12 @@
 package Model;
 
 
+import Controller.Utility;
 import Model.Bugs.HeroBug;
 import Model.Bugs.MonsterBug;
 import Model.Items.Item;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -14,7 +16,7 @@ import java.util.ArrayList;
  * @author Douglas Johnston
  * @version 1.0
  */
-public class RoomContentsList {
+public class RoomContentsList implements Serializable {
 
     private static final int FIRST = 0;
 

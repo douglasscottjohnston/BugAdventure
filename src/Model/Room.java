@@ -15,12 +15,12 @@ public class Room implements Serializable {
     private final boolean[] myDoors;
 
     private final RoomContentsList myContents;
-    private final Utility myUtility;
+    private final ModelUtility myUtility;
 
     public Room(RoomContentsList theContents) {
         myContents = theContents;
         myDoors = generateMyDoors();
-        myUtility = new Utility();
+        myUtility = new ModelUtility();
     }
 
     private boolean[] generateMyDoors() {

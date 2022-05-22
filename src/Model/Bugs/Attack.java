@@ -1,9 +1,11 @@
 package Model.Bugs;
 
+import java.io.Serializable;
+
 /**
  * The type Attack.
  */
-public class Attack {
+public class Attack implements Serializable {
     private final String NAME;
     private final String MESSAGE;
     private final int POWER;

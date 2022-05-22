@@ -1,12 +1,13 @@
-package Model;
+package Model.Bugs;
 
-import Model.Bugs.Bug;
 import Model.Items.Item;
+import Controller.Utility;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-public class HeroInventory {
+public class HeroInventory implements Serializable {
     private final Hashtable<Item, Integer> myItems;
 
     public HeroInventory() {

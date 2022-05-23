@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.BugAdventureGame">
+   <children>
+      <ImageView fitHeight="325.0" fitWidth="325.0" layoutX="42.0" layoutY="38.0">
+         <image>
+            <Image url="@View/Resources/treeWallpaper.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

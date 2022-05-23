@@ -92,6 +92,15 @@ public class Dungeon implements Serializable, Directions {
     }
 
     /**
+     * Returns the hero bug
+     *
+     * @return the hero bug
+     */
+    public HeroBug getHero() {
+        return myHero;
+    }
+
+    /**
      * Returns true if the current room the hero is in is the exit room.
      *
      * @return true if the hero is in the exit room, false otherwise

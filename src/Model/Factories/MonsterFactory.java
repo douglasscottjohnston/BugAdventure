@@ -1,20 +1,22 @@
 package Model.Factories;
 
 import Model.Bugs.*;
-import Model.Utility;
+import Model.ModelUtility;
+
+import java.io.Serializable;
 
 /**
  * The type Monster factory.
  */
-public class MonsterFactory {
+public class MonsterFactory implements Serializable {
     private static final int MONSTER_HIGH = 3; // The high chance to generate a certain type of monster
-    private final Utility myUtility;
+    private final ModelUtility myUtility;
 
     /**
      * Instantiates a new Monster factory.
      */
     public MonsterFactory() {
-        myUtility = new Utility();
+        myUtility = new ModelUtility();
     }
 
     /**

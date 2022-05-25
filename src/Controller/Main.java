@@ -6,7 +6,6 @@ import Model.Items.Item;
 import Model.Items.Sugar;
 import Model.Pit;
 import Model.Room;
-import Model.Utility;
 
 public class Main {
     private static final Utility UTILITY = new Utility();
@@ -30,11 +29,12 @@ public class Main {
 
         myDungeon = new Dungeon(myHero);
 
-        myDungeon.printExitPath();
+
 
         while(myRunning) {
             myRoom = myDungeon.getCurrent();
             System.out.println(myHero.getName() + " enters a room");
+            myDungeon.printExitPath();
             if(myRoom.getContents().isEmpty()) {
                 System.out.println("The room is empty");
             } else {

@@ -1,24 +1,17 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.Random;
-import java.util.Scanner;
 
-/**
- * The type Utility.
- */
-public class Utility {
+public class ModelUtility implements Serializable {
     private final StringBuilder mySB;
-    private final Scanner myScan;
     private final Random myRandom;
 
-    /**
-     * Instantiates a new Utility.
-     */
-    public Utility() {
+    public ModelUtility() {
         mySB = new StringBuilder();
-        myScan = new Scanner(System.in);
         myRandom = new Random();
     }
+
 
     /**
      * Gets the string builder.
@@ -65,55 +58,6 @@ public class Utility {
         mySB.setLength(0);
     }
 
-    /**
-     * Gets the scanner.
-     *
-     * @return the scanner
-     */
-    public Scanner getScanner() {
-        return myScan;
-    }
-
-    /**
-     * Scan the next string in input.
-     *
-     * @return the string
-     */
-    public String scanNext() {
-        return myScan.next();
-    }
-
-    /**
-     * Scan the next line of input.
-     *
-     * @return the string
-     */
-    public String scanNextLine() {
-        return myScan.nextLine();
-    }
-
-    /**
-     * Scan the next in the input.
-     *
-     * @return the int
-     */
-    public int scanNextInt() {
-        return myScan.nextInt();
-    }
-
-    /**
-     * Close scanner.
-     */
-    public void closeScanner() {
-        myScan.close();
-    }
-
-    /**
-     * Returns true if the percent chance is greater than or equal to the next random float between 0.0 and 1.0.
-     *
-     * @param theChance true or false if the percent chance was higher
-     * @return the boolean
-     */
     public boolean percentChance(final float theChance) {
         return myRandom.nextFloat() <= theChance;
     }

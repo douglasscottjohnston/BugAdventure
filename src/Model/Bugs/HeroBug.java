@@ -1,8 +1,7 @@
 package Model.Bugs;
 
-import Model.HeroInventory;
 import Model.Items.Item;
-import Model.Utility;
+import Controller.Utility;
 
 public abstract class HeroBug extends Bug {
 

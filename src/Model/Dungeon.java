@@ -36,7 +36,7 @@ public class Dungeon implements Serializable, Directions {
 
     //msc.
     private final HeroBug myHero;
-    private final Utility myUtility;
+    private final ModelUtility myUtility;
     private final RoomFactory myRoomFactory;
     private LinkedList<Room> myExitPath;
     private String myExitString;
@@ -54,7 +54,7 @@ public class Dungeon implements Serializable, Directions {
         myEntrance = new Room(entContents);
         myCurrent = myEntrance;
         myExit = myEntrance;
-        myUtility = new Utility();
+        myUtility = new ModelUtility();
         myRoomFactory = new RoomFactory();
         createRandomDungeon();
     }
@@ -76,10 +76,28 @@ public class Dungeon implements Serializable, Directions {
     /**
      * Gets the current room the hero is in.
      *
-     * @return the current
+     * @return the current room
      */
     public Room getCurrent() {
         return myCurrent;
+    }
+
+    /**
+     * Gets the entrance room
+     *
+     * @return the entrance room
+     */
+    public Room getEntrance() {
+        return myEntrance;
+    }
+
+    /**
+     * Returns the hero bug
+     *
+     * @return the hero bug
+     */
+    public HeroBug getHero() {
+        return myHero;
     }
 
     /**
@@ -94,6 +112,10 @@ public class Dungeon implements Serializable, Directions {
     public void printExitPath() {
         System.out.println("The path to the exit is: ");
         System.out.println(myExitString);
+    }
+
+    public String getExitPathString() {
+        return myExitString;
     }
 
     /**

@@ -34,5 +34,22 @@ public interface Directions {
                 default -> throw new IllegalArgumentException(theDirection + " is not a possible direction");
             }
         }
+
+        static Direction getOppositeDirection(final Direction theDirection) {
+            switch(theDirection) {
+                case NORTH -> {
+                    return SOUTH;
+                }
+                case SOUTH -> {
+                    return NORTH;
+                }
+                case EAST -> {
+                    return WEST;
+                }
+                default -> {
+                    return EAST;
+                }
+            }
+        }
     }
 }

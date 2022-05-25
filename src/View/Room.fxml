@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<!--
+This is where most of the action will happen
+
+The room by default should have walls in every direction and invisible doors in every direction. When the doors are
+set as visible they should completely cover the wall (or the door can cover a small part in the wall). Then there
+should be four invisible buttons for each direction for each movement option and based of the visibility of the doors
+we will make them visible after the attack phase is over. This file should also display the hero and the monster
+(the monster should change based on what monster is in the room) as well as the items the hero picks up, and a menu
+to display which items the hero can use in the use item phase. If we create the room this way then every time we
+move to a new room we can simply reload this file which will call initialize in the RoomController and it will change
+the room accordingly
+
+-->
+
+<AnchorPane prefHeight="400.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RoomController">
+   <children>
+      <ImageView fitHeight="325.0" fitWidth="325.0" layoutX="42.0" layoutY="38.0">
+         <image>
+            <Image url="@Resources/treeWallpaper.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

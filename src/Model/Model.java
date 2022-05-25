@@ -10,7 +10,7 @@ public abstract class Model {
     private static Dungeon myDungeon;
     private static HeroBug myHero;
     private static MonsterBug myMonster;
-    private static int myMovements = 1;
+    private static final int myMovements = 1;
     private static boolean myFirstPlay = true;
 
     public static void createLadyBug(final String theName) {

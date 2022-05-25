@@ -215,11 +215,7 @@ public class Main {
 
     private static void movementPhase() {
 
-        boolean printMovements = false;
-
-        if(myMovements > 1) {
-            printMovements = true;
-        }
+        boolean printMovements = myMovements > 1;
 
         for (int i = myMovements; i > 0; i--) {
             if(printMovements) {

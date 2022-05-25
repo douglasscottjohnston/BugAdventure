@@ -7,19 +7,26 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class StartController {
-    @FXML
-    private Label myInfoText;
 
     @FXML
-    private void onPlayButtonClick(ActionEvent event) {
+    Button myNewGame, myLoadGame, myHelp, myExit;
+
+    @FXML
+    private void initialize() {
+        myLoadGame.setDisable(Model.isFirstPlay());
+    }
+
+    @FXML
+    private void onNewGameButtonClick(ActionEvent event) {
         try {
-            Parent heroSelectParent = FXMLLoader.load(getClass().getResource("../View/HeroSelectView.fxml"));
+            Parent heroSelectParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../View/HeroSelect.fxml")));
             Scene heroSelectScene = new Scene(heroSelectParent);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(heroSelectScene);
@@ -31,50 +38,19 @@ public class StartController {
     }
 
     @FXML
-    private void onHelpButtonClick() {
-        myInfoText.setText("Needing help?");
-    }
-
-    @FXML
-    private void onExitButtonClick() {
-        myInfoText.setText("Leaving so soon?");
-        System.exit(0);
-    }
-
-    @FXML
-    private void onRunButtonClick() {
-        if(Model.run()) {
-            //successfully ran away
+    private void onLoadGameButtonClick(ActionEvent event) {
+        if(!myLoadGame.isDisable()) {
+            //go to the room view
         }
     }
 
     @FXML
-    private void onSaveButtonClick() {
-        Model.save();
+    private void onHelpButtonClick() {
+
     }
 
     @FXML
-    private void onLoadButtonClick() {
-        Model.load();
-    }
-
-    @FXML
-    private void onNorthButtonClick() {
-        Model.move(Directions.Direction.NORTH);
-    }
-
-    @FXML
-    private void onSouthButtonClick() {
-        Model.move(Directions.Direction.SOUTH);
-    }
-
-    @FXML
-    private void onEastButtonClick() {
-        Model.move(Directions.Direction.EAST);
-    }
-
-    @FXML
-    private void onWestButtonClick() {
-        Model.move(Directions.Direction.WEST);
+    private void onExitButtonClick() {
+        System.exit(0);
     }
 }

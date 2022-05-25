@@ -15,7 +15,7 @@ public class BugAdventureGame extends Application {
     public void start(Stage primaryStage) throws IOException {
 //        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("BugAdventureView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View/BugAdventureView.fxml"));
 
 
         Scene scene = new Scene(fxmlLoader.load(), 500, 500);

@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 
-public class HeroSelectController {
+public class HeroSelectController extends Controller {
 
     @FXML
     private RadioButton myLadyBug, myPillBug, myAnt;
@@ -19,37 +19,43 @@ public class HeroSelectController {
     private Label myNameWarning, myHeroWarning;
 
     @FXML
-    private void onOKButtonClick(ActionEvent event) {
+    private void onOKButtonClick(final ActionEvent theEvent) {
         //get the name from the name box
         //get the hero selection from radio button list
         //pass the hero to the model using Model.createDungeon(theHero)
 
         myNameWarning.setVisible(false);
         myHeroWarning.setVisible(false);
+        String heroName = myHeroName.getText().strip();
+        boolean goToNext = false;
 
-        if(myHeroName.getText().strip().isBlank()) {
+        if(heroName.isBlank()) {
             myNameWarning.setVisible(true);
         } else {
             if(myLadyBug.isSelected()) {
-                Model.createLadyBug(myHeroName.getText().strip());
+                Model.createLadyBug(heroName);
+                goToNext = true;
             } else if(myPillBug.isSelected()) {
-                Model.createPillBug(myHeroName.getText().strip());
+                Model.createPillBug(heroName);
+                goToNext = true;
             } else if(myAnt.isSelected()) {
-                Model.createAnt(myHeroName.getText().strip());
+                Model.createAnt(heroName);
+                goToNext = true;
             } else {
                 myHeroWarning.setVisible(true);
             }
         }
 
+        //if a name was entered and a hero was selected go to the next scene
+        if(goToNext) {
+            Model.createDungeon();
+            nextScene(theEvent, "../View/Room.fxml");
 
-        // to stage the next scene
-//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-
+        }
     }
 
     @FXML
-    private void displayHero(ActionEvent event) {
+    private void displayHero(final ActionEvent theEvent) {
         if(myLadyBug.isSelected()) {
             //display the ladybug sprite
         } else if(myPillBug.isSelected()) {

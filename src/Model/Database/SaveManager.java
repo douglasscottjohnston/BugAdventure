@@ -13,7 +13,7 @@ import java.io.*;
  */
 public abstract class SaveManager {
     private static final String SAVE_FILE_NAME = "Dungeon.bin";
-    private static boolean mySavedOnce = false;
+    private static final File SAVE_FILE = new File(SAVE_FILE_NAME);
 
     /**
      * Saves the passed dungeon to the Dungeon.bin save file.
@@ -24,7 +24,6 @@ public abstract class SaveManager {
         try {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(SAVE_FILE_NAME, false));
             oos.writeObject(theDungeon);
-            mySavedOnce = true;
         } catch(IOException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -57,6 +56,6 @@ public abstract class SaveManager {
      * @return true if the dungeon has already been saved once
      */
     public static boolean hasSavedOnce() {
-        return mySavedOnce;
+        return SAVE_FILE.exists();
     }
 }

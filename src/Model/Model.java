@@ -11,7 +11,6 @@ public abstract class Model {
     private static HeroBug myHero;
     private static MonsterBug myMonster;
     private static final int myMovements = 1;
-    private static boolean myFirstPlay = true;
 
     public static void createLadyBug(final String theName) {
         myHero = new LadyBug(theName);
@@ -42,7 +41,7 @@ public abstract class Model {
     }
 
     public static boolean isFirstPlay() {
-        return myFirstPlay;
+        return !SaveManager.hasSavedOnce();
     }
 
     public static Dungeon getDungeon() {
@@ -67,12 +66,12 @@ public abstract class Model {
     }
 
     public static void save() {
-        myFirstPlay = false;
         SaveManager.saveDungeon(myDungeon);
     }
 
     public static void load() {
         myDungeon = SaveManager.loadDungeon();
+        myHero = myDungeon.getHero();
     }
 
 }

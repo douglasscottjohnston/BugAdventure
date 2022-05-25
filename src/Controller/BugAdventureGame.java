@@ -19,7 +19,7 @@ public class BugAdventureGame extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/Start.fxml"));
 
             Scene scene = new Scene(fxmlLoader.load(), 400, 400);
-            primaryStage.setTitle("Hello!");
+            primaryStage.setTitle("Bug Adventure");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {

@@ -6,6 +6,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class HeroSelectController extends Controller {
 
@@ -14,6 +19,9 @@ public class HeroSelectController extends Controller {
 
     @FXML
     private TextField myHeroName;
+
+    @FXML
+    private ImageView myHeroImage;
 
     @FXML
     private Label myNameWarning, myHeroWarning;
@@ -56,12 +64,20 @@ public class HeroSelectController extends Controller {
 
     @FXML
     private void displayHero(final ActionEvent theEvent) {
-        if(myLadyBug.isSelected()) {
-            //display the ladybug sprite
-        } else if(myPillBug.isSelected()) {
-            //display the pillbug sprite
-        } else if(myAnt.isSelected()) {
-            //display the ant sprite
+        FileInputStream heroFile = null;
+        try {
+            if(myLadyBug.isSelected()) {
+                heroFile = new FileInputStream("src/View/Resources/ladybug.png");
+            } else if(myPillBug.isSelected()) {
+                heroFile = new FileInputStream("src/View/Resources/pillbug.png");
+            } else if(myAnt.isSelected()) {
+                heroFile = new FileInputStream("src/View/Resources/ant.png");
+            }
+        } catch(FileNotFoundException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
+
+        myHeroImage.setImage(new Image(heroFile));
     }
 }

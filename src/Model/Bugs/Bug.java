@@ -18,6 +18,7 @@ public abstract class Bug implements Serializable {
     private int mySpeed;
 
     private String myName;
+    private final String myImagePath;
 
 
     /**
@@ -29,13 +30,14 @@ public abstract class Bug implements Serializable {
      * @param theDefense       the defense
      * @param theSpeed         the speed
      */
-    public Bug(final Attack theAttack, final Attack theSpecialAttack, final int theHealth, final int theOriginalHealth, final int theDefense, final int theSpeed, final String theName) {
+    public Bug(final Attack theAttack, final Attack theSpecialAttack, final int theHealth, final int theOriginalHealth, final int theDefense, final int theSpeed, final String theImageName, final String theName) {
         myAttack = theAttack;
         mySpecialAttack = theSpecialAttack;
         myHealth = theHealth;
         myOriginalHealth = theOriginalHealth;
         myDefense = theDefense;
         mySpeed = theSpeed;
+        myImagePath = "src/View/Resources/" + theImageName;
         myName = theName;
     }
 
@@ -44,29 +46,28 @@ public abstract class Bug implements Serializable {
      *
      * @param theEnemy the enemy
      */
-    public void attack(final Bug theEnemy) {
+    public int attack(final Bug theEnemy) {
         //might not be the best way to calculate the damage taken
-        int damageTaken = myAttack.getPower() - (myAttack.getPower() * theEnemy.getDefense() / 100);
-        theEnemy.takeDamage(damageTaken);
-        System.out.println(theEnemy.getName() + " Hp left: " + theEnemy.getHealth());
+        int damageDealt = myAttack.getPower() - (myAttack.getPower() * theEnemy.getDefense() / 100);
+        System.out.println(damageDealt);
+        theEnemy.takeDamage(damageDealt);
 
-        if(myAttack.getLifeSteal()) {
-            heal(damageTaken);
+        if(myAttack.isLifeSteal()) {
+            heal(damageDealt);
         }
+        return damageDealt;
     }
 
-    public void specialAttack(final Bug theEnemy) {
-        int damageTaken = mySpecialAttack.getPower() - (mySpecialAttack.getPower() * theEnemy.getDefense() / 100);
+    public int specialAttack(final Bug theEnemy) {
+        int damageDealt = mySpecialAttack.getPower() - (mySpecialAttack.getPower() * theEnemy.getDefense() / 100);
         if(mySpecialAttack.getAttackChance() > MY_RANDOM.nextInt(101)) {
-            theEnemy.takeDamage(damageTaken);
-            System.out.println(theEnemy.getName() + " Hp left: " + theEnemy.getHealth());
+            theEnemy.takeDamage(damageDealt);
 
-            if(myAttack.getLifeSteal()) {
-                heal(damageTaken);
+            if(myAttack.isLifeSteal()) {
+                heal(damageDealt);
             }
-        } else {
-            System.out.println(getName() + " missed their Attack");
         }
+        return damageDealt;
     }
 
 
@@ -106,6 +107,10 @@ public abstract class Bug implements Serializable {
         return myHealth;
     }
 
+    public int getOriginalHealth() {
+        return myOriginalHealth;
+    }
+
     /**
      * Gets speed.
      *
@@ -115,7 +120,11 @@ public abstract class Bug implements Serializable {
         return mySpeed;
     }
 
-    public final String getName() { return myName; }
+    public String getName() { return myName; }
+
+    public String getImagePath() {
+        return myImagePath;
+    }
 
     public void setName(final String theName) {
         myName = theName;

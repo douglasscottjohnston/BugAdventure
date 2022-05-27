@@ -26,10 +26,14 @@ public abstract class Model {
 
     public static void createDungeon() {
         myDungeon = new Dungeon(myHero);
+        myMonster = null;
     }
 
     public static void move(final Directions.Direction theDirection) {
         myDungeon.moveInDirection(theDirection);
+        if(myDungeon.getCurrent().getContents().containsMonster()) {
+            myMonster = myDungeon.getCurrent().getContents().getAndRemoveMonster();
+        }
     }
 
     public static boolean isCurrentEmpty() {
@@ -37,7 +41,7 @@ public abstract class Model {
     }
 
     public static boolean currentHasMonster() {
-        return myDungeon.getCurrent().getContents().containsMonster();
+        return myMonster != null;
     }
 
     public static boolean isFirstPlay() {
@@ -53,7 +57,6 @@ public abstract class Model {
     }
 
     public static MonsterBug getCurrentMonster() {
-        myMonster = myDungeon.getCurrent().getContents().getAndRemoveMonster();
         return myMonster;
     }
 

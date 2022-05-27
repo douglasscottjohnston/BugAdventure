@@ -10,8 +10,8 @@ public abstract class HeroBug extends Bug {
     private final HeroInventory myInventory;
 
     public HeroBug(final Attack theAttack, final Attack theSpecialAttack, final int theHealth, final int theOriginalHealth,
-                   final int theDefense, final int theSpeed, final int theChanceToDodge, final String theName) {
-        super(theAttack, theSpecialAttack, theHealth, theOriginalHealth, theDefense, theSpeed, theName);
+                   final int theDefense, final int theSpeed, final int theChanceToDodge, final String theImageName, final String theName) {
+        super(theAttack, theSpecialAttack, theHealth, theOriginalHealth, theDefense, theSpeed, theImageName, theName);
 
         setChanceToDodge(theChanceToDodge);
         setName(theName);
@@ -19,37 +19,19 @@ public abstract class HeroBug extends Bug {
     }
 
 
-    public void attack(final Bug theEnemy, final Bug theHero) {
+    @Override
+    public int attack(final Bug theEnemy) {
         int numberOfAttacks = getSpeed() / theEnemy.getSpeed();
+        int damageDealt = 0;
 
         if (numberOfAttacks == 0) {
             numberOfAttacks = 1;
         }
         while (numberOfAttacks > 0 && theEnemy.isAlive()) {
-            switch(getChoice()) {
-                case 1 -> {
-                    super.attack(theEnemy);
-                    numberOfAttacks--;
-                }
-                case 2 -> {
-                    super.specialAttack(theEnemy);
-                    numberOfAttacks--;
-                }
-                case 3 -> {
-                    if(myInventory.isEmpty()) {
-                        System.out.println("You have no items.");
-                    } else {
-                        Item item = myInventory.selectItem();
-                        if (item.isFriendly()) {
-                            myInventory.useItem(item, theHero);
-                        } else {
-                            myInventory.useItem(item, theEnemy);
-                        }
-                    }
-                }
-                default -> theEnemy.setHealth(0); //cheat
-            }
+            damageDealt += super.attack(theEnemy);
+            numberOfAttacks--;
         }
+        return damageDealt;
     }
 
     public void pickUpItem(Item theItem) {

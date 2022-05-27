@@ -7,9 +7,10 @@ public class Mosster extends MonsterBug {
     private static final Attack MY_ATTACK = new Attack("Moss Attack","",500, 100, true);
     private static final Attack MY_SPECIAL_ATTACK = new Attack("Ultra Moss Absorb","",600, 50, true);
     private static final int MY_SPEED = 20;
+    private static final String MY_IMAGE_NAME = "mosster.png";
     private static final String MY_NAME = "Mosster";
     public Mosster() {
-        super(MY_ATTACK, MY_SPECIAL_ATTACK, MY_HEALTH, MY_ORIGINAL_HEALTH, MY_DEFENCE, MY_SPEED, MY_NAME);
+        super(MY_ATTACK, MY_SPECIAL_ATTACK, MY_HEALTH, MY_ORIGINAL_HEALTH, MY_DEFENCE, MY_SPEED, MY_IMAGE_NAME, MY_NAME);
     }
 
 }

@@ -18,6 +18,8 @@ public class BugAdventureGame extends Application {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/Start.fxml"));
 
+            primaryStage.setResizable(false);
+
             Scene scene = new Scene(fxmlLoader.load(), 400, 400);
             primaryStage.setTitle("Bug Adventure");
             primaryStage.setScene(scene);

@@ -16,9 +16,10 @@ public class ChocolateMilk extends Item {
     @Override
     public void effect(Bug theHero) {
 
-//        theHero.getAttack().setPower(theHero.getAttack().getPower() + DAMAGE_INCREASE);
-
+        theHero.getAttack().setPower(theHero.getAttack().getPower() + DAMAGE_INCREASE);
+        theHero.getSpecialAttack().setPower(theHero.getSpecialAttack().getPower() + DAMAGE_INCREASE);
         System.out.println("Attack Power now at: " + theHero.getAttack().getPower());
+        System.out.println("Special Attack Power now at: " + theHero.getSpecialAttack().getPower());
 
 //        System.out.println("Attack Power now at: " + theHero.getAttack().getPower());
 

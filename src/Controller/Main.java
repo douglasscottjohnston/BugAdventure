@@ -17,9 +17,7 @@ public class Main {
     private static int myMovements = 1;
 
 
-    public static void main(String[] args) {
-        startGame();
-    }
+    public static void main(String[] args) { startGame();}
     private static void startGame() {
         myRunning = true;
 

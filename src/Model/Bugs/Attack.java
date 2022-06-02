@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class Attack implements Serializable {
     private final String NAME;
     private final String MESSAGE;
-    private final int POWER;
+    private int POWER;
     private final int ATTACK_CHANCE;
     private final boolean LIFESTEAL;
 
@@ -55,6 +55,10 @@ public class Attack implements Serializable {
      */
     public int getPower() {
         return POWER;
+    }
+
+    public void setPower(final int thePower) {
+        POWER = thePower;
     }
 
     public int getAttackChance() {

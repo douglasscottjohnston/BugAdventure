@@ -10,8 +10,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,6 +20,9 @@ import java.io.FileNotFoundException;
 public class RoomController extends Controller {
     private final Utility myUtility = new Utility();
     private static final String GAME_OVER_PATH = "../View/GameOver.fxml";
+    private static final String WIN_PATH = "../View/Win.fxml";
+    private static final String IMAGE_PATH = "src/View/Resources/";
+    private static final String PNG = ".png";
 
     @FXML
     AnchorPane myAnchorPane;
@@ -37,13 +41,15 @@ public class RoomController extends Controller {
 
     @FXML
     private void initialize() {
+        setKeyListeners();
         setDoors(Model.getDungeon().getCurrent());
         disableMoveButtons();
         setHeroHealth();
         myItemButton.setDisable(false);
         myDialogue.setText("");
         try {
-            myHeroImage.setImage(new Image(new FileInputStream(Model.getHero().getImagePath())));
+            System.out.println(System.getProperty("user.dir"));
+            myHeroImage.setImage(new Image(new FileInputStream(getHeroImagePath())));
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -65,12 +71,38 @@ public class RoomController extends Controller {
         }
     }
 
+    private void setKeyListeners() {
+        System.out.println("listeners set");
+        System.out.println(getStage());
+        getStage().getScene().addEventFilter(KeyEvent.ANY, e -> {
+            if(e.getCode().equals(KeyCode.UP) && myNorthButton.isVisible()) {
+                move(Directions.Direction.NORTH);
+            } else if(e.getCode().equals(KeyCode.DOWN) && mySouthButton.isVisible()) {
+                move(Directions.Direction.SOUTH);
+            } else if(e.getCode().equals(KeyCode.RIGHT) && myEastButton.isVisible()) {
+                move(Directions.Direction.EAST);
+            } else if(e.getCode().equals(KeyCode.LEFT) && myWestButton.isVisible()) {
+                move(Directions.Direction.WEST);
+            } else if(e.getCode().equals(KeyCode.K)) { //cheats
+                heroDies();
+            } else if(e.getCode().equals(KeyCode.W) && Model.getCurrentMonster().isAlive()) {
+                Model.getCurrentMonster().setHealth(0);
+                monsterDies();
+            } else if(e.getCode().equals(KeyCode.P)) {
+                Model.getDungeon().printExitPath();
+            }
+                }
+        );
+    }
+
     @FXML
     private void onAttackButtonPress(final ActionEvent theEvent) {
         if(!myAttackButton.isDisable()) {
             if(Model.getCurrentMonster().isAlive()) {
                 myUtility.appendToBuilder(Model.getHero().getName());
-                myUtility.appendToBuilder(" dealt ");
+                myUtility.appendToBuilder(" used ");
+                myUtility.appendToBuilder(Model.getHero().getAttack().getName());
+                myUtility.appendToBuilder("\nIt dealt ");
                 myUtility.appendToBuilder(Integer.toString(Model.getHero().attack(Model.getCurrentMonster())));
                 myUtility.appendToBuilder(" points of damage!\n");
                 myDialogue.appendText(myUtility.builderToStringClear());
@@ -91,7 +123,9 @@ public class RoomController extends Controller {
         if(!mySpecialAttackButton.isDisable()) {
             if(Model.getCurrentMonster().isAlive()) {
                 myUtility.appendToBuilder(Model.getHero().getName());
-                myUtility.appendToBuilder(" dealt ");
+                myUtility.appendToBuilder(" used ");
+                myUtility.appendToBuilder(Model.getHero().getSpecialAttack().getName());
+                myUtility.appendToBuilder("\nIt dealt ");
                 myUtility.appendToBuilder(Integer.toString(Model.getHero().specialAttack(Model.getCurrentMonster())));
                 myUtility.appendToBuilder(" points of damage!\n");
                 myDialogue.appendText(myUtility.builderToStringClear());
@@ -135,25 +169,26 @@ public class RoomController extends Controller {
 
     @FXML
     private void onNorthButtonClick(final ActionEvent theEvent) {
-        Model.move(Directions.Direction.NORTH);
-        initialize();
+        move(Directions.Direction.NORTH);
     }
 
     @FXML
     private void onSouthButtonClick(final ActionEvent theEvent) {
-        Model.move(Directions.Direction.SOUTH);
-        initialize();
+        move(Directions.Direction.SOUTH);
     }
 
     @FXML
     private void onEastButtonClick(final ActionEvent theEvent) {
-        Model.move(Directions.Direction.EAST);
-        initialize();
+        move(Directions.Direction.EAST);
     }
 
     @FXML
     private void onWestButtonClick(final ActionEvent theEvent) {
-        Model.move(Directions.Direction.WEST);
+        move(Directions.Direction.WEST);
+    }
+
+    private void move(final Directions.Direction theDirection) {
+        Model.move(theDirection);
         initialize();
     }
 
@@ -225,7 +260,7 @@ public class RoomController extends Controller {
         myUtility.appendToBuilder(Integer.toString(Model.getCurrentMonster().getOriginalHealth()));
         myMonsterHealthLabel.setText(myUtility.builderToStringClear());
         try {
-            myMonsterImage.setImage(new Image(new FileInputStream(theMonster.getImagePath())));
+            myMonsterImage.setImage(new Image(new FileInputStream(IMAGE_PATH + theMonster.getName() + PNG)));
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -237,11 +272,14 @@ public class RoomController extends Controller {
         myDialogue.appendText(" defeated the ");
         myDialogue.appendText(Model.getCurrentMonster().getName());
         myDialogue.appendText("\n");
+        if(Model.getDungeon().inExit()) {
+            nextScene(getStage(), WIN_PATH);
+        }
         movementPhase();
     }
 
     private void heroDies() {
-        nextScene((Stage)myAnchorPane.getScene().getWindow(), GAME_OVER_PATH);
+        nextScene(getStage(), GAME_OVER_PATH);
     }
 
     private void movementPhase() {

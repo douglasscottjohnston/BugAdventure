@@ -10,7 +10,7 @@ public abstract class Model {
     private static Dungeon myDungeon;
     private static HeroBug myHero;
     private static MonsterBug myMonster;
-    private static final int myMovements = 1;
+    private static final int MOVEMENTS = 1;
 
     public static void createLadyBug(final String theName) {
         myHero = new LadyBug(theName);
@@ -33,6 +33,9 @@ public abstract class Model {
         myDungeon.moveInDirection(theDirection);
         if(myDungeon.getCurrent().getContents().containsMonster()) {
             myMonster = myDungeon.getCurrent().getContents().getAndRemoveMonster();
+
+        } else if(myMonster != null && !myMonster.isAlive()) {
+            myMonster = null;
         }
     }
 

@@ -18,7 +18,6 @@ public abstract class Bug implements Serializable {
     private int mySpeed;
 
     private String myName;
-    private final String myImagePath;
 
 
     /**
@@ -30,14 +29,13 @@ public abstract class Bug implements Serializable {
      * @param theDefense       the defense
      * @param theSpeed         the speed
      */
-    public Bug(final Attack theAttack, final Attack theSpecialAttack, final int theHealth, final int theOriginalHealth, final int theDefense, final int theSpeed, final String theImageName, final String theName) {
+    public Bug(final Attack theAttack, final Attack theSpecialAttack, final int theHealth, final int theOriginalHealth, final int theDefense, final int theSpeed, final String theName) {
         myAttack = theAttack;
         mySpecialAttack = theSpecialAttack;
         myHealth = theHealth;
         myOriginalHealth = theOriginalHealth;
         myDefense = theDefense;
         mySpeed = theSpeed;
-        myImagePath = "src/View/Resources/" + theImageName;
         myName = theName;
     }
 
@@ -122,10 +120,6 @@ public abstract class Bug implements Serializable {
 
     public String getName() { return myName; }
 
-    public String getImagePath() {
-        return myImagePath;
-    }
-
     public void setName(final String theName) {
         myName = theName;
     }
@@ -143,7 +137,10 @@ public abstract class Bug implements Serializable {
      * @param theHealth  the health
      */
     public void setHealth(final int theHealth) {
-        this.myHealth = theHealth;
+        myHealth = theHealth;
+        if(myHealth <= 0) {
+            myHealth = 0;
+        }
     }
 
     public final boolean isAlive() {

@@ -58,7 +58,6 @@ public class HeroSelectController extends Controller {
         if(goToNext) {
             Model.createDungeon();
             nextScene(theEvent, "../View/Room.fxml");
-
         }
     }
 
@@ -67,12 +66,14 @@ public class HeroSelectController extends Controller {
         FileInputStream heroFile = null;
         try {
             if(myLadyBug.isSelected()) {
-                heroFile = new FileInputStream("src/View/Resources/ladybug.png");
+                setHeroImagePath("src/View/Resources/Ladybug.png");
             } else if(myPillBug.isSelected()) {
-                heroFile = new FileInputStream("src/View/Resources/pillbug.png");
+                setHeroImagePath("src/View/Resources/pillbug.png");
             } else if(myAnt.isSelected()) {
-                heroFile = new FileInputStream("src/View/Resources/ant.png");
+                setHeroImagePath("src/View/Resources/Ant.png");
             }
+
+            heroFile = new FileInputStream(getHeroImagePath());
         } catch(FileNotFoundException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();

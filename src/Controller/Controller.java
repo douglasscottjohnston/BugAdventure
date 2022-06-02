@@ -8,14 +8,19 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Objects;
 
 abstract class Controller {
+    private static String myHeroImagePath;
+    private static Stage myStage;
+
     void nextScene(final ActionEvent theEvent, final String theScenePath) {
         try {
-            Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(theScenePath)));
-            Scene scene = new Scene(parent);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(theScenePath));
+
+            Parent parent = loader.load();
             Stage stage = (Stage) ((Node) theEvent.getSource()).getScene().getWindow();
+            setStage(stage);
+            Scene scene = new Scene(parent);
             stage.setScene(scene);
             stage.show();
         } catch(IOException ex) {
@@ -26,7 +31,9 @@ abstract class Controller {
 
     void nextScene(final Stage theStage, final String theScenePath) {
         try {
-            Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(theScenePath)));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(theScenePath));
+            Parent parent = loader.load();
+            setStage(theStage);
             Scene scene = new Scene(parent);
             theStage.setScene(scene);
             theStage.show();
@@ -34,5 +41,21 @@ abstract class Controller {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    static void setStage(final Stage theStage) {
+        myStage = theStage;
+    }
+
+    static Stage getStage() {
+        return myStage;
+    }
+
+    static void setHeroImagePath(final String thePath) {
+        myHeroImagePath = thePath;
+    }
+
+    static String getHeroImagePath() {
+        return myHeroImagePath;
     }
 }

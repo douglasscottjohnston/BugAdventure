@@ -10,8 +10,8 @@ public abstract class HeroBug extends Bug {
     private final HeroInventory myInventory;
 
     public HeroBug(final Attack theAttack, final Attack theSpecialAttack, final int theHealth, final int theOriginalHealth,
-                   final int theDefense, final int theSpeed, final int theChanceToDodge, final String theImageName, final String theName) {
-        super(theAttack, theSpecialAttack, theHealth, theOriginalHealth, theDefense, theSpeed, theImageName, theName);
+                   final int theDefense, final int theSpeed, final int theChanceToDodge, final String theName) {
+        super(theAttack, theSpecialAttack, theHealth, theOriginalHealth, theDefense, theSpeed, theName);
 
         setChanceToDodge(theChanceToDodge);
         setName(theName);

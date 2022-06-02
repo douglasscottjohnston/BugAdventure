@@ -2,6 +2,7 @@ package Controller;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -16,13 +17,16 @@ public class BugAdventureGame extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/Start.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/Start.fxml"));
+            Parent root = loader.load();
 
+            StartController start = loader.getController();
             primaryStage.setResizable(false);
 
-            Scene scene = new Scene(fxmlLoader.load(), 400, 400);
+            Scene scene = new Scene(root, 400, 400);
             primaryStage.setTitle("Bug Adventure");
             primaryStage.setScene(scene);
+            start.setStage(primaryStage);
             primaryStage.show();
         } catch (IOException e) {
             System.out.println(e.getMessage());

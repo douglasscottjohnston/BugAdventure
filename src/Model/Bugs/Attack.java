@@ -6,27 +6,26 @@ import java.io.Serializable;
  * The type Attack.
  */
 public class Attack implements Serializable {
-    private final String NAME;
-    private final String MESSAGE;
-    private int POWER;
-    private final int ATTACK_CHANCE;
-    private final boolean LIFESTEAL;
+
+    private final String myName;
+    private int myPower;
+    private final int myAttackChance;
+    private final boolean myHasLifesteal;
+
 
     /**
      * Instantiates a new Attack.
      *
      * @param theName    the name of the attack
-     * @param theMessage the attack message
      * @param thePower   the attack power
      * @param theAttackChance the chance to hit attack
      * @param theLifesteal true if attack has lifesteal
      */
-    public Attack(final String theName, final String theMessage, final int thePower, final int theAttackChance, final boolean theLifesteal) {
-        NAME = theName;
-        MESSAGE = theMessage;
-        POWER = thePower;
-        ATTACK_CHANCE = theAttackChance;
-        LIFESTEAL = theLifesteal;
+    public Attack(final String theName, final int thePower, final int theAttackChance, final boolean theLifesteal) {
+        myName = theName;
+        myPower = thePower;
+        myAttackChance = theAttackChance;
+        myHasLifesteal = theLifesteal;
 
     }
 
@@ -36,16 +35,7 @@ public class Attack implements Serializable {
      * @return the name
      */
     public String getName() {
-        return NAME;
-    }
-
-    /**
-     * Gets the attack message.
-     *
-     * @return the message
-     */
-    public String getMessage() {
-        return MESSAGE;
+        return myName;
     }
 
     /**
@@ -54,16 +44,16 @@ public class Attack implements Serializable {
      * @return the power
      */
     public int getPower() {
-        return POWER;
+        return myPower;
     }
 
     public void setPower(final int thePower) {
-        POWER = thePower;
+        myPower = thePower;
     }
 
     public int getAttackChance() {
-        return ATTACK_CHANCE;
+        return myAttackChance;
     }
 
-    public boolean getLifeSteal() { return LIFESTEAL; }
+    public boolean getLifeSteal() { return myHasLifesteal; }
 }

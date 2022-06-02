@@ -60,11 +60,11 @@ public class HeroSelectController extends Controller {
 
     private String getHeroPath() {
         if(myLadyBug.isSelected()) {
-            return "../View/Resources/ladybug.png";
+            return "src/View/Resources/ladybug.png";
         } else if(myPillBug.isSelected()) {
-            return "../View/Resources/pillbug.png";
+            return "src/View/Resources/pillbug.png";
         } else {
-            return "../View/Resources/ant.png";
+            return "src/View/Resources/ant.png";
         }
     }
 }

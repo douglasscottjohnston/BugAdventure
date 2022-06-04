@@ -67,9 +67,9 @@ the room accordingly
 <!--      <Rectangle arcHeight="5.0" arcWidth="5.0" height="50.0" layoutX="158.0" layoutY="136.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />-->
 <!--      <Ellipse layoutX="190.0" layoutY="110.0" radiusX="50.0" radiusY="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="158.0" AnchorPane.rightAnchor="152.0" AnchorPane.topAnchor="50.0" />-->
 <!--   </children>-->
-   <HBox alignment="CENTER_LEFT" layoutY="441.0" prefHeight="40.0" prefWidth="415.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+   <HBox alignment="CENTER_LEFT" layoutY="441.0" prefHeight="16.0" prefWidth="500.0" spacing="10.0" style="-fx-background-color: #A93A12#A93A12;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
       <children>
-         <Button fx:id="myRunButton" disable="true" mnemonicParsing="false" onAction="#onRunButtonClick" text="Run Away">
+         <Button fx:id="myRunButton" disable="true" mnemonicParsing="false" onAction="#onRunButtonClick" prefHeight="3.0" prefWidth="83.0" text="Run Away">
             <HBox.margin>
                <Insets top="10.0" />
             </HBox.margin>
@@ -97,6 +97,7 @@ the room accordingly
                <Rectangle2D />
             </viewport>
          </ImageView>
+         <Label fx:id="myMonsterHealthLabel" layoutX="289.0" layoutY="145.0" textFill="WHITE" />
          <ImageView fx:id="myMonsterImage" fitHeight="40.0" fitWidth="67.0" layoutX="278.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
             <viewport>
                <Rectangle2D />
@@ -105,8 +106,6 @@ the room accordingly
                <Image url="@Resources/centipede.png" />
             </image>
          </ImageView>
-         <Label fx:id="myMonsterHealthLabel" layoutX="289.0" layoutY="145.0" textFill="WHITE" />
-         <TextArea fx:id="myDialogue" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="&gt;" wrapText="true" />
       </children>
       <opaqueInsets>
          <Insets />
@@ -120,12 +119,12 @@ the room accordingly
          <children>
             <AnchorPane prefHeight="420.0" prefWidth="499.0">
                <children>
-                  <ImageView fitHeight="430.0" fitWidth="115.0" layoutX="38.0" layoutY="-8.0" preserveRatio="true">
+                  <ImageView fitHeight="429.0" fitWidth="116.0" layoutX="38.0" layoutY="-8.0" preserveRatio="true">
                      <image>
                         <Image url="@Resources/Room/leftopen.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="420.0" fitWidth="109.0" layoutX="41.0" opacity="0.53">
+                  <ImageView fitHeight="420.0" fitWidth="109.0" layoutX="41.0" layoutY="-1.0" opacity="0.53">
                      <image>
                         <Image url="@Resources/Room/roomleft.png" />
                      </image>
@@ -170,7 +169,7 @@ the room accordingly
                         <Image url="@Resources/Room/roomtop.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="451.0" fitWidth="113.0" layoutX="346.0" layoutY="-12.0" preserveRatio="true">
+                  <ImageView fitHeight="451.0" fitWidth="113.0" layoutX="346.0" layoutY="-13.0" preserveRatio="true">
                      <image>
                         <Image url="@Resources/Room/rightopen.png" />
                      </image>
@@ -180,17 +179,17 @@ the room accordingly
                         <Image url="@Resources/Room/topopen.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="111.0" fitWidth="427.0" layoutX="36.0" layoutY="310.0">
+                  <ImageView fitHeight="111.0" fitWidth="427.0" layoutX="36.0" layoutY="309.0">
                      <image>
                         <Image url="@Resources/Room/bottomopen.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="226.0" fitWidth="226.0" layoutX="-173.0" layoutY="195.0">
+                  <ImageView fitHeight="226.0" fitWidth="226.0" layoutX="-173.0" layoutY="194.0">
                      <image>
                         <Image url="@Resources/treeWallpaper.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="227.0" fitWidth="227.0" layoutX="-174.0" layoutY="2.0">
+                  <ImageView fitHeight="227.0" fitWidth="227.0" layoutX="-174.0" layoutY="1.0">
                      <image>
                         <Image url="@Resources/treeWallpaper.jpg" />
                      </image>
@@ -201,19 +200,20 @@ the room accordingly
 
          </children>
       </HBox>
-      <ImageView fitHeight="227.0" fitWidth="227.0" layoutX="446.0" layoutY="42.0">
+      <ImageView fitHeight="227.0" fitWidth="227.0" layoutX="446.0" layoutY="41.0">
          <image>
             <Image url="@Resources/treeWallpaper.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="226.0" fitWidth="226.0" layoutX="446.0" layoutY="235.0">
+      <ImageView fitHeight="226.0" fitWidth="226.0" layoutX="446.0" layoutY="234.0">
          <image>
             <Image url="@Resources/treeWallpaper.jpg" />
          </image>
       </ImageView>
-      <ToolBar layoutX="-1.0" layoutY="1.0" prefHeight="44.0" prefWidth="507.0">
+      <ToolBar layoutX="-1.0" layoutY="-3.0" prefHeight="44.0" prefWidth="507.0" style="-fx-background-color: #A93A12#A93A12;">
         <items>
-          <Button mnemonicParsing="false" text="Button" />
+          <Button mnemonicParsing="false" text="Exit" />
+         <TextArea fx:id="myDialogue" editable="false" prefHeight="26.0" prefWidth="340.0" promptText="&gt;" wrapText="true" />
          <Label fx:id="myHealthLabel" text="Health: 100/100" />
         </items>
       </ToolBar>

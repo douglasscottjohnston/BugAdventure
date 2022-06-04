@@ -1,5 +1,0 @@
-CREATE TABLE monsters(attackName TEXT, attackPower INT, attackChance INT, attackHasLifesteal INT, specialAttackName TEXT, specialAttackPower INT, specialAttackChance INT, specialAttackHasLifesteal INT, health INT, defense INT, speed INT, name TEXT);
-INSERT INTO monsters VALUES ('bite', 70, 90, 0, 'Super bite', 85, 70, 0, 125, 40, 5, 'Spider');
-INSERT INTO monsters VALUES ('Moss Attack', 75, 85, 0, 'Ultra Moss Absorb', 100, 60, 1, 300, 40, 3, 'Mosster');
-INSERT INTO monsters VALUES ('bite', 40, 100, 0, 'Super bite', 80, 70, 0, 250, 10, 2, 'Maggot');
-INSERT INTO monsters VALUES ('Pinch', 40, 100, 0, '100 Leg Kick', 100, 60, 0, 150, 20, 8, 'Centipede');

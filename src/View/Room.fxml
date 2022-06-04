@@ -23,326 +23,123 @@ move to a new room we can simply reload this file which will call initialize in 
 the room accordingly
 -->
 
-<<<<<<< HEAD
 <AnchorPane fx:id="myAnchorPane" prefHeight="481.0" prefWidth="582.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RoomController">
-   <children>
-      <ToolBar prefHeight="40.0" prefWidth="414.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <items>
-            <Button fx:id="mySaveButton" mnemonicParsing="false" onAction="#onSaveButtonClick" text="Save" />
-         </items>
-      </ToolBar>
-      <HBox layoutY="40.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
-         <children>
-            <AnchorPane prefHeight="400.0" prefWidth="408.0">
-               <children>
-                  <ImageView fitHeight="400.0" fitWidth="408.0">
-                     <image>
-                        <Image url="@Resources/treeWallpaper.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="41.0" fitWidth="109.0" layoutX="150.0" pickOnBounds="true" preserveRatio="true" scaleX="10.1" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="187.0" AnchorPane.topAnchor="0.0">
-                     <image>
-                        <Image url="@Resources/Grass.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="41.0" fitWidth="80.0" layoutX="187.0" layoutY="359.0" pickOnBounds="true" preserveRatio="true" scaleX="10.1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="187.0">
-                     <image>
-                        <Image url="@Resources/Grass.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="109.0" fitWidth="41.0" layoutX="3.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" scaleY="9.7" AnchorPane.leftAnchor="0.0">
-                     <image>
-                        <Image url="@Resources/Grass.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="109.0" fitWidth="41.0" layoutX="374.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" scaleY="9.7" AnchorPane.rightAnchor="0.0">
-                     <image>
-                        <Image url="@Resources/Grass.jpg" />
-=======
-<AnchorPane fx:id="myAnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RoomController">
-   <children>
-
-
-<!--<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RoomController">-->
-<!--   <children>-->
-<!--      <ToolBar prefHeight="40.0" prefWidth="414.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">-->
-<!--         <items>-->
-<!--            <Button fx:id="mySaveButton" mnemonicParsing="false" onAction="#onSaveButtonClick" text="Save" />-->
-<!--         </items>-->
-<!--      </ToolBar>-->
-<!--      <ImageView fx:id="myWestDoor" fitHeight="41.0" fitWidth="41.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" scaleY="5.0" visible="false" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="180.0">-->
-<!--         <image>-->
-<!--            <Image url="@Resources/treeWallpaper.jpg" />-->
-<!--         </image>-->
-<!--      </ImageView>-->
-<!--      <ImageView fx:id="myEastDoor" fitHeight="41.0" fitWidth="41.0" layoutX="374.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" scaleY="5.0" visible="false" AnchorPane.rightAnchor="0.0">-->
-<!--         <image>-->
-<!--            <Image url="@Resources/treeWallpaper.jpg" />-->
-<!--         </image>-->
-<!--      </ImageView>-->
-<!--      <ImageView fx:id="myNorthDoor" fitHeight="41.0" fitWidth="41.0" layoutX="184.0" pickOnBounds="true" preserveRatio="true" scaleX="5.5" visible="false" AnchorPane.topAnchor="0.0">-->
-<!--         <image>-->
-<!--            <Image url="@Resources/treeWallpaper.jpg" />-->
-<!--         </image>-->
-<!--      </ImageView>-->
-<!--      <ImageView fx:id="mySouthDoor" fitHeight="41.0" fitWidth="41.0" layoutX="184.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true" scaleX="5.5" visible="false" AnchorPane.bottomAnchor="0.0">-->
-<!--         <image>-->
-<!--            <Image url="@Resources/treeWallpaper.jpg" />-->
-<!--         </image>-->
-<!--      </ImageView>-->
-<!--      <Button fx:id="myNorthButton" layoutX="193.0" layoutY="50.0" mnemonicParsing="false" onAction="#onNorthButtonClick" prefHeight="43.0" prefWidth="94.0" style="-fx-background-color: red;" text="  ^  " visible="false" AnchorPane.leftAnchor="158.0" AnchorPane.rightAnchor="148.0" AnchorPane.topAnchor="50.0">-->
-<!--         <font>-->
-<!--            <Font size="23.0" />-->
-<!--         </font></Button>-->
-<!--      <Button fx:id="myWestButton" layoutX="59.0" layoutY="188.0" mnemonicParsing="false" onAction="#onWestButtonClick" text="&lt;" visible="false" AnchorPane.bottomAnchor="188.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="188.0" />-->
-<!--      <Button fx:id="mySouthButton" layoutX="182.0" layoutY="309.0" mnemonicParsing="false" onAction="#onSouthButtonClick" text="v" visible="false" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="195.0" AnchorPane.rightAnchor="195.0" />-->
-<!--      <Button fx:id="myEastButton" layoutX="291.0" layoutY="188.0" mnemonicParsing="false" onAction="#onEastButtonClick" text="&gt;" visible="false" AnchorPane.bottomAnchor="188.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="188.0" />-->
-<!--      <Group layoutX="145.0" layoutY="27.0" />-->
-<!--      <Rectangle arcHeight="5.0" arcWidth="5.0" height="50.0" layoutX="158.0" layoutY="136.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />-->
-<!--      <Ellipse layoutX="190.0" layoutY="110.0" radiusX="50.0" radiusY="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="158.0" AnchorPane.rightAnchor="152.0" AnchorPane.topAnchor="50.0" />-->
-<!--   </children>-->
-   <HBox alignment="CENTER_LEFT" layoutY="441.0" prefHeight="16.0" prefWidth="500.0" spacing="10.0" style="-fx-background-color: #A93A12#A93A12;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-      <children>
-         <Button fx:id="myRunButton" disable="true" mnemonicParsing="false" onAction="#onRunButtonClick" prefHeight="3.0" prefWidth="83.0" text="Run Away">
-            <HBox.margin>
-               <Insets top="10.0" />
-            </HBox.margin>
-         </Button>
-         <Button fx:id="myAttackButton" disable="true" mnemonicParsing="false" onAction="#onAttackButtonPress" text="Attack">
-            <HBox.margin>
-               <Insets top="10.0" />
-            </HBox.margin>
-         </Button>
-         <Button fx:id="mySpecialAttackButton" disable="true" mnemonicParsing="false" onAction="#onSpecialAttackButtonPress" text="Special Attack">
-            <HBox.margin>
-               <Insets top="10.0" />
-            </HBox.margin>
-         </Button>
-         <Button fx:id="myItemButton" disable="true" mnemonicParsing="false" onAction="#onItemButtonPress" text="Item">
-            <HBox.margin>
-               <Insets top="10.0" />
-            </HBox.margin>
-         </Button>
-         <ImageView fx:id="myHeroImage" fitHeight="40.0" fitWidth="67.0" layoutX="92.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
-            <image>
-               <Image url="@Resources/Characters/newladybug.png" />
-            </image>
-            <viewport>
-               <Rectangle2D />
-            </viewport>
-         </ImageView>
-         <Label fx:id="myMonsterHealthLabel" layoutX="289.0" layoutY="145.0" textFill="WHITE" />
-         <ImageView fx:id="myMonsterImage" fitHeight="40.0" fitWidth="67.0" layoutX="278.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
-            <viewport>
-               <Rectangle2D />
-            </viewport>
-            <image>
-               <Image url="@Resources/centipede.png" />
-            </image>
-         </ImageView>
-      </children>
-      <opaqueInsets>
-         <Insets />
-      </opaqueInsets>
-      <padding>
-         <Insets left="5.0" />
-      </padding>
-   </HBox>
-
-      <HBox layoutY="40.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
-         <children>
-            <AnchorPane prefHeight="420.0" prefWidth="499.0">
-               <children>
-                  <ImageView fitHeight="394.0" fitWidth="394.0" layoutX="52.0" layoutY="11.0" preserveRatio="true">
-                     <image>
-                        <Image url="@Resources/Room/nextroomtile5.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="myNorthDoorOpen" fitHeight="122.0" fitWidth="426.0" layoutX="36.0" layoutY="-5.0" preserveRatio="true">
-                     <image>
-                        <Image url="@Resources/Room/topopen.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="myWestDoorOpen" fitHeight="429.0" fitWidth="116.0" layoutX="38.0" layoutY="-8.0" preserveRatio="true">
-                     <image>
-                        <Image url="@Resources/Room/leftopen.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="myEastDoorOpen" fitHeight="451.0" fitWidth="113.0" layoutX="346.0" layoutY="-13.0" preserveRatio="true">
-                     <image>
-                        <Image url="@Resources/Room/rightopen.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="mySouthDoorOpen" fitHeight="111.0" fitWidth="427.0" layoutX="36.0" layoutY="309.0">
-                     <image>
-                        <Image url="@Resources/Room/bottomopen.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="420.0" fitWidth="109.0" layoutX="41.0" layoutY="-1.0" opacity="0.53">
-                     <image>
-                        <Image url="@Resources/Room/roomleft.png" />
->>>>>>> main
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="myWestDoor" fitHeight="41.0" fitWidth="41.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" scaleY="5.0" visible="false" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="180.0">
-                     <image>
-                        <Image url="@Resources/treeWallpaper.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="myEastDoor" fitHeight="41.0" fitWidth="41.0" layoutX="374.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" scaleY="5.0" visible="false" AnchorPane.rightAnchor="0.0">
-                     <image>
-                        <Image url="@Resources/treeWallpaper.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="myNorthDoor" fitHeight="41.0" fitWidth="41.0" layoutX="184.0" pickOnBounds="true" preserveRatio="true" scaleX="5.5" visible="false" AnchorPane.topAnchor="0.0">
-                     <image>
-                        <Image url="@Resources/treeWallpaper.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="mySouthDoor" fitHeight="41.0" fitWidth="41.0" layoutX="184.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true" scaleX="5.5" visible="false" AnchorPane.bottomAnchor="0.0">
-                     <image>
-                        <Image url="@Resources/treeWallpaper.jpg" />
-                     </image>
-                  </ImageView>
-<<<<<<< HEAD
-                  <Button fx:id="myNorthButton" layoutX="179.0" layoutY="73.0" mnemonicParsing="false" onAction="#onNorthButtonClick" text="^" visible="false" AnchorPane.leftAnchor="195.0" AnchorPane.rightAnchor="195.0" AnchorPane.topAnchor="50.0" />
-                  <Button fx:id="myWestButton" layoutX="59.0" layoutY="188.0" mnemonicParsing="false" onAction="#onWestButtonClick" text="&lt;" visible="false" AnchorPane.bottomAnchor="188.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="188.0" />
-                  <Button fx:id="mySouthButton" layoutX="182.0" layoutY="309.0" mnemonicParsing="false" onAction="#onSouthButtonClick" text="v" visible="false" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="195.0" AnchorPane.rightAnchor="195.0" />
-                  <Button fx:id="myEastButton" layoutX="291.0" layoutY="188.0" mnemonicParsing="false" onAction="#onEastButtonClick" text="&gt;" visible="false" AnchorPane.bottomAnchor="188.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="188.0" />
-                  <Label fx:id="myDialogueLabel" layoutX="110.0" layoutY="115.0" />
-                  <ImageView fx:id="myHeroImage" fitHeight="40.0" fitWidth="67.0" layoutX="92.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
-                     <image>
-                        <Image url="@Resources/Characters/ladybug.png" />
-                     </image>
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport>
-                  </ImageView>
-                  <ImageView fx:id="myMonsterImage" fitHeight="40.0" fitWidth="67.0" layoutX="278.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport>
-                     <image>
-                        <Image url="@Resources/Centipede.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="myMonsterHealthLabel" layoutX="289.0" layoutY="145.0" textFill="WHITE" />
-               </children>
-            </AnchorPane>
-            <TextArea fx:id="myDialogue" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="&gt;" wrapText="true" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" layoutY="441.0" prefHeight="40.0" prefWidth="415.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <Label fx:id="myHealthLabel" text="Health: 100/100">
-               <HBox.margin>
-                  <Insets top="15.0" />
-               </HBox.margin>
-            </Label>
-            <Button fx:id="myRunButton" disable="true" mnemonicParsing="false" onAction="#onRunButtonClick" text="Run Away">
-               <HBox.margin>
-                  <Insets top="10.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="myAttackButton" disable="true" mnemonicParsing="false" onAction="#onAttackButtonPress" text="Attack">
-               <HBox.margin>
-                  <Insets top="10.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="mySpecialAttackButton" disable="true" mnemonicParsing="false" onAction="#onSpecialAttackButtonPress" text="Special Attack">
-               <HBox.margin>
-                  <Insets top="10.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="myItemButton" disable="true" mnemonicParsing="false" onAction="#onItemButtonPress" text="Item">
-               <HBox.margin>
-                  <Insets top="10.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="5.0" />
-         </padding>
-      </HBox>
-   </children>
+    <children>
+        <ToolBar prefHeight="40.0" prefWidth="414.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <items>
+                <Button fx:id="mySaveButton" mnemonicParsing="false" onAction="#onSaveButtonClick" text="Save" />
+            </items>
+        </ToolBar>
+        <HBox layoutY="40.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+            <children>
+                <AnchorPane prefHeight="400.0" prefWidth="408.0">
+                    <children>
+                        <ImageView fitHeight="400.0" fitWidth="408.0">
+                            <image>
+                                <Image url="@Resources/treeWallpaper.jpg" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="41.0" fitWidth="109.0" layoutX="150.0" pickOnBounds="true" preserveRatio="true" scaleX="10.1" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="187.0" AnchorPane.topAnchor="0.0">
+                            <image>
+                                <Image url="@Resources/Grass.jpg" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="41.0" fitWidth="80.0" layoutX="187.0" layoutY="359.0" pickOnBounds="true" preserveRatio="true" scaleX="10.1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="187.0">
+                            <image>
+                                <Image url="@Resources/Grass.jpg" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="109.0" fitWidth="41.0" layoutX="3.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" scaleY="9.7" AnchorPane.leftAnchor="0.0">
+                            <image>
+                                <Image url="@Resources/Grass.jpg" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="109.0" fitWidth="41.0" layoutX="374.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" scaleY="9.7" AnchorPane.rightAnchor="0.0">
+                            <image>
+                                <Image url="@Resources/Grass.jpg" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="myWestDoor" fitHeight="41.0" fitWidth="41.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" scaleY="5.0" visible="false" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="180.0">
+                            <image>
+                                <Image url="@Resources/treeWallpaper.jpg" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="myEastDoor" fitHeight="41.0" fitWidth="41.0" layoutX="374.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" scaleY="5.0" visible="false" AnchorPane.rightAnchor="0.0">
+                            <image>
+                                <Image url="@Resources/treeWallpaper.jpg" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="myNorthDoor" fitHeight="41.0" fitWidth="41.0" layoutX="184.0" pickOnBounds="true" preserveRatio="true" scaleX="5.5" visible="false" AnchorPane.topAnchor="0.0">
+                            <image>
+                                <Image url="@Resources/treeWallpaper.jpg" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="mySouthDoor" fitHeight="41.0" fitWidth="41.0" layoutX="184.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true" scaleX="5.5" visible="false" AnchorPane.bottomAnchor="0.0">
+                            <image>
+                                <Image url="@Resources/treeWallpaper.jpg" />
+                            </image>
+                        </ImageView>
+                        <Button fx:id="myNorthButton" layoutX="179.0" layoutY="73.0" mnemonicParsing="false" onAction="#onNorthButtonClick" text="^" visible="false" AnchorPane.leftAnchor="195.0" AnchorPane.rightAnchor="195.0" AnchorPane.topAnchor="50.0" />
+                        <Button fx:id="myWestButton" layoutX="59.0" layoutY="188.0" mnemonicParsing="false" onAction="#onWestButtonClick" text="&lt;" visible="false" AnchorPane.bottomAnchor="188.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="188.0" />
+                        <Button fx:id="mySouthButton" layoutX="182.0" layoutY="309.0" mnemonicParsing="false" onAction="#onSouthButtonClick" text="v" visible="false" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="195.0" AnchorPane.rightAnchor="195.0" />
+                        <Button fx:id="myEastButton" layoutX="291.0" layoutY="188.0" mnemonicParsing="false" onAction="#onEastButtonClick" text="&gt;" visible="false" AnchorPane.bottomAnchor="188.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="188.0" />
+                        <Label fx:id="myDialogueLabel" layoutX="110.0" layoutY="115.0" />
+                        <ImageView fx:id="myHeroImage" fitHeight="40.0" fitWidth="67.0" layoutX="92.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                            <image>
+                                <Image url="@Resources/Characters/ladybug.png" />
+                            </image>
+                            <viewport>
+                                <Rectangle2D />
+                            </viewport>
+                        </ImageView>
+                        <ImageView fx:id="myMonsterImage" fitHeight="40.0" fitWidth="67.0" layoutX="278.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
+                            <viewport>
+                                <Rectangle2D />
+                            </viewport>
+                            <image>
+                                <Image url="@Resources/Centipede.png" />
+                            </image>
+                        </ImageView>
+                        <Label fx:id="myMonsterHealthLabel" layoutX="289.0" layoutY="145.0" textFill="WHITE" />
+                    </children>
+                </AnchorPane>
+                <TextArea fx:id="myDialogue" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="&gt;" wrapText="true" />
+            </children>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" layoutY="441.0" prefHeight="40.0" prefWidth="415.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <Label fx:id="myHealthLabel" text="Health: 100/100">
+                    <HBox.margin>
+                        <Insets top="15.0" />
+                    </HBox.margin>
+                </Label>
+                <Button fx:id="myRunButton" disable="true" mnemonicParsing="false" onAction="#onRunButtonClick" text="Run Away">
+                    <HBox.margin>
+                        <Insets top="10.0" />
+                    </HBox.margin>
+                </Button>
+                <Button fx:id="myAttackButton" disable="true" mnemonicParsing="false" onAction="#onAttackButtonPress" text="Attack">
+                    <HBox.margin>
+                        <Insets top="10.0" />
+                    </HBox.margin>
+                </Button>
+                <Button fx:id="mySpecialAttackButton" disable="true" mnemonicParsing="false" onAction="#onSpecialAttackButtonPress" text="Special Attack">
+                    <HBox.margin>
+                        <Insets top="10.0" />
+                    </HBox.margin>
+                </Button>
+                <Button fx:id="myItemButton" disable="true" mnemonicParsing="false" onAction="#onItemButtonPress" text="Item">
+                    <HBox.margin>
+                        <Insets top="10.0" />
+                    </HBox.margin>
+                </Button>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <padding>
+                <Insets left="5.0" />
+            </padding>
+        </HBox>
+    </children>
 </AnchorPane>
-=======
-                  <Button fx:id="myNorthButton" layoutX="43.0" layoutY="1.0" mnemonicParsing="false" onAction="#onNorthButtonClick" prefHeight="45.0" prefWidth="412.0" text="^" visible="false" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="1.0" />
-                  <Button fx:id="myWestButton" layoutX="41.0" mnemonicParsing="false" onAction="#onWestButtonClick" prefHeight="421.0" prefWidth="49.0" text="&lt;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="41.0" AnchorPane.topAnchor="0.0" />
-                  <Button fx:id="mySouthButton" layoutX="42.0" layoutY="309.0" mnemonicParsing="false" onAction="#onSouthButtonClick" prefHeight="45.0" prefWidth="412.0" text="v" visible="false" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="45.0" />
-                  <Button fx:id="myEastButton" layoutX="291.0" layoutY="1.0" mnemonicParsing="false" onAction="#onEastButtonClick" prefHeight="419.0" prefWidth="49.0" text="&gt;" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="1.0" />
-                  <Label fx:id="myDialogueLabel" layoutX="110.0" layoutY="115.0" />
-                  <ImageView fitHeight="421.0" fitWidth="109.0" layoutX="347.0" opacity="0.53" preserveRatio="true">
-                     <image>
-                        <Image url="@Resources/Room/roomright.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="107.0" fitWidth="411.0" layoutX="45.0" layoutY="311.0" opacity="0.53" preserveRatio="true">
-                     <image>
-                        <Image url="@Resources/Room/roombottom.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="107.0" fitWidth="412.0" layoutX="44.0" opacity="0.53">
-                     <image>
-                        <Image url="@Resources/Room/roomtop.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="myWestDoorClosed" fitHeight="420.0" fitWidth="109.0" layoutX="41.0" layoutY="-1.0" visible="false">
-                     <image>
-                        <Image url="@Resources/Room/roomleft.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="myNorthDoorClosed" fitHeight="107.0" fitWidth="412.0" layoutX="44.0" visible="false">
-                     <image>
-                        <Image url="@Resources/Room/roomtop.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="mySouthDoorClosed" fitHeight="107.0" fitWidth="411.0" layoutX="46.0" layoutY="313.0" preserveRatio="true" visible="false">
-                     <image>
-                        <Image url="@Resources/Room/roombottom.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="myEastDoorClosed" fitHeight="421.0" fitWidth="109.0" layoutX="348.0" layoutY="-1.0" preserveRatio="true" visible="false">
-                     <image>
-                        <Image url="@Resources/Room/roomright.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="227.0" fitWidth="227.0" layoutX="-174.0" layoutY="1.0">
-                     <image>
-                        <Image url="@Resources/treeWallpaper.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="226.0" fitWidth="226.0" layoutX="-173.0" layoutY="194.0">
-                     <image>
-                        <Image url="@Resources/treeWallpaper.jpg" />
-                     </image>
-                  </ImageView>
-
-               </children>
-            </AnchorPane>
-
-         </children>
-      </HBox>
-      <ImageView fitHeight="227.0" fitWidth="227.0" layoutX="446.0" layoutY="41.0">
-         <image>
-            <Image url="@Resources/treeWallpaper.jpg" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="226.0" fitWidth="226.0" layoutX="446.0" layoutY="234.0">
-         <image>
-            <Image url="@Resources/treeWallpaper.jpg" />
-         </image>
-      </ImageView>
-      <ToolBar layoutX="-1.0" layoutY="-3.0" prefHeight="44.0" prefWidth="507.0" style="-fx-background-color: #A93A12#A93A12;">
-        <items>
-          <Button mnemonicParsing="false" text="Exit" />
-         <TextArea fx:id="myDialogue" editable="false" prefHeight="26.0" prefWidth="340.0" promptText="&gt;" wrapText="true" />
-         <Label fx:id="myHealthLabel" text="Health: 100/100" />
-        </items>
-      </ToolBar>
-   </children>
-</AnchorPane>
->>>>>>> main

@@ -55,5 +55,5 @@ public class Attack implements Serializable {
         return myAttackChance;
     }
 
-    public boolean getLifeSteal() { return myHasLifesteal; }
+    public boolean hasLifeSteal() { return myHasLifesteal; }
 }

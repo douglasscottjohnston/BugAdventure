@@ -50,7 +50,7 @@ public abstract class Bug implements Serializable {
         System.out.println(damageDealt);
         theEnemy.takeDamage(damageDealt);
 
-        if(myAttack.isLifeSteal()) {
+        if(myAttack.hasLifeSteal()) {
             heal(damageDealt);
         }
         return damageDealt;
@@ -61,7 +61,7 @@ public abstract class Bug implements Serializable {
         if(mySpecialAttack.getAttackChance() > MY_RANDOM.nextInt(101)) {
             theEnemy.takeDamage(damageDealt);
 
-            if(myAttack.isLifeSteal()) {
+            if(myAttack.hasLifeSteal()) {
                 heal(damageDealt);
             }
         }

@@ -3,7 +3,6 @@ package Controller;
 import Model.Bugs.MonsterBug;
 import Model.Model;
 import Model.Room;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -49,7 +48,7 @@ public class RoomController extends Controller {
         myDialogue.setText("");
         try {
             System.out.println(System.getProperty("user.dir"));
-            myHeroImage.setImage(new Image(new FileInputStream(getHeroImagePath())));
+            myHeroImage.setImage(new Image(new FileInputStream(Model.getHero().getHeroImagePath())));
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -96,7 +95,7 @@ public class RoomController extends Controller {
     }
 
     @FXML
-    private void onAttackButtonPress(final ActionEvent theEvent) {
+    private void onAttackButtonPress() {
         if(!myAttackButton.isDisable()) {
             if(Model.getCurrentMonster().isAlive()) {
                 myUtility.appendToBuilder(Model.getHero().getName());
@@ -119,7 +118,7 @@ public class RoomController extends Controller {
     }
 
     @FXML
-    private void onSpecialAttackButtonPress(final ActionEvent theEvent) {
+    private void onSpecialAttackButtonPress() {
         if(!mySpecialAttackButton.isDisable()) {
             if(Model.getCurrentMonster().isAlive()) {
                 myUtility.appendToBuilder(Model.getHero().getName());
@@ -163,27 +162,28 @@ public class RoomController extends Controller {
     @FXML
     private void onSaveButtonClick() {
         Model.save();
+        myDialogue.appendText("Game Saved\n");
     }
 
 
 
     @FXML
-    private void onNorthButtonClick(final ActionEvent theEvent) {
+    private void onNorthButtonClick() {
         move(Directions.Direction.NORTH);
     }
 
     @FXML
-    private void onSouthButtonClick(final ActionEvent theEvent) {
+    private void onSouthButtonClick() {
         move(Directions.Direction.SOUTH);
     }
 
     @FXML
-    private void onEastButtonClick(final ActionEvent theEvent) {
+    private void onEastButtonClick() {
         move(Directions.Direction.EAST);
     }
 
     @FXML
-    private void onWestButtonClick(final ActionEvent theEvent) {
+    private void onWestButtonClick() {
         move(Directions.Direction.WEST);
     }
 

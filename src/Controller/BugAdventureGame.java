@@ -17,12 +17,8 @@ public class BugAdventureGame extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-<<<<<<< HEAD
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/Start.fxml"));
             Parent root = loader.load();
-=======
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Start.fxml"));
->>>>>>> sql
 
             StartController start = loader.getController();
             primaryStage.setResizable(false);

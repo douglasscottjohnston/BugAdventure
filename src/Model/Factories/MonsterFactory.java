@@ -14,7 +14,6 @@ import java.sql.SQLException;
 public class MonsterFactory implements Serializable {
     private static final int MONSTER_HIGH = 3; // The high chance to generate a certain type of monster
     private final ModelUtility myUtility;
-    private ResultSet myResult;
     private static final String SPIDER = "Spider";
     private static final String MOSSTER = "Mosster";
     private static final String MAGGOT = "Maggot";
@@ -28,12 +27,12 @@ public class MonsterFactory implements Serializable {
     }
 
     private MonsterBug makeMonster(final String theName) {
-        myResult = Connect.retrieveRow(theName);
+        ResultSet result = Connect.retrieveRow(theName);
         MonsterBug monster = null;
         try {
-            Attack attack = new Attack(myResult.getString("attackName"), myResult.getInt("attackPower"), myResult.getInt("attackChance"), myResult.getInt("attackHasLifeSteal") == 1);
-            Attack specialAttack = new Attack(myResult.getString("specialAttackName"), myResult.getInt("specialAttackPower"), myResult.getInt("specialAttackChance"), myResult.getInt("specialAttackHasLifeSteal") == 1);
-            monster = new MonsterBug(attack, specialAttack, myResult.getInt("health"), myResult.getInt("health"), myResult.getInt("defense"), myResult.getInt("speed"), myResult.getString("name"));
+            Attack attack = new Attack(result.getString("attackName"), result.getInt("attackPower"), result.getInt("attackChance"), result.getInt("attackHasLifeSteal") == 1);
+            Attack specialAttack = new Attack(result.getString("specialAttackName"), result.getInt("specialAttackPower"), result.getInt("specialAttackChance"), result.getInt("specialAttackHasLifeSteal") == 1);
+            monster = new MonsterBug(attack, specialAttack, result.getInt("health"), result.getInt("health"), result.getInt("defense"), result.getInt("speed"), result.getString("name"));
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             ex.printStackTrace();

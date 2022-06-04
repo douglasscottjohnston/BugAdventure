@@ -51,17 +51,17 @@
             <Ellipse fill="#fffcbd" layoutX="162.0" layoutY="102.0" radiusX="35.0" radiusY="48.0" stroke="BLACK" strokeType="INSIDE" />
             <ImageView fitHeight="63.0" fitWidth="63.0" layoutX="52.0" layoutY="71.0">
                <image>
-                  <Image url="@Resources/ladybug.png" />
+                  <Image url="@Resources/Characters/ladybug.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="63.0" fitWidth="63.0" layoutX="209.0" layoutY="71.0">
                <image>
-                  <Image url="@Resources/ant.png" />
+                  <Image url="@Resources/Characters/ant.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="63.0" fitWidth="63.0" layoutX="129.0" layoutY="71.0">
                <image>
-                  <Image url="@Resources/pillbug.png" />
+                  <Image url="@Resources/Characters/pillbug.png" />
                </image>
             </ImageView>
          </children>

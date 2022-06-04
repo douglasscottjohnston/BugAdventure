@@ -10,6 +10,8 @@ import javafx.scene.image.ImageView;
 
 public class HeroSelectController extends Controller {
 
+    private static final String HERO_IMAGE_PATH = "src/View/Resources/Characters/";
+
     @FXML
     private RadioButton myLadyBug, myPillBug, myAnt;
 
@@ -52,7 +54,7 @@ public class HeroSelectController extends Controller {
 
         //if a name was entered and a hero was selected go to the next scene
         if(goToNext) {
-            setHeroImagePath(getHeroPath());
+            Model.getHero().setHeroImagePath(getHeroPath());
             Model.createDungeon();
             nextScene(theEvent, "../View/Room.fxml");
         }
@@ -60,11 +62,11 @@ public class HeroSelectController extends Controller {
 
     private String getHeroPath() {
         if(myLadyBug.isSelected()) {
-            return "src/View/Resources/ladybug.png";
+            return HERO_IMAGE_PATH + "ladybug.png";
         } else if(myPillBug.isSelected()) {
-            return "src/View/Resources/pillbug.png";
+            return HERO_IMAGE_PATH + "pillbug.png";
         } else {
-            return "src/View/Resources/ant.png";
+            return HERO_IMAGE_PATH + "ant.png";
         }
     }
 }

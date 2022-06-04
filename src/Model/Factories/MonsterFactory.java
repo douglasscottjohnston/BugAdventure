@@ -37,6 +37,8 @@ public class MonsterFactory implements Serializable {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             ex.printStackTrace();
+        } finally {
+            Connect.closeConnection();
         }
         return monster;
     }

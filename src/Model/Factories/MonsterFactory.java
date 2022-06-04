@@ -1,9 +1,12 @@
 package Model.Factories;
 
 import Model.Bugs.*;
+import Model.Database.Connect;
 import Model.ModelUtility;
 
 import java.io.Serializable;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * The type Monster factory.
@@ -11,6 +14,10 @@ import java.io.Serializable;
 public class MonsterFactory implements Serializable {
     private static final int MONSTER_HIGH = 3; // The high chance to generate a certain type of monster
     private final ModelUtility myUtility;
+    private static final String SPIDER = "Spider";
+    private static final String MOSSTER = "Mosster";
+    private static final String MAGGOT = "Maggot";
+    private static final String CENTIPEDE = "Centipede";
 
     /**
      * Instantiates a new Monster factory.
@@ -19,13 +26,29 @@ public class MonsterFactory implements Serializable {
         myUtility = new ModelUtility();
     }
 
+    private MonsterBug makeMonster(final String theName) {
+        ResultSet result = Connect.retrieveRow(theName);
+        MonsterBug monster = null;
+        try {
+            Attack attack = new Attack(result.getString("attackName"), result.getInt("attackPower"), result.getInt("attackChance"), result.getInt("attackHasLifeSteal") == 1);
+            Attack specialAttack = new Attack(result.getString("specialAttackName"), result.getInt("specialAttackPower"), result.getInt("specialAttackChance"), result.getInt("specialAttackHasLifeSteal") == 1);
+            monster = new MonsterBug(attack, specialAttack, result.getInt("health"), result.getInt("health"), result.getInt("defense"), result.getInt("speed"), result.getString("name"));
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        } finally {
+            Connect.closeConnection();
+        }
+        return monster;
+    }
+
     /**
      * Makes a new spider object.
      *
      * @return the spider
      */
-    public Spider makeSpider() {
-        return new Spider();
+    public MonsterBug makeSpider() {
+        return makeMonster(SPIDER);
     }
 
     /**
@@ -33,8 +56,8 @@ public class MonsterFactory implements Serializable {
      *
      * @return the maggot
      */
-    public Maggot makeMaggot() {
-        return new Maggot();
+    public MonsterBug makeMaggot() {
+        return makeMonster(MAGGOT);
     }
 
     /**
@@ -42,8 +65,8 @@ public class MonsterFactory implements Serializable {
      *
      * @return the centipede
      */
-    public Centipede makeCentipede() {
-        return new Centipede();
+    public MonsterBug makeCentipede() {
+        return makeMonster(CENTIPEDE);
     }
 
     /**
@@ -51,8 +74,8 @@ public class MonsterFactory implements Serializable {
      *
      * @return the mosster
      */
-    public Mosster makeMosster() {
-        return new Mosster();
+    public MonsterBug makeMosster() {
+        return makeMonster(MOSSTER);
     }
 
     /**

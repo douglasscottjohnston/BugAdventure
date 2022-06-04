@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 abstract class Controller {
-    private static String myHeroImagePath;
+
     private static Stage myStage;
 
     void nextScene(final ActionEvent theEvent, final String theScenePath) {
@@ -49,13 +49,5 @@ abstract class Controller {
 
     static Stage getStage() {
         return myStage;
-    }
-
-    static void setHeroImagePath(final String thePath) {
-        myHeroImagePath = thePath;
-    }
-
-    static String getHeroImagePath() {
-        return myHeroImagePath;
     }
 }

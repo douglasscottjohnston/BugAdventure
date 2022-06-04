@@ -69,22 +69,14 @@
             <Ellipse fill="#fffcbd" layoutX="162.0" layoutY="102.0" radiusX="35.0" radiusY="48.0" stroke="BLACK" strokeType="INSIDE" />
             <ImageView fitHeight="63.0" fitWidth="63.0" layoutX="129.0" layoutY="71.0">
                <image>
-                  <Image url="@Resources/pillbug.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="68.0" fitWidth="55.0" layoutX="54.0" layoutY="72.0" preserveRatio="true">
-               <image>
+                  <Image url="@Resources/Characters/ladybug.png" />
                   <Image url="@Resources/Characters/newladybug.png" />
+                  <Image url="@Resources/Characters/ant.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="67.0" fitWidth="67.0" layoutX="207.0" layoutY="68.0" preserveRatio="true">
                <image>
-                  <Image url="@Resources/Characters/newant.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="87.0" fitWidth="87.0" layoutX="119.0" layoutY="60.0" preserveRatio="true">
-               <image>
-                  <Image url="@Resources/Characters/newpillbug.png" />
+                  <Image url="@Resources/Characters/pillbug.png" />
                </image>
             </ImageView>
          </children>

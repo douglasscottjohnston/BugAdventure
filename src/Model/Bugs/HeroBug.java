@@ -8,6 +8,7 @@ public abstract class HeroBug extends Bug {
     private int myChanceToDodge;
     private int mySpecialSkillChance;
     private final HeroInventory myInventory;
+    private String myHeroImagePath;
 
     public HeroBug(final Attack theAttack, final Attack theSpecialAttack, final int theHealth, final int theOriginalHealth,
                    final int theDefense, final int theSpeed, final int theChanceToDodge, final String theName) {
@@ -60,10 +61,17 @@ public abstract class HeroBug extends Bug {
         myChanceToDodge = theChanceToDodge;
     }
 
-
     private int getChoice() {
         Utility util = new Utility();
         System.out.println("Choose (1) for normal attack, choose (2) for special attack, choose (3) to use an item.");
         return util.scanNextInt();
+    }
+
+    public void setHeroImagePath(final String thePath) {
+        myHeroImagePath = thePath;
+    }
+
+    public String getHeroImagePath() {
+        return myHeroImagePath;
     }
 }

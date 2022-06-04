@@ -4,8 +4,8 @@ public class PillBug extends HeroBug {
     private static final int MY_HEALTH = 450;
     private static final int MY_ORIGINAL_HEALTH = 450;
     private static final int MY_DEFENCE = 50;
-    private static final Attack MY_ATTACK = new Attack("bite","",60, 100, false);
-    private static final Attack MY_SPECIAL_ATTACK = new Attack("Roll Slam","",80, 85, false);
+    private static final Attack MY_ATTACK = new Attack("bite",60, 100, false);
+    private static final Attack MY_SPECIAL_ATTACK = new Attack("Roll Slam",80, 85, false);
     private static final int MY_SPEED = 3;
     private static final int MY_CHANCE_TO_DODGE = 20;
     public PillBug(final String theName) {

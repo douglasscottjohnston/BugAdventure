@@ -6,6 +6,7 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<<<<<<< HEAD
 
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -68,5 +69,40 @@
       </Pane>
       <Label fx:id="myNameWarning" layoutX="242.0" layoutY="272.0" text="Name not entered" textFill="RED" visible="false" />
       <Label fx:id="myHeroWarning" layoutX="245.0" layoutY="272.0" text="Hero not selected" textFill="RED" visible="false" />
+=======
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HeroSelectController">
+   <children>
+      <Label layoutX="227.0" layoutY="49.0" text="Enter your hero's name" />
+      <TextField fx:id="myHeroName" layoutX="205.0" layoutY="74.0" prefHeight="25.0" prefWidth="173.0" />
+      <Button layoutX="275.0" layoutY="326.0" mnemonicParsing="false" onAction="#onOKButtonClick" text="OK" />
+      <Label fx:id="myNameWarning" layoutX="242.0" layoutY="272.0" text="Name not entered" textFill="RED" visible="false" />
+      <Label fx:id="myHeroWarning" layoutX="245.0" layoutY="272.0" text="Hero not selected" textFill="RED" visible="false" />
+      <Label layoutX="245.0" layoutY="145.0" text="Select your hero" />
+      <HBox layoutX="186.0" layoutY="178.0" prefHeight="45.0" prefWidth="229.0">
+         <children>
+            <RadioButton fx:id="myLadyBug" mnemonicParsing="false" onAction="#displayHero" text="LadyBug">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Heros" />
+               </toggleGroup>
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
+            </RadioButton>
+            <RadioButton fx:id="myPillBug" mnemonicParsing="false" onAction="#displayHero" text="PillBug" toggleGroup="$Heros">
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
+            </RadioButton>
+            <RadioButton fx:id="myAnt" mnemonicParsing="false" onAction="#displayHero" text="Ant" toggleGroup="$Heros">
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
+            </RadioButton>
+         </children>
+      </HBox>
+>>>>>>> sql
    </children>
 </AnchorPane>

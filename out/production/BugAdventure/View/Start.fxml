@@ -40,22 +40,38 @@
         <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
         </padding>
+<<<<<<< HEAD
         <Button fx:id="myNewGame" alignment="TOP_LEFT" defaultButton="true" maxHeight="1.7976931348623157E308" onAction="#onNewGameButtonClick" prefHeight="13.0" prefWidth="102.0" style="-fx-background-color: #1e90ff; -fx-border-color: black; -fx-pref-width: 90px;" text="New Game" textAlignment="CENTER" textFill="WHITE">
+=======
+        <Button fx:id="myNewGame" alignment="TOP_LEFT" defaultButton="true" maxHeight="1.7976931348623157E308" onAction="#onNewGameButtonClick" prefHeight="43.0" prefWidth="83.0" style="-fx-background-color: #1e90ff; -fx-border-color: black; -fx-pref-width: 50px;" text="New&#10;Game" textAlignment="CENTER" textFill="WHITE">
+>>>>>>> sql
             <cursor>
                 <Cursor fx:constant="CROSSHAIR" />
             </cursor>
         </Button>
+<<<<<<< HEAD
         <Button fx:id="myLoadGame" alignment="TOP_LEFT" disable="true" maxHeight="1.7976931348623157E308" onAction="#onLoadGameButtonClick" prefHeight="12.0" prefWidth="82.0" style="-fx-background-color: #1e90ff; -fx-border-color: black; -fx-pref-width: 90px;" text="Load Game" textAlignment="CENTER" textFill="#1460a8">
+=======
+        <Button fx:id="myLoadGame" alignment="TOP_LEFT" disable="true" maxHeight="1.7976931348623157E308" onAction="#onLoadGameButtonClick" prefHeight="43.0" prefWidth="83.0" style="-fx-background-color: #1e90ff; -fx-border-color: black; -fx-pref-width: 50px;" text="Load&#10;Game" textAlignment="CENTER" textFill="#1460a8">
+>>>>>>> sql
             <cursor>
                 <Cursor fx:constant="CROSSHAIR" />
             </cursor>
         </Button>
+<<<<<<< HEAD
         <Button fx:id="myHelp" alignment="TOP_LEFT" onAction="#onHelpButtonClick" style="-fx-background-color: #1e90ff; -fx-border-color: black; -fx-pref-width: 90px;" text="Help" textAlignment="CENTER" textFill="#1460a8">
+=======
+        <Button fx:id="myHelp" alignment="TOP_LEFT" onAction="#onHelpButtonClick" style="-fx-background-color: #1e90ff; -fx-border-color: black; -fx-pref-width: 50px;" text="Help" textAlignment="CENTER" textFill="#1460a8">
+>>>>>>> sql
             <cursor>
                 <Cursor fx:constant="CROSSHAIR" />
             </cursor>
         </Button>
+<<<<<<< HEAD
         <Button fx:id="myExit" alignment="TOP_LEFT" onAction="#onExitButtonClick" style="-fx-background-color: #1e90ff; -fx-border-color: black; -fx-pref-width: 90px;" text="Exit" textAlignment="CENTER">
+=======
+        <Button fx:id="myExit" alignment="TOP_LEFT" onAction="#onExitButtonClick" style="-fx-background-color: #1e90ff; -fx-border-color: black; -fx-pref-width: 50px;" text="Exit" textAlignment="CENTER">
+>>>>>>> sql
             <cursor>
                 <Cursor fx:constant="CROSSHAIR" />
             </cursor>
@@ -86,7 +102,11 @@
             <Font name="Roboto Black" size="33.0" />
         </font>
     </Text>
+<<<<<<< HEAD
     <Text fill="#c5eaff" layoutX="142.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bug Fighter" textAlignment="RIGHT" wrappingWidth="247.87100219726562">
+=======
+    <Text fill="#eddc9d" layoutX="142.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bug Fighter" textAlignment="RIGHT" wrappingWidth="247.87100219726562">
+>>>>>>> sql
         <font>
             <Font name="Roboto Black" size="33.0" />
         </font>

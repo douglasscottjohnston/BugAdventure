@@ -28,7 +28,7 @@ public class MonsterFactory implements Serializable {
     }
 
     private MonsterBug makeMonster(final String theName) {
-        myResult = Connect.retrieveRow(SPIDER);
+        myResult = Connect.retrieveRow(theName);
         MonsterBug monster = null;
         try {
             Attack attack = new Attack(myResult.getString("attackName"), myResult.getInt("attackPower"), myResult.getInt("attackChance"), myResult.getInt("attackHasLifeSteal") == 1);

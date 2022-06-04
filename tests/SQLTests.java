@@ -1,10 +1,11 @@
+import Model.Database.Connect;
 import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotNull;
 
 public class SQLTests {
 
@@ -20,8 +21,36 @@ public class SQLTests {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        assertTrue(conn != null);
+        assertNotNull(conn);
+        try {
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        }
     }
 
+    @Test
+    public void connectSpiderResultSetNotNullTest() {
+        assertNotNull(Connect.retrieveRow("Spider"));
+        Connect.closeConnection();
+    }
 
+    @Test
+    public void connectCentipedeResultSetNotNullTest() {
+        assertNotNull(Connect.retrieveRow("Centipede"));
+        Connect.closeConnection();
+    }
+
+    @Test
+    public void connectMaggotResultSetNotNullTest() {
+        assertNotNull(Connect.retrieveRow("Maggot"));
+        Connect.closeConnection();
+    }
+
+    @Test
+    public void connectMossterResultSetNotNullTest() {
+        assertNotNull(Connect.retrieveRow("Mosster"));
+        Connect.closeConnection();
+    }
 }

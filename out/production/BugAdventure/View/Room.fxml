@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<!--
+This is where most of the action will happen
+
+The room by default should have walls in every direction and invisible doors in every direction. When the doors are
+set as visible they should completely cover the wall (or the door can cover a small part in the wall). Then there
+should be four invisible buttons for each direction for each movement option and based of the visibility of the doors
+we will make them visible after the attack phase is over. This file should also display the hero and the monster
+(the monster should change based on what monster is in the room) as well as the items the hero picks up, and a menu
+to display which items the hero can use in the use item phase. If we create the room this way then every time we
+move to a new room we can simply reload this file which will call initialize in the RoomController and it will change
+the room accordingly
+
+-->
+
+<AnchorPane prefHeight="400.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RoomController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="408.0">
+         <image>
+            <Image url="@Resources/treeWallpaper.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="41.0" fitWidth="109.0" layoutX="150.0" pickOnBounds="true" preserveRatio="true" scaleX="10.1" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="187.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@Resources/Grass.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="41.0" fitWidth="80.0" layoutX="187.0" layoutY="359.0" pickOnBounds="true" preserveRatio="true" scaleX="10.1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="187.0">
+         <image>
+            <Image url="@Resources/Grass.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="109.0" fitWidth="41.0" layoutX="3.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" scaleY="9.7" AnchorPane.leftAnchor="0.0">
+         <image>
+            <Image url="@Resources/Grass.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="109.0" fitWidth="41.0" layoutX="374.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" scaleY="9.7" AnchorPane.rightAnchor="0.0">
+         <image>
+            <Image url="@Resources/Grass.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="myWestDoor" fitHeight="41.0" fitWidth="41.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" scaleY="5.0" visible="false" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="180.0">
+         <image>
+            <Image url="@Resources/treeWallpaper.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="myEastDoor" fitHeight="41.0" fitWidth="41.0" layoutX="374.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" scaleY="5.0" visible="false" AnchorPane.rightAnchor="0.0">
+         <image>
+            <Image url="@Resources/treeWallpaper.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="myNorthDoor" fitHeight="41.0" fitWidth="41.0" layoutX="184.0" pickOnBounds="true" preserveRatio="true" scaleX="5.5" visible="false" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@Resources/treeWallpaper.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="mySouthDoor" fitHeight="41.0" fitWidth="41.0" layoutX="184.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true" scaleX="5.5" visible="false" AnchorPane.bottomAnchor="0.0">
+         <image>
+            <Image url="@Resources/treeWallpaper.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="myNorthButton" layoutX="179.0" layoutY="73.0" mnemonicParsing="false" onAction="#onNorthButtonClick" text="^" visible="false" AnchorPane.leftAnchor="195.0" AnchorPane.rightAnchor="195.0" AnchorPane.topAnchor="50.0" />
+      <Button fx:id="myWestButton" layoutX="59.0" layoutY="188.0" mnemonicParsing="false" onAction="#onWestButtonClick" text="&lt;" visible="false" AnchorPane.bottomAnchor="188.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="188.0" />
+      <Button fx:id="mySouthButton" layoutX="182.0" layoutY="309.0" mnemonicParsing="false" onAction="#onSouthButtonClick" text="v" visible="false" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="195.0" AnchorPane.rightAnchor="195.0" />
+      <Button fx:id="myEastButton" layoutX="291.0" layoutY="188.0" mnemonicParsing="false" onAction="#onEastButtonClick" text="&gt;" visible="false" AnchorPane.bottomAnchor="188.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="188.0" />
+   </children>
+</AnchorPane>

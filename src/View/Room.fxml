@@ -119,22 +119,22 @@ the room accordingly
          <children>
             <AnchorPane prefHeight="420.0" prefWidth="499.0">
                <children>
-                  <ImageView fitHeight="122.0" fitWidth="426.0" layoutX="36.0" layoutY="-5.0" preserveRatio="true">
+                  <ImageView fx:id="myNorthDoorOpen" fitHeight="122.0" fitWidth="426.0" layoutX="36.0" layoutY="-5.0" preserveRatio="true">
                      <image>
                         <Image url="@Resources/Room/topopen.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="429.0" fitWidth="116.0" layoutX="38.0" layoutY="-8.0" preserveRatio="true">
+                  <ImageView fx:id="myWestDoorOpen" fitHeight="429.0" fitWidth="116.0" layoutX="38.0" layoutY="-8.0" preserveRatio="true">
                      <image>
                         <Image url="@Resources/Room/leftopen.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="451.0" fitWidth="113.0" layoutX="346.0" layoutY="-13.0" preserveRatio="true">
+                  <ImageView fx:id="myEastDoorOpen" fitHeight="451.0" fitWidth="113.0" layoutX="346.0" layoutY="-13.0" preserveRatio="true">
                      <image>
                         <Image url="@Resources/Room/rightopen.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="111.0" fitWidth="427.0" layoutX="36.0" layoutY="309.0">
+                  <ImageView fx:id="mySouthDoorOpen" fitHeight="111.0" fitWidth="427.0" layoutX="36.0" layoutY="309.0">
                      <image>
                         <Image url="@Resources/Room/bottomopen.png" />
                      </image>
@@ -184,12 +184,32 @@ the room accordingly
                         <Image url="@Resources/Room/roomtop.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="226.0" fitWidth="226.0" layoutX="-173.0" layoutY="194.0">
+                  <ImageView fx:id="myWestDoorClosed" fitHeight="420.0" fitWidth="109.0" layoutX="41.0" layoutY="-1.0">
+                     <image>
+                        <Image url="@Resources/Room/roomleft.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="myNorthDoorClosed" fitHeight="107.0" fitWidth="412.0" layoutX="44.0">
+                     <image>
+                        <Image url="@Resources/Room/roomtop.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="mySouthDoorClosed" fitHeight="107.0" fitWidth="411.0" layoutX="46.0" layoutY="313.0" preserveRatio="true">
+                     <image>
+                        <Image url="@Resources/Room/roombottom.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="myEastDoorClosed" fitHeight="421.0" fitWidth="109.0" layoutX="348.0" layoutY="-1.0" preserveRatio="true">
+                     <image>
+                        <Image url="@Resources/Room/roomright.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="227.0" fitWidth="227.0" layoutX="-174.0" layoutY="1.0">
                      <image>
                         <Image url="@Resources/treeWallpaper.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="227.0" fitWidth="227.0" layoutX="-174.0" layoutY="1.0">
+                  <ImageView fitHeight="226.0" fitWidth="226.0" layoutX="-173.0" layoutY="194.0">
                      <image>
                         <Image url="@Resources/treeWallpaper.jpg" />
                      </image>

@@ -28,6 +28,9 @@ public class RoomController extends Controller {
     AnchorPane myAnchorPane;
 
     @FXML
+    ImageView myNorthDoorOpen, myNorthDoorClosed, mySouthDoorOpen, mySouthDoorClosed, myEastDoorOpen, myEastDoorClosed, myWestDoorOpen, myWestDoorClosed;
+
+    @FXML
     ImageView myNorthDoor, mySouthDoor, myEastDoor, myWestDoor, myHeroImage, myMonsterImage;
 
     @FXML
@@ -191,6 +194,25 @@ public class RoomController extends Controller {
         Model.move(theDirection);
         initialize();
     }
+
+    private void directionalImage() {
+        getStage().getScene().addEventFilter(KeyEvent.ANY, e -> {
+            if(!myNorthButton.isVisible()) {
+                myNorthDoorClosed.setVisible(true);
+                myNorthDoorOpen.setVisible(false);
+            } if(!mySouthButton.isVisible()) {
+                mySouthDoorClosed.setVisible(true);
+                mySouthDoorOpen.setVisible(false);
+            } if(!myEastButton.isVisible()) {
+                myEastDoorClosed.setVisible(true);
+                myEastDoorOpen.setVisible(false);
+            } if(!myWestButton.isVisible()) {
+                myWestDoorClosed.setVisible(true);
+                myWestDoorOpen.setVisible(false);
+            } 
+        });
+    }
+
 
     /**
      * Based on the boolean array theRoom.getDoors(), set the north, south, east and west

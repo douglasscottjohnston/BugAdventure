@@ -6,13 +6,13 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
-
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HeroSelectController">
    <children>
@@ -23,45 +23,68 @@
       </ImageView>
       <Pane layoutX="42.0" layoutY="42.0" prefHeight="316.0" prefWidth="316.0" style="-fx-background-color: olive;">
          <children>
-            <Label layoutX="98.0" layoutY="203.0" text="Enter your hero's name" />
+            <Label layoutX="96.0" layoutY="200.0" text="Enter your hero's name" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Black" size="13.0" />
+               </font></Label>
             <TextField fx:id="myHeroName" layoutX="76.0" layoutY="226.0" prefHeight="25.0" prefWidth="173.0" />
-            <Label layoutX="117.0" layoutY="29.0" text="Select your hero" />
-            <HBox layoutX="48.0" layoutY="158.0" prefHeight="45.0" prefWidth="229.0">
+            <Label layoutX="116.0" layoutY="29.0" text="Select your hero" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Black" size="13.0" />
+               </font></Label>
+            <HBox layoutX="38.0" layoutY="158.0" prefHeight="45.0" prefWidth="229.0">
                <children>
-                  <RadioButton fx:id="myLadyBug" mnemonicParsing="false" prefHeight="18.0" prefWidth="85.0" text="LadyBug" textAlignment="CENTER">
+                  <RadioButton fx:id="myLadyBug" mnemonicParsing="false" prefHeight="18.0" prefWidth="98.0" text="LadyBug" textAlignment="CENTER" textFill="WHITE">
                      <toggleGroup>
                         <ToggleGroup fx:id="Heros" />
                      </toggleGroup>
+                     <font>
+                        <Font name="Roboto Medium" size="13.0" />
+                     </font>
                   </RadioButton>
-                  <RadioButton fx:id="myPillBug" mnemonicParsing="false" text="PillBug" toggleGroup="$Heros">
+                  <RadioButton fx:id="myPillBug" mnemonicParsing="false" prefHeight="18.0" prefWidth="99.0" text="PillBug" textAlignment="RIGHT" textFill="WHITE" toggleGroup="$Heros">
+                     <padding>
+                        <Insets right="5.0" />
+                     </padding>
+                     <font>
+                        <Font name="Roboto Medium" size="13.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="myAnt" mnemonicParsing="false" prefHeight="18.0" prefWidth="0.0" text="Ant" textAlignment="RIGHT" textFill="WHITE" toggleGroup="$Heros">
                      <padding>
                         <Insets right="20.0" />
                      </padding>
-                  </RadioButton>
-                  <RadioButton fx:id="myAnt" mnemonicParsing="false" text="Ant" toggleGroup="$Heros">
-                     <padding>
-                        <Insets right="20.0" />
-                     </padding>
+                     <font>
+                        <Font name="Roboto Medium" size="13.0" />
+                     </font>
                   </RadioButton>
                </children>
             </HBox>
-            <Button layoutX="145.0" layoutY="261.0" mnemonicParsing="false" onAction="#onOKButtonClick" style="-fx-background-color: black;" text="OK" textFill="#ffd83d" />
-            <Ellipse fill="#a39f48" layoutX="83.0" layoutY="102.0" radiusX="35.0" radiusY="48.0" stroke="BLACK" strokeType="INSIDE" />
+            <Button layoutX="145.0" layoutY="261.0" mnemonicParsing="false" onAction="#onOKButtonClick" style="-fx-background-color: black;" text="OK" textFill="#ffd83d">
+               <font>
+                  <Font name="Roboto Black" size="13.0" />
+               </font></Button>
+            <Ellipse fill="WHITE" layoutX="83.0" layoutY="102.0" radiusX="35.0" radiusY="48.0" stroke="BLACK" strokeType="INSIDE" />
             <Ellipse fill="#ffbd1f" layoutX="240.0" layoutY="102.0" radiusX="35.0" radiusY="48.0" stroke="BLACK" strokeType="INSIDE" />
             <Ellipse fill="#fffcbd" layoutX="162.0" layoutY="102.0" radiusX="35.0" radiusY="48.0" stroke="BLACK" strokeType="INSIDE" />
-            <ImageView fitHeight="63.0" fitWidth="63.0" layoutX="52.0" layoutY="71.0">
-               <image>
-                  <Image url="@Resources/ladybug.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="63.0" fitWidth="63.0" layoutX="209.0" layoutY="71.0">
-               <image>
-                  <Image url="@Resources/ant.png" />
-               </image>
-            </ImageView>
             <ImageView fitHeight="63.0" fitWidth="63.0" layoutX="129.0" layoutY="71.0">
                <image>
                   <Image url="@Resources/pillbug.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="68.0" fitWidth="55.0" layoutX="54.0" layoutY="72.0" preserveRatio="true">
+               <image>
+                  <Image url="@Resources/Characters/newladybug.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="67.0" layoutX="207.0" layoutY="68.0" preserveRatio="true">
+               <image>
+                  <Image url="@Resources/Characters/newant.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="87.0" fitWidth="87.0" layoutX="119.0" layoutY="60.0" preserveRatio="true">
+               <image>
+                  <Image url="@Resources/Characters/newpillbug.png" />
                </image>
             </ImageView>
          </children>

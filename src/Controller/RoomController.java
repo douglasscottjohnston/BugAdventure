@@ -199,17 +199,21 @@ public class RoomController extends Controller {
         getStage().getScene().addEventFilter(KeyEvent.ANY, e -> {
             if(!myNorthButton.isVisible()) {
                 myNorthDoorClosed.setVisible(true);
-                myNorthDoorOpen.setVisible(false);
-            } if(!mySouthButton.isVisible()) {
-                mySouthDoorClosed.setVisible(true);
-                mySouthDoorOpen.setVisible(false);
+            } if (myNorthButton.isVisible()) {
+                myNorthDoorClosed.setVisible(false);
+            } if (!mySouthButton.isVisible()) {
+                    mySouthDoorClosed.setVisible(true);
+            } if (mySouthButton.isVisible()) {
+                mySouthDoorClosed.setVisible(false);
             } if(!myEastButton.isVisible()) {
                 myEastDoorClosed.setVisible(true);
-                myEastDoorOpen.setVisible(false);
+            } if (myEastButton.isVisible()) {
+                myEastDoorClosed.setVisible(false);
             } if(!myWestButton.isVisible()) {
                 myWestDoorClosed.setVisible(true);
-                myWestDoorOpen.setVisible(false);
-            } 
+            } if (myWestButton.isVisible()) {
+                myWestDoorClosed.setVisible(false);
+            }
         });
     }
 

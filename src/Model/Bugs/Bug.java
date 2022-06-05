@@ -64,6 +64,8 @@ public abstract class Bug implements Serializable {
             if(myAttack.hasLifeSteal()) {
                 heal(damageDealt);
             }
+        } else {
+            damageDealt = 0;
         }
         return damageDealt;
     }

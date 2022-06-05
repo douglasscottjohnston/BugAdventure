@@ -120,14 +120,20 @@ public class RoomController extends Controller {
     private void onSpecialAttackButtonPress() {
         if(!mySpecialAttackButton.isDisable()) {
             if(Model.getCurrentMonster().isAlive()) {
-                myUtility.appendToBuilder(Model.getHero().getName());
-                myUtility.appendToBuilder(" used ");
-                myUtility.appendToBuilder(Model.getHero().getSpecialAttack().getName());
-                myUtility.appendToBuilder("\nIt dealt ");
-                myUtility.appendToBuilder(Integer.toString(Model.getHero().specialAttack(Model.getCurrentMonster())));
-                myUtility.appendToBuilder(" points of damage!\n");
-                myDialogue.appendText(myUtility.builderToStringClear());
-                setMonsterHealth();
+                int damage = Model.getHero().specialAttack(Model.getCurrentMonster());
+                myDialogue.appendText(Model.getHero().getName());
+                myDialogue.appendText(" used ");
+                myDialogue.appendText(Model.getHero().getSpecialAttack().getName());
+                if(damage == 0) {
+                    myDialogue.appendText("\n");
+                    myDialogue.appendText(Model.getHero().getName());
+                    myDialogue.appendText(" missed!\n");
+                } else {
+                    myDialogue.appendText("\nIt dealt ");
+                    myDialogue.appendText(Integer.toString(Model.getHero().specialAttack(Model.getCurrentMonster())));
+                    myDialogue.appendText(" points of damage!\n");
+                    setMonsterHealth();
+                }
                 if(!Model.getCurrentMonster().isAlive()) {
                     monsterDies();
                 } else {
@@ -308,15 +314,17 @@ public class RoomController extends Controller {
     private void monsterAttack() {
         int damage = Model.getCurrentMonster().attack(Model.getHero());
         setHeroHealth();
-        myUtility.appendToBuilder(Model.getCurrentMonster().getName());
-        myUtility.appendToBuilder(" dealt ");
-        myUtility.appendToBuilder(Integer.toString(damage));
-        myUtility.appendToBuilder(" points of damage!\n");
+        myDialogue.appendText(Model.getCurrentMonster().getName());
+        if(damage == 0) {
+            myDialogue.appendText(" missed!\n");
+        } else {
+            myDialogue.appendText(" dealt ");
+            myDialogue.appendText(Integer.toString(damage));
+            myDialogue.appendText(" points of damage!\n");
+        }
         if(!Model.getHero().isAlive()) {
             heroDies();
         }
-
-        myDialogue.appendText(myUtility.builderToStringClear());
         myDialogue.appendText(Model.getHero().getName() + "'s turn\nSelect an option\n");
         enableToolBar(true);
     }

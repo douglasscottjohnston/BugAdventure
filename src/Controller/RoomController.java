@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Bugs.Bug;
+import Model.Bugs.HeroInventory;
 import Model.Items.Item;
 import Model.Model;
 import Model.Room;
@@ -82,7 +83,7 @@ public class RoomController extends Controller {
                 move(Directions.Direction.WEST);
             } else if(e.getCode().equals(KeyCode.K)) { //cheats
                 heroDies();
-            } else if(e.getCode().equals(KeyCode.W) && Model.getCurrentMonster().isAlive()) {
+            } else if(e.getCode().equals(KeyCode.W) && Model.currentHasMonster() && Model.getCurrentMonster().isAlive()) {
                 Model.getCurrentMonster().setHealth(0);
                 monsterDies();
             } else if(e.getCode().equals(KeyCode.P)) {
@@ -146,11 +147,12 @@ public class RoomController extends Controller {
             myItemPane.setVisible(true);
             Button useItemButton;
             VBox itemVBox;
+            myItemHBox.getChildren().clear();
 
-            for (Item item : Model.getHero().getInventory().getItems().keySet()) {
-                useItemButton = new Button(item.getName());
+            for (HeroInventory.ITEM_KEY item : Model.getHero().getInventory().getItems().keySet()) {
+                useItemButton = new Button(item.getItem().getName());
                 Label itemLabel = new Label(Integer.toString(Model.getHero().getInventory().getItems().get(item)));
-                useItemButton.setOnAction(e -> onUseItemPress(e, item, itemLabel));
+                useItemButton.setOnAction(e -> onUseItemPress(e, item.getItem(), itemLabel));
                 itemVBox = new VBox();
                 itemVBox.getChildren().addAll(useItemButton, itemLabel);
                 myItemHBox.getChildren().add(itemVBox);

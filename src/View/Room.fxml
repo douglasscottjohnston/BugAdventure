@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
-
 <?import javafx.scene.shape.Rectangle?>
 
 <!--
@@ -71,7 +70,7 @@ the room accordingly
                         <Button fx:id="mySouthButton" layoutX="182.0" layoutY="309.0" mnemonicParsing="false" onAction="#onSouthButtonClick" text="v" visible="false" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="195.0" AnchorPane.rightAnchor="195.0" />
                         <Button fx:id="myEastButton" layoutX="291.0" layoutY="188.0" mnemonicParsing="false" onAction="#onEastButtonClick" text="&gt;" visible="false" AnchorPane.bottomAnchor="188.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="188.0" />
                         <Label fx:id="myDialogueLabel" layoutX="110.0" layoutY="115.0" />
-                        <ImageView fx:id="myHeroImage" fitHeight="40.0" fitWidth="67.0" layoutX="92.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                        <ImageView fx:id="myHeroImage" fitHeight="40.0" fitWidth="67.0" layoutX="92.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                             <image>
                                 <Image url="@Resources/Characters/ladybug.png" />
                             </image>

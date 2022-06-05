@@ -54,19 +54,8 @@ public class HeroSelectController extends Controller {
 
         //if a name was entered and a hero was selected go to the next scene
         if(goToNext) {
-            Model.getHero().setHeroImagePath(getHeroPath());
             Model.createDungeon();
             nextScene(theEvent, "../View/Room.fxml");
-        }
-    }
-
-    private String getHeroPath() {
-        if(myLadyBug.isSelected()) {
-            return HERO_IMAGE_PATH + "ladybug.png";
-        } else if(myPillBug.isSelected()) {
-            return HERO_IMAGE_PATH + "pillbug.png";
-        } else {
-            return HERO_IMAGE_PATH + "ant.png";
         }
     }
 }

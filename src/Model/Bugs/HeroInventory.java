@@ -56,4 +56,8 @@ public class HeroInventory implements Serializable {
     public boolean isEmpty() {
         return myItems.isEmpty();
     }
+
+    public Hashtable<Item, Integer> getItems() {
+        return myItems;
+    }
 }

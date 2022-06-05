@@ -1,20 +1,22 @@
 package Controller;
 
-import Model.Bugs.MonsterBug;
+import Model.Bugs.Bug;
+import Model.Items.Item;
 import Model.Model;
 import Model.Room;
+import View.ResourceManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.SubScene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class RoomController extends Controller {
     private final Utility myUtility = new Utility();
@@ -24,7 +26,13 @@ public class RoomController extends Controller {
     private static final String PNG = ".png";
 
     @FXML
-    AnchorPane myAnchorPane;
+    AnchorPane myAnchorPane, myItemPane;
+
+    @FXML
+    SubScene myItemScene;
+
+    @FXML
+    HBox myItemHBox;
 
     @FXML
     ImageView myNorthDoorOpen, myNorthDoorClosed, mySouthDoorOpen, mySouthDoorClosed, myEastDoorOpen, myEastDoorClosed, myWestDoorOpen, myWestDoorClosed;
@@ -39,7 +47,7 @@ public class RoomController extends Controller {
     TextArea myDialogue;
 
     @FXML
-    Button mySaveButton, myNorthButton, mySouthButton, myEastButton, myWestButton, myRunButton, myAttackButton, mySpecialAttackButton, myItemButton;
+    Button mySaveButton, myNorthButton, mySouthButton, myEastButton, myWestButton, myRunButton, myAttackButton, mySpecialAttackButton, myItemButton, myCancelItemsButton;
 
     @FXML
     private void initialize() {
@@ -49,27 +57,14 @@ public class RoomController extends Controller {
         setHeroHealth();
         myItemButton.setDisable(false);
         myDialogue.setText("");
-        try {
-            System.out.println(System.getProperty("user.dir"));
-            myHeroImage.setImage(new Image(new FileInputStream(Model.getHero().getHeroImagePath())));
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
+        myHeroImage.setImage(ResourceManager.getCharacterImage(Model.getHero().getHeroType()));
 
         if(Model.currentHasMonster()) {
             mySaveButton.setDisable(true);
-            MonsterBug monster = Model.getCurrentMonster();
-            monsterAppears(monster);
-            setMonsterHealth();
-            if(Model.getHero().getSpeed() < Model.getCurrentMonster().getSpeed()) {
-                monsterAttacksFirst();
-            } else {
-                heroAttacksFirst();
-            }
+            monsterAppears();
         } else {
             myMonsterImage.setImage(null);
-            setMoveButtons(Model.getDungeon().getCurrent());
+            itemPhase();
         }
     }
 
@@ -145,7 +140,58 @@ public class RoomController extends Controller {
 
     @FXML
     private void onItemButtonPress() {
+        if(!myItemButton.isDisable()) {
+            enableToolBar(false);
+            myDialogue.appendText("Select an item\n");
+            myItemPane.setVisible(true);
+            Button useItemButton;
+            VBox itemVBox;
 
+            for (Item item : Model.getHero().getInventory().getItems().keySet()) {
+                useItemButton = new Button(item.getName());
+                Label itemLabel = new Label(Integer.toString(Model.getHero().getInventory().getItems().get(item)));
+                useItemButton.setOnAction(e -> onUseItemPress(e, item, itemLabel));
+                itemVBox = new VBox();
+                itemVBox.getChildren().addAll(useItemButton, itemLabel);
+                myItemHBox.getChildren().add(itemVBox);
+            }
+        }
+    }
+
+    private void onUseItemPress(final ActionEvent theEvent, final Item theItem, final Label theItemLabel) {
+        Button itemButton = (Button)(theEvent.getSource());
+        if(!theItem.isFriendly() && Model.currentHasMonster()) {
+            useItem(itemButton, theItem, theItemLabel, Model.getCurrentMonster());
+        } else if(!theItem.isFriendly()) {
+            myDialogue.appendText("The Item cannot be used at the moment\n");
+            itemButton.setDisable(true);
+        } else {
+            useItem(itemButton, theItem, theItemLabel, Model.getHero());
+        }
+    }
+
+    private void useItem(final Button theButton, final Item theItem, final Label theItemLabel, final Bug theBug) {
+        Model.getHero().getInventory().useItem(theItem, theBug);
+        int amount = Integer.parseInt(theItemLabel.getText()) - 1;
+        myDialogue.appendText(theItem.getMessage());
+        myDialogue.appendText("\n");
+        if(amount < 1) {
+            VBox vbox = (VBox)theButton.getParent();
+            HBox hbox = (HBox)vbox.getParent();
+            hbox.getChildren().remove(vbox);
+            myDialogue.appendText(Model.getHero().getName());
+            myDialogue.appendText(" ran out of ");
+            myDialogue.appendText(theItem.getName());
+            myDialogue.appendText("'s");
+        } else {
+            theItemLabel.setText(Integer.toString(amount));
+        }
+    }
+
+    @FXML
+    private void onCancelItemsButtonClick() {
+        myItemPane.setVisible(false);
+        enableToolBar(true);
     }
 
     @FXML
@@ -279,17 +325,18 @@ public class RoomController extends Controller {
         enableToolBar(true);
     }
 
-    private void monsterAppears(MonsterBug theMonster) {
-        myDialogue.appendText("A " + theMonster.getName() + " has appeared!\n");
+    private void monsterAppears() {
+        myDialogue.appendText("A " + Model.getCurrentMonster().getName() + " has appeared!\n");
         myUtility.appendToBuilder(Integer.toString(Model.getCurrentMonster().getHealth()));
         myUtility.appendToBuilder("/");
         myUtility.appendToBuilder(Integer.toString(Model.getCurrentMonster().getOriginalHealth()));
         myMonsterHealthLabel.setText(myUtility.builderToStringClear());
-        try {
-            myMonsterImage.setImage(new Image(new FileInputStream(IMAGE_PATH + theMonster.getName() + PNG)));
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
+        myMonsterImage.setImage(ResourceManager.getMonsterImage(Model.getCurrentMonster().getName()));
+        setMonsterHealth();
+        if(Model.getHero().getSpeed() < Model.getCurrentMonster().getSpeed()) {
+            monsterAttacksFirst();
+        } else {
+            heroAttacksFirst();
         }
     }
 
@@ -298,14 +345,33 @@ public class RoomController extends Controller {
         myDialogue.appendText(" defeated the ");
         myDialogue.appendText(Model.getCurrentMonster().getName());
         myDialogue.appendText("\n");
+        Model.monsterDied();
+        if(Model.currentHasMonster()) {
+            Model.nextMonster();
+            monsterAppears();
+        }
         if(Model.getDungeon().inExit()) {
             nextScene(getStage(), WIN_PATH);
         }
-        movementPhase();
+        itemPhase();
     }
 
     private void heroDies() {
         nextScene(getStage(), GAME_OVER_PATH);
+    }
+
+    private void itemPhase() {
+        if(Model.currentHasItem()) {
+            while(Model.currentHasItem()) {
+                Item i = Model.getItem();
+                myDialogue.appendText(Model.getHero().getName());
+                myDialogue.appendText(" found a ");
+                myDialogue.appendText(i.getName());
+                Model.getHero().pickUpItem(i);
+                myDialogue.appendText("\n");
+            }
+        }
+        movementPhase();
     }
 
     private void movementPhase() {

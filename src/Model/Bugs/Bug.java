@@ -120,10 +120,6 @@ public abstract class Bug implements Serializable {
 
     public String getName() { return myName; }
 
-    public void setName(final String theName) {
-        myName = theName;
-    }
-
     public void setSpeed(final int theSpeed) {
         mySpeed = theSpeed;
     }

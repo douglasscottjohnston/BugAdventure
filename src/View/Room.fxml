@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.SubScene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
@@ -10,6 +11,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 
 <!--
 This is where most of the action will happen
@@ -34,7 +36,7 @@ the room accordingly
             <children>
                 <AnchorPane prefHeight="400.0" prefWidth="408.0">
                     <children>
-                        <ImageView fitHeight="400.0" fitWidth="408.0">
+                        <ImageView fitHeight="400.0" fitWidth="408.0" layoutX="4.0" layoutY="1.0">
                             <image>
                                 <Image url="@Resources/treeWallpaper.jpg" />
                             </image>
@@ -101,6 +103,17 @@ the room accordingly
                             </image>
                         </ImageView>
                         <Label fx:id="myMonsterHealthLabel" layoutX="289.0" layoutY="145.0" textFill="WHITE" />
+                  <AnchorPane fx:id="myItemPane" layoutX="83.0" layoutY="281.0" prefHeight="99.0" prefWidth="246.0" visible="false">
+                     <children>
+                        <SubScene fx:id="myItemScene" fill="BLACK" height="100.0" width="250.0">
+                          <root>
+                            <Region />
+                          </root>
+                        </SubScene>
+                        <Button fx:id="myCancelItemsButton" mnemonicParsing="false" onAction="#onCancelItemsButtonClick" prefHeight="25.0" prefWidth="56.0" text="Cancel" AnchorPane.rightAnchor="0.0" />
+                        <HBox fx:id="myItemHBox" layoutY="24.0" prefHeight="76.0" prefWidth="250.0" />
+                     </children>
+                  </AnchorPane>
                     </children>
                 </AnchorPane>
                 <TextArea fx:id="myDialogue" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="&gt;" wrapText="true" />

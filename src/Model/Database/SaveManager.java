@@ -24,6 +24,7 @@ public abstract class SaveManager {
         try {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(SAVE_FILE_NAME, false));
             oos.writeObject(theDungeon);
+            oos.close();
         } catch(IOException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -42,6 +43,7 @@ public abstract class SaveManager {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(SAVE_FILE_NAME));
             out = (Dungeon)ois.readObject();
+            ois.close();
         } catch (IOException | ClassNotFoundException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();

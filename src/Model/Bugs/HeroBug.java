@@ -8,15 +8,15 @@ public abstract class HeroBug extends Bug {
     private int myChanceToDodge;
     private int mySpecialSkillChance;
     private final HeroInventory myInventory;
-    private String myHeroImagePath;
+    private final String myHeroType;
 
     public HeroBug(final Attack theAttack, final Attack theSpecialAttack, final int theHealth, final int theOriginalHealth,
-                   final int theDefense, final int theSpeed, final int theChanceToDodge, final String theName) {
+                   final int theDefense, final int theSpeed, final int theChanceToDodge, final String theName, final String theHeroType) {
         super(theAttack, theSpecialAttack, theHealth, theOriginalHealth, theDefense, theSpeed, theName);
 
-        setChanceToDodge(theChanceToDodge);
-        setName(theName);
+        myChanceToDodge = theChanceToDodge;
         myInventory = new HeroInventory();
+        myHeroType = theHeroType;
     }
 
 
@@ -67,11 +67,7 @@ public abstract class HeroBug extends Bug {
         return util.scanNextInt();
     }
 
-    public void setHeroImagePath(final String thePath) {
-        myHeroImagePath = thePath;
-    }
-
-    public String getHeroImagePath() {
-        return myHeroImagePath;
+    public String getHeroType() {
+        return myHeroType;
     }
 }

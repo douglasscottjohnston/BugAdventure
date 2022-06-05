@@ -33,18 +33,21 @@ public abstract class Model {
         myDungeon.moveInDirection(theDirection);
         if(myDungeon.getCurrent().getContents().containsMonster()) {
             myMonster = myDungeon.getCurrent().getContents().getAndRemoveMonster();
-
         } else if(myMonster != null && !myMonster.isAlive()) {
             myMonster = null;
         }
     }
 
-    public static boolean isCurrentEmpty() {
+    public static boolean currentIsEmpty() {
         return myDungeon.getCurrent().getContents().isEmpty();
     }
 
     public static boolean currentHasMonster() {
-        return myMonster != null;
+        return myMonster != null || myDungeon.getCurrent().getContents().containsMonster();
+    }
+
+    public static boolean currentHasItem() {
+        return myDungeon.getCurrent().getContents().containsItem();
     }
 
     public static boolean isFirstPlay() {
@@ -63,7 +66,15 @@ public abstract class Model {
         return myMonster;
     }
 
-    public static Item getCurrentItem() {
+    public static void monsterDied() {
+        myMonster = null;
+    }
+
+    public static void nextMonster() {
+        myMonster = myDungeon.getCurrent().getContents().getAndRemoveMonster();
+    }
+
+    public static Item getItem() {
         return myDungeon.getCurrent().getContents().getAndRemoveItem();
     }
 

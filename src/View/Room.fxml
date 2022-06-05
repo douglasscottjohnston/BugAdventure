@@ -41,7 +41,7 @@ the room accordingly
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8a310b" height="411.0" layoutX="-2.0" stroke="#392517" strokeLineCap="ROUND" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="2.0" width="427.0" />
                   <ImageView fitHeight="390.0" fitWidth="393.0" layoutX="26.0" layoutY="7.0" preserveRatio="true">
                      <image>
-                        <Image url="@Resources/Room/nextroomtile5.jpg" />
+                        <Image url="@Resources/Room/woodbackground.png" />
                      </image>
                   </ImageView>
 

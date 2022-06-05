@@ -38,8 +38,8 @@ the room accordingly
                 <AnchorPane prefHeight="409.0" prefWidth="406.0">
                     <children>
 
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8a310b" height="411.0" layoutX="-2.0" stroke="#392517" strokeLineCap="ROUND" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="2.0" width="427.0" />
-                  <ImageView fitHeight="390.0" fitWidth="393.0" layoutX="26.0" layoutY="7.0" preserveRatio="true">
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8a810b" height="411.0" layoutX="-2.0" stroke="#8a810b" strokeLineCap="ROUND" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="2.0" width="427.0" />
+                  <ImageView fitHeight="381.0" fitWidth="375.0" layoutX="23.0" layoutY="16.0" opacity="0.27" preserveRatio="true">
                      <image>
                         <Image url="@Resources/Room/woodbackground.png" />
                      </image>

@@ -82,9 +82,9 @@
                   <Image url="@Resources/Characters/pillbug.png" />
                </image>
             </ImageView>
+            <Label fx:id="myNameWarning" layoutX="113.0" layoutY="294.0" text="Name not entered" textFill="RED" visible="false" />
+            <Label fx:id="myHeroWarning" layoutX="116.0" layoutY="294.0" text="Hero not selected" textFill="RED" visible="false" />
          </children>
       </Pane>
-      <Label fx:id="myNameWarning" layoutX="242.0" layoutY="272.0" text="Name not entered" textFill="RED" visible="false" />
-      <Label fx:id="myHeroWarning" layoutX="245.0" layoutY="272.0" text="Hero not selected" textFill="RED" visible="false" />
    </children>
 </AnchorPane>

@@ -10,6 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Rectangle?>
 
 <!--
 This is where most of the action will happen
@@ -25,40 +26,21 @@ the room accordingly
 
 <AnchorPane fx:id="myAnchorPane" prefHeight="481.0" prefWidth="582.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RoomController">
     <children>
-        <ToolBar prefHeight="40.0" prefWidth="414.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <ToolBar prefHeight="40.0" prefWidth="414.0" style="-fx-background-color: orange;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
-                <Button fx:id="mySaveButton" mnemonicParsing="false" onAction="#onSaveButtonClick" text="Save" />
+                <Button fx:id="mySaveButton" mnemonicParsing="false" onAction="#onSaveButtonClick" style="-fx-background-color: black;" text="Save" textFill="WHITE" />
             </items>
         </ToolBar>
         <HBox layoutY="40.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
             <children>
-                <AnchorPane prefHeight="400.0" prefWidth="408.0">
+                <AnchorPane prefHeight="409.0" prefWidth="406.0">
                     <children>
-                        <ImageView fitHeight="400.0" fitWidth="408.0">
-                            <image>
-                                <Image url="@Resources/treeWallpaper.jpg" />
-                            </image>
-                        </ImageView>
-                        <ImageView fitHeight="41.0" fitWidth="109.0" layoutX="150.0" pickOnBounds="true" preserveRatio="true" scaleX="10.1" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="187.0" AnchorPane.topAnchor="0.0">
-                            <image>
-                                <Image url="@Resources/Grass.jpg" />
-                            </image>
-                        </ImageView>
-                        <ImageView fitHeight="41.0" fitWidth="80.0" layoutX="187.0" layoutY="359.0" pickOnBounds="true" preserveRatio="true" scaleX="10.1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="187.0">
-                            <image>
-                                <Image url="@Resources/Grass.jpg" />
-                            </image>
-                        </ImageView>
-                        <ImageView fitHeight="109.0" fitWidth="41.0" layoutX="3.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" scaleY="9.7" AnchorPane.leftAnchor="0.0">
-                            <image>
-                                <Image url="@Resources/Grass.jpg" />
-                            </image>
-                        </ImageView>
-                        <ImageView fitHeight="109.0" fitWidth="41.0" layoutX="374.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" scaleY="9.7" AnchorPane.rightAnchor="0.0">
-                            <image>
-                                <Image url="@Resources/Grass.jpg" />
-                            </image>
-                        </ImageView>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8a310b" height="411.0" layoutX="-2.0" stroke="#392517" strokeLineCap="ROUND" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="2.0" width="427.0" />
+                  <ImageView fitHeight="390.0" fitWidth="393.0" layoutX="26.0" layoutY="7.0" preserveRatio="true">
+                     <image>
+                        <Image url="@Resources/Room/nextroomtile5.jpg" />
+                     </image>
+                  </ImageView>
                         <ImageView fx:id="myWestDoor" fitHeight="41.0" fitWidth="41.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" scaleY="5.0" visible="false" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="180.0">
                             <image>
                                 <Image url="@Resources/treeWallpaper.jpg" />
@@ -101,34 +83,94 @@ the room accordingly
                             </image>
                         </ImageView>
                         <Label fx:id="myMonsterHealthLabel" layoutX="289.0" layoutY="145.0" textFill="WHITE" />
+                  <ImageView fitHeight="114.0" fitWidth="415.0" layoutX="1.0" layoutY="5.0" opacity="0.53" preserveRatio="true">
+                     <image>
+                        <Image url="@Resources/Room/roomtop.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="408.0" fitWidth="152.0" layoutX="310.0" opacity="0.51" preserveRatio="true">
+                     <image>
+                        <Image url="@Resources/Room/roomright.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="108.0" fitWidth="412.0" layoutX="4.0" layoutY="298.0" opacity="0.52" preserveRatio="true">
+                     <image>
+                        <Image url="@Resources/Room/roombottom.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="408.0" fitWidth="132.0" opacity="0.53" preserveRatio="true">
+                     <image>
+                        <Image url="@Resources/Room/roomleft.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="topclose" fitHeight="114.0" fitWidth="415.0" layoutX="1.0" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@Resources/Room/roomtop.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="myNorthDoor" fitHeight="109.0" fitWidth="420.0" layoutX="-1.0" layoutY="1.0" preserveRatio="true">
+                     <image>
+                        <Image url="@Resources/Room/topopen.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="bottomclose" fitHeight="110.0" fitWidth="418.0" layoutX="1.0" layoutY="302.0" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@Resources/Room/roombottom.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="mySouthDoor" fitHeight="111.0" fitWidth="426.0" layoutX="-5.0" layoutY="298.0" preserveRatio="true">
+                     <image>
+                        <Image url="@Resources/Room/bottomopen.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="westcloes" fitHeight="408.0" fitWidth="132.0" layoutX="-2.0" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@Resources/Room/roomleft.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="myWestDoor" fitHeight="411.0" fitWidth="148.0" layoutY="-2.0" preserveRatio="true">
+                     <image>
+                        <Image url="@Resources/Room/leftopen.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="eastclosed" fitHeight="408.0" fitWidth="152.0" layoutX="311.0" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@Resources/Room/roomright.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="myEastDoor" fitHeight="414.0" fitWidth="117.0" layoutX="309.0" layoutY="-5.0" preserveRatio="true">
+                     <image>
+                        <Image url="@Resources/Room/rightopen.png" />
+                     </image>
+                  </ImageView>
                     </children>
                 </AnchorPane>
-                <TextArea fx:id="myDialogue" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="&gt;" wrapText="true" />
+                <TextArea fx:id="myDialogue" editable="false" prefHeight="409.0" prefWidth="207.0" promptText="&gt;" wrapText="true" />
             </children>
         </HBox>
-        <HBox alignment="CENTER_LEFT" layoutY="441.0" prefHeight="40.0" prefWidth="415.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <HBox alignment="CENTER_LEFT" layoutY="441.0" prefHeight="42.0" prefWidth="582.0" spacing="10.0" style="-fx-background-color: orange;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
                 <Label fx:id="myHealthLabel" text="Health: 100/100">
                     <HBox.margin>
                         <Insets top="15.0" />
                     </HBox.margin>
                 </Label>
-                <Button fx:id="myRunButton" disable="true" mnemonicParsing="false" onAction="#onRunButtonClick" text="Run Away">
+                <Button fx:id="myRunButton" disable="true" mnemonicParsing="false" onAction="#onRunButtonClick" style="-fx-background-color: gold;" text="Run Away">
                     <HBox.margin>
                         <Insets top="10.0" />
                     </HBox.margin>
                 </Button>
-                <Button fx:id="myAttackButton" disable="true" mnemonicParsing="false" onAction="#onAttackButtonPress" text="Attack">
+                <Button fx:id="myAttackButton" disable="true" mnemonicParsing="false" onAction="#onAttackButtonPress" style="-fx-background-color: black;" text="Attack" textFill="WHITE">
                     <HBox.margin>
                         <Insets top="10.0" />
                     </HBox.margin>
                 </Button>
-                <Button fx:id="mySpecialAttackButton" disable="true" mnemonicParsing="false" onAction="#onSpecialAttackButtonPress" text="Special Attack">
+                <Button fx:id="mySpecialAttackButton" disable="true" mnemonicParsing="false" onAction="#onSpecialAttackButtonPress" style="-fx-background-color: black;" text="Special Attack" textFill="WHITE">
                     <HBox.margin>
                         <Insets top="10.0" />
                     </HBox.margin>
                 </Button>
-                <Button fx:id="myItemButton" disable="true" mnemonicParsing="false" onAction="#onItemButtonPress" text="Item">
+                <Button fx:id="myItemButton" disable="true" mnemonicParsing="false" onAction="#onItemButtonPress" style="-fx-background-color: brown;" text="Item" textFill="WHITE">
                     <HBox.margin>
                         <Insets top="10.0" />
                     </HBox.margin>

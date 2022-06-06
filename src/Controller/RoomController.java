@@ -39,7 +39,7 @@ public class RoomController extends Controller {
     ImageView myNorthDoorClosed, mySouthDoorClosed, myEastDoorClosed, myWestDoorClosed;
 
     @FXML
-    ImageView myNorthDoor, mySouthDoor, myEastDoor, myWestDoor, myHeroImage, myMonsterImage;
+    ImageView myNorthDoor, mySouthDoor, myEastDoor, myWestDoor, myHeroImage, myMonsterImage, myItemView;
 
     @FXML
     Label myDialogueLabel, myHealthLabel, myMonsterHealthLabel;
@@ -56,6 +56,7 @@ public class RoomController extends Controller {
         setDoors(Model.getDungeon().getCurrent());
         disableMoveButtons();
         setHeroHealth();
+        myItemView.setVisible(false);
         myItemButton.setDisable(false);
         myDialogue.setText("");
         myHeroImage.setImage(ResourceManager.getCharacterImage(Model.getHero().getHeroType()));
@@ -170,11 +171,16 @@ public class RoomController extends Controller {
         Button itemButton = (Button)(theEvent.getSource());
         if(!theItem.isFriendly() && Model.currentHasMonster()) {
             useItem(itemButton, theItem, theItemLabel, Model.getCurrentMonster());
+            if(!Model.getCurrentMonster().isAlive()) {
+                monsterDies();
+            }
+            setMonsterHealth();
         } else if(!theItem.isFriendly()) {
             myDialogue.appendText("The Item cannot be used at the moment\n");
             itemButton.setDisable(true);
         } else {
             useItem(itemButton, theItem, theItemLabel, Model.getHero());
+            setHeroHealth();
         }
     }
 
@@ -356,6 +362,8 @@ public class RoomController extends Controller {
         if(Model.currentHasItem()) {
             while(Model.currentHasItem()) {
                 Item i = Model.getItem();
+                myItemView.setImage(ResourceManager.getItemImage(i.getName()));
+                myItemView.setVisible(true);
                 myDialogue.appendText(Model.getHero().getName());
                 myDialogue.appendText(" found a ");
                 myDialogue.appendText(i.getName());
@@ -385,10 +393,14 @@ public class RoomController extends Controller {
 
     private void setHeroHealth() {
         myUtility.appendToBuilder(Model.getHero().getName());
-        myUtility.appendToBuilder(": ");
+        myUtility.appendToBuilder("'s Health: ");
         myUtility.appendToBuilder(Integer.toString(Model.getHero().getHealth()));
         myUtility.appendToBuilder("/");
         myUtility.appendToBuilder(Integer.toString(Model.getHero().getOriginalHealth()));
+        myUtility.appendToBuilder(" Defense: ");
+        myUtility.appendToBuilder(Integer.toString(Model.getHero().getDefense()));
+        myUtility.appendToBuilder(" Speed: ");
+        myUtility.appendToBuilder(Integer.toString(Model.getHero().getSpeed()));
         myHealthLabel.setText(myUtility.builderToStringClear());
     }
 

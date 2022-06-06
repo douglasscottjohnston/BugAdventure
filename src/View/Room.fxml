@@ -28,7 +28,7 @@ the room accordingly
 
 <AnchorPane fx:id="myAnchorPane" prefHeight="481.0" prefWidth="582.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RoomController">
     <children>
-        <ToolBar prefHeight="40.0" prefWidth="414.0" style="-fx-background-color: orange;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <ToolBar prefHeight="40.0" prefWidth="414.0" style="-fx-background-color: deepskyblue;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
                 <Button fx:id="mySaveButton" mnemonicParsing="false" onAction="#onSaveButtonClick" style="-fx-background-color: black;" text="Save" textFill="WHITE" />
             </items>
@@ -38,8 +38,8 @@ the room accordingly
                 <AnchorPane prefHeight="409.0" prefWidth="406.0">
                     <children>
 
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8a810b" height="411.0" layoutX="-2.0" stroke="#8a810b" strokeLineCap="ROUND" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="2.0" width="427.0" />
-                  <ImageView fitHeight="381.0" fitWidth="375.0" layoutX="23.0" layoutY="16.0" opacity="0.27" preserveRatio="true">
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#756c05" height="411.0" layoutX="-2.0" stroke="#8a810b" strokeLineCap="ROUND" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="2.0" visible="false" width="427.0" />
+                  <ImageView fitHeight="413.0" fitWidth="438.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Resources/Room/woodbackground.png" />
                      </image>
@@ -70,7 +70,7 @@ the room accordingly
                         <Button fx:id="mySouthButton" layoutX="182.0" layoutY="309.0" mnemonicParsing="false" onAction="#onSouthButtonClick" text="v" visible="false" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="195.0" AnchorPane.rightAnchor="195.0" />
                         <Button fx:id="myEastButton" layoutX="291.0" layoutY="188.0" mnemonicParsing="false" onAction="#onEastButtonClick" text="&gt;" visible="false" AnchorPane.bottomAnchor="188.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="188.0" />
                         <Label fx:id="myDialogueLabel" layoutX="110.0" layoutY="115.0" />
-                        <ImageView fx:id="myHeroImage" fitHeight="40.0" fitWidth="67.0" layoutX="92.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                        <ImageView fx:id="myHeroImage" fitHeight="40.0" fitWidth="67.0" layoutX="90.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                             <image>
                                 <Image url="@Resources/Characters/ladybug.png" />
                             </image>
@@ -99,76 +99,56 @@ the room accordingly
                         <HBox fx:id="myItemHBox" layoutY="24.0" prefHeight="76.0" prefWidth="250.0" />
                      </children>
                   </AnchorPane>
-
-                  <ImageView fitHeight="114.0" fitWidth="415.0" layoutX="1.0" layoutY="5.0" opacity="0.53" preserveRatio="true">
+                  <ImageView fx:id="myNorthDoorClosed" fitHeight="114.0" fitWidth="415.0" layoutX="1.0" preserveRatio="true" visible="false" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <image>
                         <Image url="@Resources/Room/roomtop.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="408.0" fitWidth="152.0" layoutX="310.0" opacity="0.51" preserveRatio="true">
-                     <image>
-                        <Image url="@Resources/Room/roomright.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="108.0" fitWidth="412.0" layoutX="4.0" layoutY="298.0" opacity="0.52" preserveRatio="true">
-                     <image>
-                        <Image url="@Resources/Room/roombottom.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="408.0" fitWidth="132.0" opacity="0.53" preserveRatio="true">
-                     <image>
-                        <Image url="@Resources/Room/roomleft.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="myNorthDoorClosed" fitHeight="114.0" fitWidth="415.0" layoutX="1.0" preserveRatio="true" visible="false">
-                     <image>
-                        <Image url="@Resources/Room/roomtop.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="myNorthDoor" fitHeight="109.0" fitWidth="420.0" layoutX="-1.0" layoutY="1.0" preserveRatio="true">
+                  <ImageView fx:id="myNorthDoor" fitHeight="109.0" fitWidth="420.0" layoutX="2.0" layoutY="-1.0" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <image>
                         <Image url="@Resources/Room/topopen.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="mySouthDoorClosed" fitHeight="110.0" fitWidth="418.0" layoutX="1.0" layoutY="302.0" preserveRatio="true" visible="false">
+                  <ImageView fx:id="mySouthDoorClosed" fitHeight="110.0" fitWidth="418.0" layoutX="1.0" layoutY="302.0" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <image>
                         <Image url="@Resources/Room/roombottom.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="mySouthDoor" fitHeight="111.0" fitWidth="426.0" layoutX="-5.0" layoutY="298.0" preserveRatio="true">
+                  <ImageView fx:id="mySouthDoor" fitHeight="111.0" fitWidth="426.0" layoutX="-5.0" layoutY="301.0" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <image>
                         <Image url="@Resources/Room/bottomopen.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="myWestDoorClosed" fitHeight="408.0" fitWidth="132.0" layoutX="-2.0" preserveRatio="true" visible="false">
-                     <image>
-                        <Image url="@Resources/Room/roomleft.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="myWestDoor" fitHeight="411.0" fitWidth="148.0" layoutY="-2.0" preserveRatio="true">
+                  <ImageView fx:id="myWestDoor" fitHeight="411.0" fitWidth="148.0" layoutY="-2.0" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <image>
                         <Image url="@Resources/Room/leftopen.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="myEastDoorClosed" fitHeight="408.0" fitWidth="152.0" layoutX="311.0" preserveRatio="true" visible="false">
+                  <ImageView fx:id="myEastDoor" fitHeight="408.0" fitWidth="106.0" layoutX="333.0" layoutY="-3.0" preserveRatio="true" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <image>
+                        <Image url="@Resources/Room/rightopen.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="myItemView" fitHeight="40.0" fitWidth="40.0" layoutX="190.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="myEastDoorClosed" fitHeight="413.0" fitWidth="140.0" layoutX="233.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <image>
                         <Image url="@Resources/Room/roomright.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="myEastDoor" fitHeight="414.0" fitWidth="117.0" layoutX="309.0" layoutY="-5.0" preserveRatio="true">
+                  <ImageView fx:id="myWestDoorClosed" fitHeight="413.0" fitWidth="135.0" layoutX="10.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <image>
-                        <Image url="@Resources/Room/rightopen.png" />
+                        <Image url="@Resources/Room/roomleft.png" />
                      </image>
                   </ImageView>
 
                     </children>
                 </AnchorPane>
-                <TextArea fx:id="myDialogue" editable="false" prefHeight="409.0" prefWidth="207.0" promptText="&gt;" wrapText="true" />
+                <TextArea fx:id="myDialogue" editable="false" prefHeight="409.0" prefWidth="207.0" promptText="&gt;" style="-fx-background-color: deepskyblue;" wrapText="true" />
             </children>
         </HBox>
-        <HBox alignment="CENTER_LEFT" layoutY="441.0" prefHeight="42.0" prefWidth="582.0" spacing="10.0" style="-fx-background-color: orange;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <HBox alignment="CENTER_LEFT" layoutY="441.0" prefHeight="42.0" prefWidth="582.0" spacing="10.0" style="-fx-background-color: deepskyblue;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-                <Label fx:id="myHealthLabel" text="Health: 100/100">
+                <Label fx:id="myHealthLabel" text="Health: 100/100" textFill="WHITE">
                     <HBox.margin>
                         <Insets top="15.0" />
                     </HBox.margin>
@@ -178,17 +158,17 @@ the room accordingly
                         <Insets top="10.0" />
                     </HBox.margin>
                 </Button>
-                <Button fx:id="myAttackButton" disable="true" mnemonicParsing="false" onAction="#onAttackButtonPress" style="-fx-background-color: black;" text="Attack" textFill="WHITE">
+                <Button fx:id="myAttackButton" disable="true" mnemonicParsing="false" onAction="#onAttackButtonPress" style="-fx-background-color: red;" text="Attack" textFill="WHITE">
                     <HBox.margin>
                         <Insets top="10.0" />
                     </HBox.margin>
                 </Button>
-                <Button fx:id="mySpecialAttackButton" disable="true" mnemonicParsing="false" onAction="#onSpecialAttackButtonPress" style="-fx-background-color: black;" text="Special Attack" textFill="WHITE">
+                <Button fx:id="mySpecialAttackButton" disable="true" mnemonicParsing="false" onAction="#onSpecialAttackButtonPress" style="-fx-background-color: red;" text="Special Attack" textFill="WHITE">
                     <HBox.margin>
                         <Insets top="10.0" />
                     </HBox.margin>
                 </Button>
-                <Button fx:id="myItemButton" disable="true" mnemonicParsing="false" onAction="#onItemButtonPress" style="-fx-background-color: brown;" text="Item" textFill="WHITE">
+                <Button fx:id="myItemButton" disable="true" mnemonicParsing="false" onAction="#onItemButtonPress" style="-fx-background-color: green;" text="Item" textFill="WHITE">
                     <HBox.margin>
                         <Insets top="10.0" />
                     </HBox.margin>

@@ -36,7 +36,7 @@ public abstract class ResourceManager {
     }
 
     public static Image getItemImage(final String theName) {
-        return getImageWithoutExtention(ITEMS_PATH + theName.toLowerCase());
+        return getImageWithoutExtention(ITEMS_PATH + theName.replaceAll("\\s+",""));
     }
 
     private static Image getImage(final String thePath) throws IOException {

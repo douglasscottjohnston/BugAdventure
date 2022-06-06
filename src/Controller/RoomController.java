@@ -7,6 +7,7 @@ import Model.Model;
 import Model.Room;
 import View.ResourceManager;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.SubScene;
@@ -14,7 +15,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -53,7 +53,6 @@ public class RoomController extends Controller {
 
     @FXML
     private void initialize() {
-        setKeyListeners();
         setDoors(Model.getDungeon().getCurrent());
         disableMoveButtons();
         setHeroHealth();
@@ -71,28 +70,46 @@ public class RoomController extends Controller {
         }
     }
 
-    private void setKeyListeners() {
-        System.out.println("listeners set");
-        System.out.println(getStage());
-        getStage().getScene().addEventFilter(KeyEvent.ANY, e -> {
-            if(e.getCode().equals(KeyCode.UP) && myNorthButton.isVisible()) {
-                move(Directions.Direction.NORTH);
-            } else if(e.getCode().equals(KeyCode.DOWN) && mySouthButton.isVisible()) {
-                move(Directions.Direction.SOUTH);
-            } else if(e.getCode().equals(KeyCode.RIGHT) && myEastButton.isVisible()) {
-                move(Directions.Direction.EAST);
-            } else if(e.getCode().equals(KeyCode.LEFT) && myWestButton.isVisible()) {
-                move(Directions.Direction.WEST);
-            } else if(e.getCode().equals(KeyCode.K)) { //cheats
-                heroDies();
-            } else if(e.getCode().equals(KeyCode.W) && Model.currentHasMonster() && Model.getCurrentMonster().isAlive()) {
-                Model.getCurrentMonster().setHealth(0);
-                monsterDies();
-            } else if(e.getCode().equals(KeyCode.P)) {
-                Model.getDungeon().printExitPath();
-            }
+    public EventHandler<KeyEvent> getKeyHandler() {
+        return theEvent -> {
+            switch(theEvent.getCode()) {
+            case UP -> {
+                if(myNorthButton.isVisible()) {
+                    move(Directions.Direction.NORTH);
                 }
-        );
+            }
+            case DOWN -> {
+                if(mySouthButton.isVisible()) {
+                    move(Directions.Direction.SOUTH);
+                }
+            }
+            case LEFT -> {
+                if(myWestButton.isVisible()) {
+                    move(Directions.Direction.WEST);
+                }
+            }
+            case RIGHT -> {
+                if(myEastButton.isVisible()) {
+                    move(Directions.Direction.EAST);
+                }
+            }
+            case K -> heroDies();
+            case W -> {
+                if(Model.currentHasMonster() && Model.getCurrentMonster().isAlive()) {
+                    Model.getCurrentMonster().setHealth(0);
+                    monsterDies();
+                }
+            }
+            case P -> Model.getDungeon().printExitPath();
+            case E -> {
+                Model.getDungeon().moveToEntrance();
+                System.out.println("Moved hero to entrance");
+                initialize();
+            }
+
+
+            }
+        };
     }
 
     @FXML

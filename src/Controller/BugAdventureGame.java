@@ -1,5 +1,6 @@
 package Controller;
 
+import View.ResourceManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,6 +25,7 @@ public class BugAdventureGame extends Application {
             primaryStage.setResizable(false);
 
             Scene scene = new Scene(root, 400, 400);
+            primaryStage.getIcons().add(ResourceManager.getCharacterImage("LadyBug"));
             primaryStage.setTitle("Bug Adventure");
             primaryStage.setScene(scene);
             start.setStage(primaryStage);

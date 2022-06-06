@@ -110,6 +110,12 @@ public class Dungeon implements Serializable, Directions {
         return myExit.getContents().containsHero();
     }
 
+    public void moveToEntrance() {
+        myCurrent.getContents().removeHero();
+        myEntrance.getContents().addHero(myHero);
+        myCurrent = myEntrance;
+    }
+
     public void printExitPath() {
         System.out.println("The path to the exit is: ");
         System.out.println(myExitString);

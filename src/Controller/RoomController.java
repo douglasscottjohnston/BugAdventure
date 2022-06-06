@@ -8,6 +8,7 @@ import Model.Room;
 import View.ResourceManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.SubScene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -157,11 +158,16 @@ public class RoomController extends Controller {
             myItemHBox.getChildren().clear();
 
             for (HeroInventory.ITEM_KEY item : Model.getHero().getInventory().getItems().keySet()) {
-                useItemButton = new Button(item.getItem().getName());
+                useItemButton = new Button();
+                ImageView buttonGraphic = new ImageView(ResourceManager.getItemImage(item.getItem().getName()));
+                buttonGraphic.setFitHeight(50);
+                buttonGraphic.setFitWidth(50);
+                useItemButton.setGraphic(buttonGraphic);
                 Label itemLabel = new Label(Integer.toString(Model.getHero().getInventory().getItems().get(item)));
                 useItemButton.setOnAction(e -> onUseItemPress(e, item.getItem(), itemLabel));
                 itemVBox = new VBox();
                 itemVBox.getChildren().addAll(useItemButton, itemLabel);
+                itemVBox.setAlignment(Pos.CENTER);
                 myItemHBox.getChildren().add(itemVBox);
             }
         }

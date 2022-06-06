@@ -70,7 +70,7 @@ the room accordingly
                         <Button fx:id="mySouthButton" layoutX="182.0" layoutY="309.0" mnemonicParsing="false" onAction="#onSouthButtonClick" text="v" visible="false" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="190.0" />
                         <Button fx:id="myEastButton" layoutX="291.0" layoutY="188.0" mnemonicParsing="false" onAction="#onEastButtonClick" text="&gt;" visible="false" AnchorPane.bottomAnchor="188.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="188.0" />
                         <Label fx:id="myDialogueLabel" layoutX="110.0" layoutY="115.0" />
-                        <ImageView fx:id="myHeroImage" fitHeight="76.0" fitWidth="85.0" layoutX="63.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                        <ImageView fx:id="myHeroImage" fitHeight="76.0" fitWidth="85.0" layoutX="72.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                             <image>
                                 <Image url="@Resources/Characters/ladybug.png" />
                             </image>
@@ -87,18 +87,6 @@ the room accordingly
                             </image>
                         </ImageView>
                         <Label fx:id="myMonsterHealthLabel" layoutX="289.0" layoutY="145.0" textFill="WHITE" />
-
-                  <AnchorPane fx:id="myItemPane" layoutX="83.0" layoutY="281.0" prefHeight="99.0" prefWidth="246.0" visible="false">
-                     <children>
-                        <SubScene fx:id="myItemScene" fill="BLACK" height="100.0" width="250.0">
-                          <root>
-                            <Region />
-                          </root>
-                        </SubScene>
-                        <Button fx:id="myCancelItemsButton" mnemonicParsing="false" onAction="#onCancelItemsButtonClick" prefHeight="25.0" prefWidth="56.0" text="Cancel" AnchorPane.rightAnchor="0.0" />
-                        <HBox fx:id="myItemHBox" layoutY="24.0" prefHeight="76.0" prefWidth="250.0" />
-                     </children>
-                  </AnchorPane>
                   <ImageView fx:id="myNorthDoorClosed" fitHeight="114.0" fitWidth="415.0" layoutX="1.0" preserveRatio="true" visible="false" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <image>
                         <Image url="@Resources/Room/roomtop.png" />
@@ -140,6 +128,18 @@ the room accordingly
                         <Image url="@Resources/Room/roomleft.png" />
                      </image>
                   </ImageView>
+
+                  <AnchorPane fx:id="myItemPane" layoutX="83.0" layoutY="281.0" prefHeight="99.0" prefWidth="246.0" visible="false">
+                     <children>
+                        <SubScene fx:id="myItemScene" fill="BLACK" height="100.0" width="250.0">
+                          <root>
+                            <Region />
+                          </root>
+                        </SubScene>
+                        <Button fx:id="myCancelItemsButton" mnemonicParsing="false" onAction="#onCancelItemsButtonClick" prefHeight="25.0" prefWidth="56.0" text="Cancel" AnchorPane.rightAnchor="0.0" />
+                        <HBox fx:id="myItemHBox" layoutY="24.0" prefHeight="76.0" prefWidth="250.0" />
+                     </children>
+                  </AnchorPane>
 
                     </children>
                 </AnchorPane>

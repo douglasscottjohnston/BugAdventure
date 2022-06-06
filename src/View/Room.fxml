@@ -70,7 +70,7 @@ the room accordingly
                         <Button fx:id="mySouthButton" layoutX="182.0" layoutY="309.0" mnemonicParsing="false" onAction="#onSouthButtonClick" text="v" visible="false" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="190.0" />
                         <Button fx:id="myEastButton" layoutX="291.0" layoutY="188.0" mnemonicParsing="false" onAction="#onEastButtonClick" text="&gt;" visible="false" AnchorPane.bottomAnchor="188.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="188.0" />
                         <Label fx:id="myDialogueLabel" layoutX="110.0" layoutY="115.0" />
-                        <ImageView fx:id="myHeroImage" fitHeight="40.0" fitWidth="67.0" layoutX="90.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                        <ImageView fx:id="myHeroImage" fitHeight="76.0" fitWidth="85.0" layoutX="63.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                             <image>
                                 <Image url="@Resources/Characters/ladybug.png" />
                             </image>
@@ -78,7 +78,7 @@ the room accordingly
                                 <Rectangle2D />
                             </viewport>
                         </ImageView>
-                        <ImageView fx:id="myMonsterImage" fitHeight="40.0" fitWidth="67.0" layoutX="278.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="myMonsterImage" fitHeight="111.0" fitWidth="116.0" layoutX="237.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true">
                             <viewport>
                                 <Rectangle2D />
                             </viewport>
@@ -129,7 +129,7 @@ the room accordingly
                         <Image url="@Resources/Room/rightopen.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="myItemView" fitHeight="40.0" fitWidth="40.0" layoutX="190.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="myItemView" fitHeight="63.0" fitWidth="56.0" layoutX="190.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="myEastDoorClosed" fitHeight="413.0" fitWidth="140.0" layoutX="233.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <image>
                         <Image url="@Resources/Room/roomright.png" />

@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -37,6 +38,22 @@ abstract class Controller {
             Scene scene = new Scene(parent);
             theStage.setScene(scene);
             theStage.show();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    void loadRoomScene(final ActionEvent theEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Room.fxml"));
+            Parent parent = loader.load();
+            Stage stage = (Stage) ((Node) theEvent.getSource()).getScene().getWindow();
+            setStage(stage);
+            Scene scene = new Scene(parent);
+            scene.addEventFilter(KeyEvent.KEY_PRESSED, ((RoomController)loader.getController()).getKeyHandler());
+            stage.setScene(scene);
+            stage.show();
         } catch (IOException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();

@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 public class GameOverController extends Controller {
-    private static final String HERO_SELECT_PATH = "../View/HeroSelect.fxml";
+    private static final String HERO_SELECT_PATH = "/View/HeroSelect.fxml";
 
     @FXML
     private void onYesButtonPress(final ActionEvent theEvent) {

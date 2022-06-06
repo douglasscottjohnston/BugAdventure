@@ -3,18 +3,10 @@ package Controller;
 import Model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class HeroSelectController extends Controller {
 
@@ -63,19 +55,7 @@ public class HeroSelectController extends Controller {
         //if a name was entered and a hero was selected go to the next scene
         if(goToNext) {
             Model.createDungeon();
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/Room.fxml"));
-                Parent parent = loader.load();
-                Stage stage = (Stage) ((Node) theEvent.getSource()).getScene().getWindow();
-                setStage(stage);
-                Scene scene = new Scene(parent);
-                scene.addEventFilter(KeyEvent.KEY_PRESSED, ((RoomController)loader.getController()).getKeyHandler());
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-                e.printStackTrace();
-            }
+            loadRoomScene(theEvent);
         }
     }
 }

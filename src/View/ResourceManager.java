@@ -6,7 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public abstract class ResourceManager {
-    private static final String RESOURCE_PATH = "src/View/Resources/";
+    private static final String RESOURCE_PATH = "View/Resources/";
     private static final String CHARACTERS_PATH = RESOURCE_PATH + "Characters/";
     private static final String MONSTERS_PATH = RESOURCE_PATH + "Monsters/";
     private static final String ITEMS_PATH = RESOURCE_PATH + "Items/";
@@ -28,6 +28,7 @@ public abstract class ResourceManager {
     }
 
     public static Image getCharacterImage(final String theName) {
+        System.out.println(System.getProperty("user.dir"));
         return getImageWithoutExtention(CHARACTERS_PATH + theName);
     }
 
@@ -51,18 +52,18 @@ public abstract class ResourceManager {
     }
 
     private static Image getImageWithoutExtention(final String thePath) {
-        Image image;
 
-        for(IMAGE_FORMATS format : IMAGE_FORMATS.values()) {
-            try {
-                image = getImage(thePath + format);
-                return image;
-            } catch (IOException e) {
-                continue;
-            }
-        }
+//        for(IMAGE_FORMATS format : IMAGE_FORMATS.values()) {
+//            try {
+//                System.out.println(thePath + format);
+//                image = getImage(thePath + format);
+//                return image;
+//            } catch (IOException e) {
+//                continue;
+//            }
+//        }
 
-        System.out.println("The file with the path " + thePath + " was not found");
-        return null;
+        Image image = new Image(thePath + ".png");
+        return image;
     }
 }

@@ -17,14 +17,14 @@ public class StartController extends Controller {
 
     @FXML
     private void onNewGameButtonClick(final ActionEvent theEvent) {
-        nextScene(theEvent, "../View/HeroSelect.fxml");
+        nextScene(theEvent, "/View/HeroSelect.fxml");
     }
 
     @FXML
     private void onLoadGameButtonClick(final ActionEvent theEvent) {
         if(!myLoadGame.isDisable()) {
             Model.load();
-            nextScene(theEvent, "../View/Room.fxml");
+            loadRoomScene(theEvent);
         }
     }
 

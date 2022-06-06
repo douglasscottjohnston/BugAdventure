@@ -22,10 +22,8 @@ import javafx.scene.layout.VBox;
 
 public class RoomController extends Controller {
     private final Utility myUtility = new Utility();
-    private static final String GAME_OVER_PATH = "../View/GameOver.fxml";
-    private static final String WIN_PATH = "../View/Win.fxml";
-    private static final String IMAGE_PATH = "src/View/Resources/";
-    private static final String PNG = ".png";
+    private static final String GAME_OVER_PATH = "/View/GameOver.fxml";
+    private static final String WIN_PATH = "/View/Win.fxml";
 
     @FXML
     AnchorPane myAnchorPane, myItemPane;

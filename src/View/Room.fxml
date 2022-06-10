@@ -50,27 +50,6 @@ the room accordingly
                   </ImageView>
 
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#756c05" height="411.0" layoutX="-2.0" stroke="#8a810b" strokeLineCap="ROUND" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="2.0" visible="false" width="427.0" />
-
-                        <ImageView fx:id="myWestDoor" fitHeight="41.0" fitWidth="41.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" scaleY="5.0" visible="false" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="180.0">
-                            <image>
-                                <Image url="@Resources/treeWallpaper.jpg" />
-                            </image>
-                        </ImageView>
-                        <ImageView fx:id="myEastDoor" fitHeight="41.0" fitWidth="41.0" layoutX="374.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" scaleY="5.0" visible="false" AnchorPane.rightAnchor="0.0">
-                            <image>
-                                <Image url="@Resources/treeWallpaper.jpg" />
-                            </image>
-                        </ImageView>
-                        <ImageView fx:id="myNorthDoor" fitHeight="41.0" fitWidth="41.0" layoutX="184.0" pickOnBounds="true" preserveRatio="true" scaleX="5.5" visible="false" AnchorPane.topAnchor="0.0">
-                            <image>
-                                <Image url="@Resources/treeWallpaper.jpg" />
-                            </image>
-                        </ImageView>
-                        <ImageView fx:id="mySouthDoor" fitHeight="41.0" fitWidth="41.0" layoutX="184.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true" scaleX="5.5" visible="false" AnchorPane.bottomAnchor="0.0">
-                            <image>
-                                <Image url="@Resources/treeWallpaper.jpg" />
-                            </image>
-                        </ImageView>
                         <Button fx:id="myNorthButton" layoutX="179.0" layoutY="73.0" mnemonicParsing="false" onAction="#onNorthButtonClick" text="^" visible="false" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="50.0" />
                         <Button fx:id="myWestButton" layoutX="59.0" layoutY="188.0" mnemonicParsing="false" onAction="#onWestButtonClick" text="&lt;" visible="false" AnchorPane.bottomAnchor="188.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="188.0" />
                         <Button fx:id="mySouthButton" layoutX="182.0" layoutY="309.0" mnemonicParsing="false" onAction="#onSouthButtonClick" text="v" visible="false" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="190.0" />

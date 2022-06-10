@@ -38,12 +38,12 @@ the room accordingly
                 <AnchorPane prefHeight="409.0" prefWidth="406.0">
                     <children>
                   <Rectangle fill="#85cdee" height="418.0" layoutX="-9.0" layoutY="-3.0" stroke="BLACK" strokeLineCap="BUTT" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" width="435.0" />
-                  <ImageView fitHeight="413.0" fitWidth="438.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fitHeight="413.0" opacity="0.00" fitWidth="438.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Resources/Room/treewallpaper.png" />
                      </image>
                   </ImageView>
-                  <ImageView blendMode="SCREEN" fitHeight="413.0" fitWidth="438.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView blendMode="SCREEN" opacity="0.00" fitHeight="413.0" fitWidth="438.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Resources/Room/treewallpaper.png" />
                      </image>
@@ -51,22 +51,22 @@ the room accordingly
 
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#756c05" height="411.0" layoutX="-2.0" stroke="#8a810b" strokeLineCap="ROUND" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="2.0" visible="false" width="427.0" />
 
-                        <ImageView fitHeight="41.0" fitWidth="41.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" scaleY="5.0" visible="false" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="180.0">
+                        <ImageView fx:id="myWestDoor" opacity="0.00" fitHeight="41.0" fitWidth="41.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" scaleY="5.0" visible="false" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="180.0">
                             <image>
                                 <Image url="@Resources/treeWallpaper.jpg" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="374.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" scaleY="5.0" visible="false" AnchorPane.rightAnchor="0.0">
+                        <ImageView fx:id="myEastDoor" opacity="0.00" fitHeight="41.0" fitWidth="41.0" layoutX="374.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" scaleY="5.0" visible="false" AnchorPane.rightAnchor="0.0">
                             <image>
                                 <Image url="@Resources/treeWallpaper.jpg" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="184.0" pickOnBounds="true" preserveRatio="true" scaleX="5.5" visible="false" AnchorPane.topAnchor="0.0">
+                        <ImageView fx:id="myNorthDoor" opacity="0.00" fitHeight="41.0" fitWidth="41.0" layoutX="184.0" pickOnBounds="true" preserveRatio="true" scaleX="5.5" visible="false" AnchorPane.topAnchor="0.0">
                             <image>
                                 <Image url="@Resources/treeWallpaper.jpg" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="184.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true" scaleX="5.5" visible="false" AnchorPane.bottomAnchor="0.0">
+                        <ImageView fx:id="mySouthDoor" opacity="0.00" fitHeight="41.0" fitWidth="41.0" layoutX="184.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true" scaleX="5.5" visible="false" AnchorPane.bottomAnchor="0.0">
                             <image>
                                 <Image url="@Resources/treeWallpaper.jpg" />
                             </image>

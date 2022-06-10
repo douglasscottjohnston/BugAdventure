@@ -28,7 +28,7 @@ the room accordingly
 
 <AnchorPane fx:id="myAnchorPane" prefHeight="481.0" prefWidth="582.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RoomController">
     <children>
-        <ToolBar prefHeight="40.0" prefWidth="414.0" style="-fx-background-color: deepskyblue;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <ToolBar prefHeight="40.0" prefWidth="414.0" style="-fx-background-color: #85cdee;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
                 <Button fx:id="mySaveButton" mnemonicParsing="false" onAction="#onSaveButtonClick" style="-fx-background-color: black;" text="Save" textFill="WHITE" />
             </items>
@@ -37,13 +37,59 @@ the room accordingly
             <children>
                 <AnchorPane prefHeight="409.0" prefWidth="406.0">
                     <children>
-
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#756c05" height="411.0" layoutX="-2.0" stroke="#8a810b" strokeLineCap="ROUND" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="2.0" visible="false" width="427.0" />
-                  <ImageView fitHeight="413.0" fitWidth="438.0" pickOnBounds="true" preserveRatio="true">
+                  <Rectangle fill="#85cdee" height="418.0" layoutX="-9.0" layoutY="-3.0" stroke="BLACK" strokeLineCap="BUTT" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" width="435.0" />
+                  <ImageView fitHeight="413.0" fitWidth="438.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Resources/Room/woodbackground.png" />
+                        <Image url="@Resources/Room/treewallpaper.png" />
                      </image>
                   </ImageView>
+                  <ImageView blendMode="SCREEN" fitHeight="413.0" fitWidth="438.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Resources/Room/treewallpaper.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView blendMode="DARKEN" fitHeight="413.0" fitWidth="111.0" layoutX="332.0" layoutY="1.0" opacity="0.36" preserveRatio="true">
+                     <image>
+                        <Image url="@Resources/Room/leavesshadowright.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView blendMode="DARKEN" fitHeight="413.0" fitWidth="107.0" layoutX="13.0" layoutY="-1.0" opacity="0.46" preserveRatio="true">
+                     <image>
+                        <Image url="@Resources/Room/leavesshadowleft.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="411.0" fitWidth="172.0" layoutX="341.0" layoutY="1.0" preserveRatio="true">
+                     <image>
+                        <Image url="@Resources/Room/woodright.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="413.0" fitWidth="183.0" layoutX="5.0" preserveRatio="true">
+                     <image>
+                        <Image url="@Resources/Room/woodleft.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView blendMode="DARKEN" fitHeight="76.0" fitWidth="426.0" layoutY="3.0" opacity="0.48" preserveRatio="true">
+                     <image>
+                        <Image url="@Resources/Room/treeshadow.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView blendMode="MULTIPLY" fitHeight="88.0" fitWidth="420.0" layoutX="3.0" layoutY="342.0" opacity="0.38" preserveRatio="true">
+                     <image>
+                        <Image url="@Resources/Room/grassshadow.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="132.0" fitWidth="426.0" layoutY="340.0" preserveRatio="true">
+                     <image>
+                        <Image url="@Resources/Room/woodbottom.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="87.0" fitWidth="426.0" layoutX="-1.0" layoutY="-1.0" preserveRatio="true">
+                     <image>
+                        <Image url="@Resources/Room/woodtop.png" />
+                     </image>
+                  </ImageView>
+
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#756c05" height="411.0" layoutX="-2.0" stroke="#8a810b" strokeLineCap="ROUND" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="2.0" visible="false" width="427.0" />
 
                         <ImageView fx:id="myWestDoor" fitHeight="41.0" fitWidth="41.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" scaleY="5.0" visible="false" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="180.0">
                             <image>
@@ -72,7 +118,7 @@ the room accordingly
                         <Label fx:id="myDialogueLabel" layoutX="110.0" layoutY="115.0" />
                         <ImageView fx:id="myHeroImage" fitHeight="76.0" fitWidth="85.0" layoutX="72.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                             <image>
-                                <Image url="@Resources/Characters/ladybug.png" />
+                                <Image url="@Resources/Characters/LadyBug.png" />
                             </image>
                             <viewport>
                                 <Rectangle2D />
@@ -83,7 +129,7 @@ the room accordingly
                                 <Rectangle2D />
                             </viewport>
                             <image>
-                                <Image url="@Resources/Centipede.png" />
+                                <Image url="@Resources/Monsters/Centipede.png" />
                             </image>
                         </ImageView>
                         <Label fx:id="myMonsterHealthLabel" layoutX="289.0" layoutY="145.0" textFill="WHITE" />
@@ -92,9 +138,9 @@ the room accordingly
                         <Image url="@Resources/Room/roomtop.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="myNorthDoor" fitHeight="109.0" fitWidth="420.0" layoutX="2.0" layoutY="-1.0" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <ImageView fx:id="myNorthDoor" fitHeight="109.0" fitWidth="420.0" layoutX="7.0" layoutY="-1.0" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-1.0">
                      <image>
-                        <Image url="@Resources/Room/topopen.png" />
+                        <Image url="@Resources/Room/leavesabove.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="mySouthDoorClosed" fitHeight="110.0" fitWidth="418.0" layoutX="1.0" layoutY="302.0" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -102,19 +148,19 @@ the room accordingly
                         <Image url="@Resources/Room/roombottom.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="mySouthDoor" fitHeight="111.0" fitWidth="426.0" layoutX="-5.0" layoutY="301.0" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <ImageView fx:id="mySouthDoor" blendMode="SRC_ATOP" fitHeight="111.0" fitWidth="426.0" layoutY="346.12193298339844" preserveRatio="true" AnchorPane.bottomAnchor="-5.8536376953125" AnchorPane.rightAnchor="0.0">
                      <image>
-                        <Image url="@Resources/Room/bottomopen.png" />
+                        <Image url="@Resources/Room/grass.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="myWestDoor" fitHeight="411.0" fitWidth="148.0" layoutY="-2.0" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <ImageView fx:id="myWestDoor" fitHeight="411.0" fitWidth="148.0" preserveRatio="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <image>
-                        <Image url="@Resources/Room/leftopen.png" />
+                        <Image url="@Resources/Room/treeleft.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="myEastDoor" fitHeight="408.0" fitWidth="106.0" layoutX="333.0" layoutY="-3.0" preserveRatio="true" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <ImageView fx:id="myEastDoor" fitHeight="413.0" fitWidth="89.0" layoutX="345.9024200439453" preserveRatio="true" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="-0.48778533935546875" AnchorPane.topAnchor="0.0">
                      <image>
-                        <Image url="@Resources/Room/rightopen.png" />
+                        <Image url="@Resources/Room/treeright.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="myItemView" fitHeight="63.0" fitWidth="56.0" layoutX="190.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true" />
@@ -143,22 +189,22 @@ the room accordingly
 
                     </children>
                 </AnchorPane>
-                <TextArea fx:id="myDialogue" editable="false" prefHeight="409.0" prefWidth="207.0" promptText="&gt;" style="-fx-background-color: deepskyblue;" wrapText="true" />
+                <TextArea fx:id="myDialogue" editable="false" prefHeight="379.0" prefWidth="156.0" promptText="&gt;" style="-fx-background-color: #e5cdee; -fx-border-color: #e5cdee;" wrapText="true" />
             </children>
         </HBox>
-        <HBox alignment="CENTER_LEFT" layoutY="441.0" prefHeight="42.0" prefWidth="582.0" spacing="10.0" style="-fx-background-color: deepskyblue;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <HBox alignment="CENTER_LEFT" layoutY="441.0" prefHeight="42.0" prefWidth="582.0" spacing="10.0" style="-fx-background-color: #85cdee;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
                 <Label fx:id="myHealthLabel" text="Health: 100/100" textFill="WHITE">
                     <HBox.margin>
                         <Insets top="15.0" />
                     </HBox.margin>
                 </Label>
-                <Button fx:id="myRunButton" disable="true" mnemonicParsing="false" onAction="#onRunButtonClick" style="-fx-background-color: gold;" text="Run Away">
+                <Button fx:id="myRunButton" disable="true" mnemonicParsing="false" onAction="#onRunButtonClick" style="-fx-background-color: #e5cdee;" text="Run Away">
                     <HBox.margin>
                         <Insets top="10.0" />
                     </HBox.margin>
                 </Button>
-                <Button fx:id="myAttackButton" disable="true" mnemonicParsing="false" onAction="#onAttackButtonPress" style="-fx-background-color: red;" text="Attack" textFill="WHITE">
+                <Button fx:id="myAttackButton" disable="true" mnemonicParsing="false" onAction="#onAttackButtonPress" style="-fx-background-color: orange;" text="Attack" textFill="WHITE">
                     <HBox.margin>
                         <Insets top="10.0" />
                     </HBox.margin>

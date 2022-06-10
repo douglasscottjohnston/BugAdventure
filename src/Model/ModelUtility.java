@@ -3,10 +3,16 @@ package Model;
 import java.io.Serializable;
 import java.util.Random;
 
+/**
+ * The type Model utility.
+ */
 public class ModelUtility implements Serializable {
     private final StringBuilder mySB;
     private final Random myRandom;
 
+    /**
+     * Instantiates a new Model utility.
+     */
     public ModelUtility() {
         mySB = new StringBuilder();
         myRandom = new Random();
@@ -25,7 +31,7 @@ public class ModelUtility implements Serializable {
     /**
      * Append to the string builder.
      *
-     * @param s the s
+     * @param s the string
      */
     public void appendToBuilder(String s) {
         mySB.append(s);
@@ -58,6 +64,12 @@ public class ModelUtility implements Serializable {
         mySB.setLength(0);
     }
 
+    /**
+     * Percent chance boolean.
+     *
+     * @param theChance the the chance
+     * @return the boolean
+     */
     public boolean percentChance(final float theChance) {
         return myRandom.nextFloat() <= theChance;
     }

@@ -9,8 +9,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * The type Bug adventure game.
+ */
 public class BugAdventureGame extends Application {
 
+    /**
+     * Main.
+     *
+     * @param theArgs the args
+     */
     public static void main(final String[] theArgs) {
         launch(theArgs);
     }

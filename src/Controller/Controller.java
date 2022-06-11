@@ -10,10 +10,19 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Controller class.
+ */
 abstract class Controller {
 
     private static Stage myStage;
 
+    /**
+     * loads the Next scene.
+     *
+     * @param theEvent     the event
+     * @param theScenePath the scene path
+     */
     void nextScene(final ActionEvent theEvent, final String theScenePath) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(theScenePath));
@@ -30,6 +39,12 @@ abstract class Controller {
         }
     }
 
+    /**
+     * loads the Next scene.
+     *
+     * @param theStage     the stage
+     * @param theScenePath the scene path
+     */
     void nextScene(final Stage theStage, final String theScenePath) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(theScenePath));
@@ -44,6 +59,11 @@ abstract class Controller {
         }
     }
 
+    /**
+     * Load room scene.
+     *
+     * @param theEvent the event
+     */
     void loadRoomScene(final ActionEvent theEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Room.fxml"));
@@ -60,10 +80,20 @@ abstract class Controller {
         }
     }
 
+    /**
+     * Sets stage.
+     *
+     * @param theStage the stage
+     */
     static void setStage(final Stage theStage) {
         myStage = theStage;
     }
 
+    /**
+     * Gets stage.
+     *
+     * @return the stage
+     */
     static Stage getStage() {
         return myStage;
     }

@@ -8,6 +8,9 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
+/**
+ * The type Hero select controller.
+ */
 public class HeroSelectController extends Controller {
 
     private static final String HERO_IMAGE_PATH = "src/View/Resources/Characters/";
@@ -24,6 +27,10 @@ public class HeroSelectController extends Controller {
     @FXML
     private Label myNameWarning, myHeroWarning;
 
+    /**
+     * Action for clicking on the 'ok' button.
+     * @param theEvent
+     */
     @FXML
     private void onOKButtonClick(final ActionEvent theEvent) {
         //get the name from the name box

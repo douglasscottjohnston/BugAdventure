@@ -38,12 +38,12 @@ the room accordingly
                 <AnchorPane prefHeight="409.0" prefWidth="406.0">
                     <children>
                   <Rectangle fill="#85cdee" height="418.0" layoutX="-9.0" layoutY="-3.0" stroke="BLACK" strokeLineCap="BUTT" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" width="435.0" />
-                  <ImageView fitHeight="413.0" opacity="0.00" fitWidth="438.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="413.0" fitWidth="438.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Resources/Room/treewallpaper.png" />
                      </image>
                   </ImageView>
-                  <ImageView blendMode="SCREEN" opacity="0.00" fitHeight="413.0" fitWidth="438.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView blendMode="SCREEN" fitHeight="413.0" fitWidth="438.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Resources/Room/treewallpaper.png" />
                      </image>

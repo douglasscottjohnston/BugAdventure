@@ -20,6 +20,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+/**
+ * The type Room controller.
+ */
 public class RoomController extends Controller {
     private final Utility myUtility = new Utility();
     private static final String GAME_OVER_PATH = "/View/GameOver.fxml";
@@ -27,28 +30,27 @@ public class RoomController extends Controller {
 
     @FXML
     AnchorPane myAnchorPane, myItemPane;
-
     @FXML
     SubScene myItemScene;
-
     @FXML
     HBox myItemHBox;
-
     @FXML
     ImageView myNorthDoorClosed, mySouthDoorClosed, myEastDoorClosed, myWestDoorClosed;
-
     @FXML
     ImageView myNorthDoor, mySouthDoor, myEastDoor, myWestDoor, myHeroImage, myMonsterImage, myItemView;
-
     @FXML
-    Label myDialogueLabel, myHealthLabel, myMonsterHealthLabel;
-
+    Label myDialogueLabel,
+    myHealthLabel,
+    myMonsterHealthLabel;
     @FXML
     TextArea myDialogue;
 
     @FXML
     Button mySaveButton, myNorthButton, mySouthButton, myEastButton, myWestButton, myRunButton, myAttackButton, mySpecialAttackButton, myItemButton, myCancelItemsButton;
 
+    /**
+     * initialize the dungeon.
+     */
     @FXML
     private void initialize() {
         setDoors(Model.getDungeon().getCurrent());
@@ -68,6 +70,11 @@ public class RoomController extends Controller {
         }
     }
 
+    /**
+     * Gets key handler.
+     *
+     * @return the key handler
+     */
     public EventHandler<KeyEvent> getKeyHandler() {
         return theEvent -> {
             switch(theEvent.getCode()) {
@@ -110,6 +117,9 @@ public class RoomController extends Controller {
         };
     }
 
+    /**
+     * action for when Attack button is pressed.
+     */
     @FXML
     private void onAttackButtonPress() {
         if(!myAttackButton.isDisable()) {
@@ -133,6 +143,9 @@ public class RoomController extends Controller {
         }
     }
 
+    /**
+     * action for when special attack button is pressed
+     */
     @FXML
     private void onSpecialAttackButtonPress() {
         if(!mySpecialAttackButton.isDisable()) {
@@ -162,6 +175,9 @@ public class RoomController extends Controller {
         }
     }
 
+    /**
+     * action for when item button is pressed.
+     */
     @FXML
     private void onItemButtonPress() {
         if(!myItemButton.isDisable()) {
@@ -188,6 +204,12 @@ public class RoomController extends Controller {
         }
     }
 
+    /**
+     * action on when the use item button is pressed
+     * @param theEvent what event
+     * @param theItem what item
+     * @param theItemLabel the item label
+     */
     private void onUseItemPress(final ActionEvent theEvent, final Item theItem, final Label theItemLabel) {
         Button itemButton = (Button)(theEvent.getSource());
         if(!theItem.isFriendly() && Model.currentHasMonster()) {
@@ -205,6 +227,13 @@ public class RoomController extends Controller {
         }
     }
 
+    /**
+     * What happens when an item is used
+     * @param theButton
+     * @param theItem
+     * @param theItemLabel
+     * @param theBug
+     */
     private void useItem(final Button theButton, final Item theItem, final Label theItemLabel, final Bug theBug) {
         Model.getHero().getInventory().useItem(theItem, theBug);
         int amount = Integer.parseInt(theItemLabel.getText()) - 1;
@@ -223,12 +252,18 @@ public class RoomController extends Controller {
         }
     }
 
+    /**
+     * action for the cancel item button.
+     */
     @FXML
     private void onCancelItemsButtonClick() {
         myItemPane.setVisible(false);
         enableToolBar(true);
     }
 
+    /**
+     * action for the run button. =
+     */
     @FXML
     private void onRunButtonClick() {
         if(Model.run()) {
@@ -243,34 +278,47 @@ public class RoomController extends Controller {
         }
     }
 
+    /**
+     * action for the save button.
+     */
     @FXML
     private void onSaveButtonClick() {
         Model.save();
         myDialogue.appendText("Game Saved\n");
     }
-
-
-
+    /**
+     * action for the north button
+     */
     @FXML
     private void onNorthButtonClick() {
         move(Directions.Direction.NORTH);
     }
-
+    /**
+     * action for the south button
+     */
     @FXML
     private void onSouthButtonClick() {
         move(Directions.Direction.SOUTH);
     }
-
+    /**
+     * action for the east button
+     */
     @FXML
     private void onEastButtonClick() {
         move(Directions.Direction.EAST);
     }
-
+    /**
+     * action for the west button
+     */
     @FXML
     private void onWestButtonClick() {
         move(Directions.Direction.WEST);
     }
 
+    /**
+     * method for moving between rooms.
+     * @param theDirection
+     */
     private void move(final Directions.Direction theDirection) {
         Model.move(theDirection);
         initialize();
@@ -294,6 +342,10 @@ public class RoomController extends Controller {
         myWestDoorClosed.setVisible(!theRoom.hasWest());
     }
 
+    /**
+     * set the move buttons to be visible.
+     * @param theRoom
+     */
     private void setMoveButtons(final Room theRoom) {
         myDialogue.appendText("Select a direction to move in\n");
         myNorthButton.setVisible(theRoom.hasNorth());
@@ -302,6 +354,9 @@ public class RoomController extends Controller {
         myWestButton.setVisible(theRoom.hasWest());
     }
 
+    /**
+     * set the move buttons to disabled.
+     */
     private void disableMoveButtons() {
         myNorthButton.setVisible(false);
         mySouthButton.setVisible(false);
@@ -309,6 +364,9 @@ public class RoomController extends Controller {
         myWestButton.setVisible(false);
     }
 
+    /**
+     * method for when the monster attacks first.
+     */
     private void monsterAttacksFirst() {
         myDialogue.appendText("The ");
         myDialogue.appendText(Model.getCurrentMonster().getName());
@@ -316,6 +374,9 @@ public class RoomController extends Controller {
         monsterAttack();
     }
 
+    /**
+     * This method is the functionality of the monsters attacks.
+     */
     private void monsterAttack() {
         int damage = Model.getCurrentMonster().attack(Model.getHero());
         setHeroHealth();
@@ -334,6 +395,9 @@ public class RoomController extends Controller {
         enableToolBar(true);
     }
 
+    /**
+     * This method is for when the hero is faster and attacks first.
+     */
     private void heroAttacksFirst() {
         myDialogue.appendText(Model.getHero().getName());
         myDialogue.appendText(" was faster than the ");
@@ -344,6 +408,9 @@ public class RoomController extends Controller {
         enableToolBar(true);
     }
 
+    /**
+     * Phase for when a monster has appeared. calls either the hero or monster attack first method.
+     */
     private void monsterAppears() {
         myDialogue.appendText("A " + Model.getCurrentMonster().getName() + " has appeared!\n");
         myUtility.appendToBuilder(Integer.toString(Model.getCurrentMonster().getHealth()));
@@ -359,6 +426,9 @@ public class RoomController extends Controller {
         }
     }
 
+    /**
+     * this method deals with what happens when the moster dies.
+     */
     private void monsterDies() {
         myDialogue.appendText(Model.getHero().getName());
         myDialogue.appendText(" defeated the ");
@@ -375,10 +445,16 @@ public class RoomController extends Controller {
         itemPhase();
     }
 
+    /**
+     * game over method if the hero dies.
+     */
     private void heroDies() {
         nextScene(getStage(), GAME_OVER_PATH);
     }
 
+    /**
+     * Item phase allows user to use item before combat.
+     */
     private void itemPhase() {
         if(Model.currentHasItem()) {
             while(Model.currentHasItem()) {
@@ -395,6 +471,9 @@ public class RoomController extends Controller {
         movementPhase();
     }
 
+    /**
+     * this method activates when the user is moving.
+     */
     private void movementPhase() {
         myMonsterHealthLabel.setText("");
         myMonsterImage.setImage(null);
@@ -404,7 +483,10 @@ public class RoomController extends Controller {
         myItemButton.setDisable(false);
     }
 
-
+    /**
+     * this method enables the tool bar.
+     * @param theValue
+     */
     private void enableToolBar(final boolean theValue) {
         myAttackButton.setDisable(!theValue);
         myRunButton.setDisable(!theValue);
@@ -412,6 +494,9 @@ public class RoomController extends Controller {
         myItemButton.setDisable(!theValue);
     }
 
+    /**
+     * text display for setting the heroes health.
+     */
     private void setHeroHealth() {
         myUtility.appendToBuilder(Model.getHero().getName());
         myUtility.appendToBuilder("'s Health: ");
@@ -425,6 +510,9 @@ public class RoomController extends Controller {
         myHealthLabel.setText(myUtility.builderToStringClear());
     }
 
+    /**
+     * text display for setting the monsters health.
+     */
     private void setMonsterHealth() {
         myUtility.appendToBuilder(Integer.toString(Model.getCurrentMonster().getHealth()));
         myUtility.appendToBuilder("/");

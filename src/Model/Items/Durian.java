@@ -2,6 +2,9 @@ package Model.Items;
 
 import Model.Bugs.Bug;
 
+/**
+ * The type Durian.
+ */
 //name of this item is tentative
 public class Durian extends Item {
 
@@ -11,9 +14,17 @@ public class Durian extends Item {
 
     private static final boolean MY_FRIENDLY = true;
 
+    /**
+     * Instantiates a new Durian item.
+     */
     public Durian() {
         super(MY_NAME, MY_FRIENDLY, MY_MESSAGE);
     }
+
+    /**
+     * effects of the durian item.
+     * @param theHero the hero
+     */
     @Override
     public void effect(Bug theHero) {
         theHero.getAttack().setPower(theHero.getAttack().getPower() + DAMAGE_INCREASE);

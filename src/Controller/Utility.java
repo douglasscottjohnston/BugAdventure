@@ -32,7 +32,7 @@ public class Utility {
     /**
      * Append to the string builder.
      *
-     * @param s the s
+     * @param s the string
      */
     public void appendToBuilder(String s) {
         mySB.append(s);

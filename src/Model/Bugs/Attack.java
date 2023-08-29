@@ -16,10 +16,10 @@ public class Attack implements Serializable {
     /**
      * Instantiates a new Attack.
      *
-     * @param theName    the name of the attack
-     * @param thePower   the attack power
+     * @param theName         the name of the attack
+     * @param thePower        the attack power
      * @param theAttackChance the chance to hit attack
-     * @param theLifesteal true if attack has lifesteal
+     * @param theLifesteal    true if attack has lifesteal
      */
     public Attack(final String theName, final int thePower, final int theAttackChance, final boolean theLifesteal) {
         myName = theName;
@@ -47,13 +47,28 @@ public class Attack implements Serializable {
         return myPower;
     }
 
+    /**
+     * Sets power.
+     *
+     * @param thePower the power
+     */
     public void setPower(final int thePower) {
         myPower = thePower;
     }
 
+    /**
+     * Gets attack chance.
+     *
+     * @return the attack chance
+     */
     public int getAttackChance() {
         return myAttackChance;
     }
 
+    /**
+     * Has life steal boolean.
+     *
+     * @return the boolean (true if attack has lifesteal)
+     */
     public boolean hasLifeSteal() { return myHasLifesteal; }
 }

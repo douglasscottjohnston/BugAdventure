@@ -17,15 +17,15 @@ public class ItemFactory implements Serializable {
         return new Apple();
     }
 
-    public Bomb makeBomb() {
-        return new Bomb();
+    public WatermelonBomb makeBomb() {
+        return new WatermelonBomb();
     }
 
     public Sugar makeSugar() { return new Sugar(); }
 
     public Acorn makeAcorn() { return new Acorn(); }
 
-    public ChocolateMilk makeChocolateMilk() { return new ChocolateMilk(); }
+    public Durian makeChocolateMilk() { return new Durian(); }
 
     public Item makeRandomItem() {
         return switch(myUtility.getRandom(ITEM_HIGH)) {

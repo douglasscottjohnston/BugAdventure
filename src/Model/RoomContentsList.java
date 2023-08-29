@@ -92,7 +92,6 @@ public class RoomContentsList implements Serializable {
 
     /**
      * Removes the hero from the list.
-     *
      */
     public void removeHero() {
         myHero = null;

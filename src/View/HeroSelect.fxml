@@ -18,11 +18,16 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="400.0">
          <image>
-            <Image url="@Resources/heroselectbg.jpg" />
+            <Image url="@Resources/Grass.jpg" />
          </image>
       </ImageView>
-      <Pane layoutX="42.0" layoutY="42.0" prefHeight="316.0" prefWidth="316.0" style="-fx-background-color: olive;">
+      <Pane layoutX="42.0" layoutY="42.0" prefHeight="316.0" prefWidth="316.0">
          <children>
+            <ImageView fitHeight="316.0" fitWidth="316.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Resources/Room/woodbackground.png" />
+               </image>
+            </ImageView>
             <Label layoutX="96.0" layoutY="200.0" text="Enter your hero's name" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Roboto Black" size="13.0" />
@@ -67,29 +72,25 @@
             <Ellipse fill="WHITE" layoutX="83.0" layoutY="102.0" radiusX="35.0" radiusY="48.0" stroke="BLACK" strokeType="INSIDE" />
             <Ellipse fill="#ffbd1f" layoutX="240.0" layoutY="102.0" radiusX="35.0" radiusY="48.0" stroke="BLACK" strokeType="INSIDE" />
             <Ellipse fill="#fffcbd" layoutX="162.0" layoutY="102.0" radiusX="35.0" radiusY="48.0" stroke="BLACK" strokeType="INSIDE" />
-            <ImageView fitHeight="63.0" fitWidth="63.0" layoutX="129.0" layoutY="71.0">
-               <image>
-                  <Image url="@Resources/pillbug.png" />
-               </image>
-            </ImageView>
             <ImageView fitHeight="68.0" fitWidth="55.0" layoutX="54.0" layoutY="72.0" preserveRatio="true">
                <image>
-                  <Image url="@Resources/Characters/newladybug.png" />
+                  <Image url="@Resources/Characters/LadyBug.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="67.0" fitWidth="67.0" layoutX="207.0" layoutY="68.0" preserveRatio="true">
                <image>
-                  <Image url="@Resources/Characters/newant.png" />
+                  <Image url="@Resources/Characters/Ant.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="87.0" fitWidth="87.0" layoutX="119.0" layoutY="60.0" preserveRatio="true">
                <image>
-                  <Image url="@Resources/Characters/newpillbug.png" />
+                  <Image url="@Resources/Characters/PillBug.png" />
                </image>
             </ImageView>
+            <Label fx:id="myNameWarning" layoutX="114.0" layoutY="288.0" text="Name not entered" textFill="RED" visible="false" />
+            <Label fx:id="myHeroWarning" layoutX="117.0" layoutY="288.0" text="Hero not selected" textFill="RED" visible="false" />
          </children>
       </Pane>
-      <Label fx:id="myNameWarning" layoutX="242.0" layoutY="272.0" text="Name not entered" textFill="RED" visible="false" />
-      <Label fx:id="myHeroWarning" layoutX="245.0" layoutY="272.0" text="Hero not selected" textFill="RED" visible="false" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

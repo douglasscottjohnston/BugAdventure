@@ -1,4 +1,4 @@
 *.iml
 *.bin
 .idea
-out/
+out
